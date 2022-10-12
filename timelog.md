@@ -1,9 +1,9 @@
 # Timelog
 
-* PROJECT NAME
-* YOUR NAME
-* STUDENT_ID
-* SUPERVISOR NAME
+* SELF-DRIVING ROBOTIC CAR COMPETITION
+* LEWIS TRUNDLE
+* 2469635T
+* DR JONATHAN GRIZOU
 
 ## Guidance
 
@@ -12,15 +12,27 @@
 * This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
 * Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
 
-## Week 1
+## Week 1 [26/09/22]
 
-### 19 Oct 2019
+### 30 Sep 2022
+* *0.5 hours* Had first supervisor meeting.
 
-* *4 hours* Read the project guidance notes
-* *0.5 hour* Created GitLab repository and cloned the cookiecutter for the projects
-* *1 hour* Modified dissertation template, compiled  
 
-## 20 Oct 2019
+## Week 2 [03/10/22]
 
-* *1 hour* meeting with supervisor
-* *2 hours* writing initial version of test harness
+### 04 Oct 2022
+* *1.5 hours* Did background research on self-driving robot competitions.
+* *1 hour* Read through previous years exemplar dissertations.
+
+### 05 Oct 2022
+* *3 hours* Did more background research on competitions and put together research report
+* *0.5 hours* Created GitHub for version control.
+
+### 07 Oct 2022
+* *0.5 hours* Had supervisor meeting.
+
+
+## Week 3 [10/10/22]
+
+### 12 Oct 2022
+* 2 hours* Followed tutorial to create GitHub page.
