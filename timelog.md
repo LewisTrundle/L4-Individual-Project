@@ -22,7 +22,7 @@
 
 ### 04 Oct 2022
 * *1.5 hours* Did background research on self-driving robot competitions.
-* *1 hour* Read through previous years exemplar dissertations.
+* *1 hours* Read through previous years exemplar dissertations.
 
 ### 05 Oct 2022
 * *3 hours* Did more background research on competitions and put together research report
@@ -35,4 +35,37 @@
 ## Week 3 [10/10/22]
 
 ### 12 Oct 2022
-* 2 hours* Followed tutorial to create GitHub page.
+* *1.5 hours* Followed tutorial to create GitHub page.
+* *1 hours* meeting with Hank to further refine comp rules and website.
+* *2 hours* Started on Figma design for website.
+
+### 13 Oct 2022
+* *1.5 hours* Refreshers on HTML & CSS by working on Home page.
+
+### 14 Oct 2022
+* *0.5 hours* Supervisor meeting with Jonathan.
+
+
+## Week 4 [17/10/22]
+
+### 18 Oct 2022
+* *4 hours* Continued with Figma design for website.
+
+### 19 Oct 2022
+* *3 hours* Created navbar for website
+* *1 hours* Weekly meeting with Hank.
+
+### 21 Oct 2022
+* *2 hours* Created designs for size of race track.
+* *0.5 hours* Supervisor meeting with Jonathan.
+
+
+## Week 5 [24/10/22]
+
+### 24 Oct 2022
+* *4 hours* Looked into HTML templates for website and created mockups.
+
+### 26 Oct 2022
+* *2.5 hours* Continued working on website.
+* *0.5 hours* Weekly meeting with Hank.
+* *1 hours* Tidied up notes from supervisor meetings over past month.
