@@ -69,3 +69,18 @@
 * *2.5 hours* Continued working on website.
 * *0.5 hours* Weekly meeting with Hank.
 * *1 hours* Tidied up notes from supervisor meetings over past month.
+
+### 27 Oct 2022
+* *3 hours* Finished design for website
+
+### 28 Oct 2022
+* *1 hours* Creating past competitions page.
+* *1.5 hours* Supervisor meeting.
+* *2 hours* Creating general components for website.
+* *1 hours* Created issue/merge templates for Github and created issues.
+
+### 31 Oct 2022
+* *4 hours* Made various pages on website and created multiple issues.
+
+### 01 Nov 2022
+* *4.5 hours* Continued making main pages and created more issues.
