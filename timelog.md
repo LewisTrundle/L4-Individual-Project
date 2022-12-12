@@ -79,8 +79,79 @@
 * *2 hours* Creating general components for website.
 * *1 hours* Created issue/merge templates for Github and created issues.
 
+
+## Week 6 [31/10/22]
+
 ### 31 Oct 2022
 * *4 hours* Made various pages on website and created multiple issues.
 
 ### 01 Nov 2022
 * *4.5 hours* Continued making main pages and created more issues.
+
+### 02 Nov 2022
+* *4.5 hours* Created Google form and script for applicants.
+* *0.5 hours* Weekly meeting with Hank.
+
+### 03 Nov 2022
+* *2 hours* Made improvements on Home page.
+* *3 hours* Made leaderboards page.
+
+### 04 Nov 2022
+* *3.5 hours* Made improvements to About page.
+* *0.5 hours* Supervisor meeting.
+
+
+## Week 7 [07/11/22]
+
+### 08 Nov 2022
+* *5 hours* Continued with general improvements to website.
+
+### 09 Nov 2022
+* *3 hours* More improvements to website, including changing fonts and making components.
+* *0.5 hours* Weekly meeting with Hank.
+
+### 11 Nov 2022
+* *0.5 hours* Supervisor meeting.
+
+
+## Week 8 [14/11/22]
+
+### 14 Nov 2022
+* *2.5 hours* Tested different functions of the Puck.
+
+### 16 Nov 2022
+* *1 hours* Met with Callum and Hank to discuss functionality of Puck
+
+### 18 Nov 2022
+* *0.5 hours* Weekly supervisor meeting.
+
+
+## Week 9 [21/11/22] 
+
+### 25 Nov 2022
+* *0.5 hours* Weekly supervisor meeting
+
+
+## Week 10 [28/11/22]
+
+### 02 Dec 2022
+* *0.5 hours* Weekly supervisor meeting
+
+
+## Week 11 [05/12/22]
+
+### 06 Dec 2022
+* *2 hours* Started implementing basic joystick controller for robot.
+
+### 07 Dec 2022
+* *0.5 hours* Weekly supervisor meeting.
+* *1 hours* Continued implementing joystick controller.
+
+
+## Week 12 [12/12/22]
+
+### 12 Dec 2022
+* *2.5 hours* Continued getting joystick controller code onto robot.
+
+
+## Winter 
