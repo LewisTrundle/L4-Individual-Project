@@ -7,7 +7,7 @@ npm run build
 git checkout -b gh-pages
 
 # Remove all files from the current directory, except for ".git"
-find . -maxdepth 1 ! -name '.git' ! -name 'build' ! -name '.gitignore' ! -name 'node_modules' -exec rm -rf {} \;
+find . -maxdepth 1 ! -name 'build' -exec rm -rf {} \;
 
 # Move all files in build up one level
 mv build/* .
