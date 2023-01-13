@@ -6,6 +6,9 @@ npm run build
 # Checkout the "gh-pages" branch
 git checkout -b gh-pages
 
+# move back one directory
+cd ..
+
 # Remove all files from the current directory, except for ".git"
 find . -maxdepth 1 ! -name 'build' -exec rm -rf {} \;
 
