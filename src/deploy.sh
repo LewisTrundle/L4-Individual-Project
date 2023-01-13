@@ -6,6 +6,8 @@ npm run build
 # Checkout the "gh-pages" branch
 git checkout -b gh-pages
 
+mv build ..
+
 # move back one directory
 cd ..
 
