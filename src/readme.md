@@ -1,41 +1,28 @@
-# Readme
+# Welcome to create-espruino-app
 
-Put a brief description of your code here. This should at least describe the file structure.
+Have fun with your espruino tools typescript app.
 
-## Build instructions
+## 😀 Lets get started
 
-**You must** include the instructions necessary to build and deploy this project successfully. If appropriate, also include 
-instructions to run automated tests. 
+- Get started by running `cd my-app-name`
 
-### Requirements
+- Followed by `npm start`
 
-List the all of the pre-requisites software required to set up your project (e.g. compilers, packages, libraries, OS, hardware)
+This will start a local development environment.
 
-For example:
+## 💻 Hosting
 
-* Python 3.7
-* Packages: listed in `requirements.txt` 
-* Tested on Windows 10
+Hosting with create-espruino-app is easy,
 
-or another example:
+lets get started
 
-* Requires Raspberry Pi 3 
-* a Linux host machine with the `arm-none-eabi` toolchain (at least version `x.xx`) installed
-* a working LuaJIT installation > 2.1.0
+- run `npm run build`.
 
-### Build steps
+This will create a new folder `bin`
 
-List the steps required to build software. 
+You should see 2 files in here
 
-Hopefully something simple like `pip install -e .` or `make` or `cd build; cmake ..`. In
-some cases you may have much more involved setup required.
+- `main.js`
+- `index.html`
 
-### Test steps
-
-List steps needed to show your software works. This might be running a test suite, or just starting the program; but something that could be used to verify your code is working correctly.
-
-Examples:
-
-* Run automated tests by running `pytest`
-* Start the software by running `bin/editor.exe` and opening the file `examples/example_01.bin`
-
+the contents of this folder are new bundled and ready to be hosted online.

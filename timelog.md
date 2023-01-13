@@ -5,13 +5,6 @@
 * 2469635T
 * DR JONATHAN GRIZOU
 
-## Guidance
-
-* This file contains the time log for your project. It will be submitted along with your final dissertation.
-* **YOU MUST KEEP THIS UP TO DATE AND UNDER VERSION CONTROL.**
-* This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
-* Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
-
 ## Week 1 [26/09/22]
 
 ### 30 Sep 2022
@@ -154,4 +147,29 @@
 * *2.5 hours* Continued getting joystick controller code onto robot.
 
 
-## Winter 
+## Winter
+
+### 21 Dec 2022
+* *5 hours* Joystick code now works with robot, albeit still janky.
+
+### 22 Dec 2022
+* *3 hours* Made deployment script to run controller on GitHub pages.
+* *0.5 hours* General bug fixing.
+* *1 hours* Designed joystick for mobile (portrait and landscape).
+
+### 28 Dec 2022
+* *2 hours* Started re-designing track on Figma to match requirements
+* *1 hours* Tested peer package from npx tool to test line tracking.
+
+### 07 Jan 2023
+* *5 hours* Re-styled joystick controller page.
+
+### 08 Jan 2023
+* *1.5 hours* Created index page for controllers.
+
+
+## Week 13 [09/01/23]
+
+### 11 Jan 2023
+* *1.5 hours* Reorgansed all materials and links for project and re-wrote semester 2 plan.
+* *1 hours* Attended lecture on Computer Vision.
