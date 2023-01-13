@@ -10,7 +10,7 @@ git checkout -b gh-pages
 cd ..
 
 # Remove all files from the current directory, except for ".git"
-find . -maxdepth 1 ! -name 'build' -exec rm -rf {} \;
+find . -maxdepth 1 ! -name 'build' ! -name '.git' -exec rm -rf {} \;
 
 # Move all files in build up one level
 mv build/* .
