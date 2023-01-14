@@ -32,6 +32,17 @@ module.exports = () => ({
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images/'
+            }
+          }
+        ]
+      }
     ],
   },
   devServer: {

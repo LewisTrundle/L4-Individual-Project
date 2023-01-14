@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@espruino-tools/device-controller": "^2.1.0",
+    "file-loader": "^6.2.0",
     "nipplejs": "^0.10.0",
     "piecewise-function": "^1.0.0"
   }
