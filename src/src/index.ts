@@ -1,4 +1,5 @@
-import { indexPage, joystickPage, joyZone } from "./components";
+import { indexPage, joystickPage, selfDrivingPage, joyZone } from "./components";
+import { Host } from "@espruino-tools/peer";
 import { Robot } from './robot';
 import * as nipplejs from 'nipplejs';
 import "./styles/app.scss";
@@ -167,6 +168,27 @@ if (window.location.href.includes('joystick.html')) {
     createNipple('static');
 
   };
+}
+
+else if (window.location.href.includes('self-driving.html')) {
+  window.onload = function () {
+    let p = new Host(window.location.origin + "/peer.html");
+
+    p.getData(function (data) {
+      alert(data);
+    });
+  
+    p.getVideo(function (data) {
+      let body = document.getElementById("joystick");
+      let video = document.createElement("video");
+      video.srcObject = data;
+      video.play();
+      video.className = "video";
+      body.appendChild(video);
+    });
+
+    selfDrivingPage();
+  }
 }
 
 /* INDEX PAGE */

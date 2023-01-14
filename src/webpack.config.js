@@ -15,7 +15,7 @@ process.env.NODE_ENV = "development";
 
 module.exports = () => ({
   mode: "development",
-  entry: { "./src/index": "./src/index.ts" },
+  entry: { "./src/index": "./src/index.ts", "./src/peer": "./src/peer.ts" },
   output: {
     path: path.join(__dirname, "build"),
     filename: "[name].js",
@@ -47,6 +47,11 @@ module.exports = () => ({
   },
   devServer: {
     historyApiFallback: true,
+    onBeforeSetupMiddleware: function (devServer) {
+      devServer.app.get("/peer.html", function (req, res) {
+        res.sendFile(path.join(__dirname + "/public/peer.html"));
+      });
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -58,6 +63,16 @@ module.exports = () => ({
       filename: "joystick.html",
       template: "public/joystick.html",
       chunks: ["joystick"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "self-driving.html",
+      template: "public/self-driving.html",
+      chunks: ["self-driving"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "peer.html",
+      template: "public/peer.html",
+      chunks: ["connector"],
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),

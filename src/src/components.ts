@@ -68,14 +68,14 @@ export const indexPage = () => {
   let root = document.getElementById("page-root");
 
   let headerdiv = headerDiv();
-  title("Robot Controller", headerdiv);
+    title("Robot Controller", headerdiv);
   elements.push(headerdiv);
 
   let contentdiv = contentDiv();
     let buttonsdiv = buttonsDiv(contentdiv);
       let joysticklink = mainButtonLink("joystick.html", buttonsdiv);
         mainButton("Joystick", joysticklink);
-      let lineLink = mainButtonLink("line-tracking.html", buttonsdiv);
+      let lineLink = mainButtonLink("self-driving.html", buttonsdiv);
         mainButton("Line Tracking", lineLink);
   elements.push(contentdiv);
 
@@ -85,12 +85,27 @@ export const indexPage = () => {
 };
 
 
+/* SELF DRIVING PAGE */
+export const selfDrivingPage = () => {
+  let root = document.getElementById("page-root");
+  joystickHeader(root, "Self Driving Controller");
+
+  let contentdiv = createComponent("div", {class: "content"}, null);
+    joystickButtons(contentdiv);
+    let joystickdiv = createComponent("div", {id: "joystick", class: "joystick"}, null, contentdiv);
+    insertModal(contentdiv);
+  root.appendChild(contentdiv);
+
+  openCloseModal();
+}
+
+
 /* JOYSTICK PAGE */
 export var joyZone;
 
 export const joystickPage = () => {
   let root = document.getElementById("page-root");
-  joystickHeader(root);
+  joystickHeader(root, "Joystick Controller");
   
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
@@ -101,11 +116,11 @@ export const joystickPage = () => {
   openCloseModal();
 }
 
-function joystickHeader(root) {
+function joystickHeader(root: any, pageTitle: string) {
   let headerdiv = headerDiv();
   let backlink = backLink(headerdiv);
     backButton(backlink);
-  title("Joystick Controller", headerdiv);
+  title(pageTitle, headerdiv);
   let headerbuttonsdiv = headerButtonsDiv(headerdiv);
     batteryImage(headerbuttonsdiv);
     let developerlink = developerLink(headerbuttonsdiv);

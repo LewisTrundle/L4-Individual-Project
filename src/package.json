@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js",
+    "start": "webpack-dev-server --https --config ./webpack.config.js",
     "build": "webpack --config ./webpack.config.js"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@espruino-tools/device-controller": "^2.1.0",
+    "@espruino-tools/peer": "^1.2.1",
     "file-loader": "^6.2.0",
     "nipplejs": "^0.10.0",
     "piecewise-function": "^1.0.0"
