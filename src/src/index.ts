@@ -71,7 +71,7 @@ export function start() {
   }
   robot.Call.switchMotor("D8", 0);
   robot.Call.switchMotor("D7", 0);
-  sendCode = window.setInterval(moveRobot, 1000);
+  sendCode = window.setInterval(moveRobot, 600);
 }
 
 export function stop() {
@@ -92,6 +92,8 @@ export function getSpeeds(angle) {
 
   if (l_speed < 0.3 && l_speed > 0) l_speed = 0.3;
   if (r_speed < 0.3 && r_speed > 0) r_speed = 0.3;
+  if (l_speed > 0.75) l_speed = 0.75;
+  if (r_speed > 0.75) r_speed = 0.75;
 
   speeds.push([l_speed, r_speed]);
 };
