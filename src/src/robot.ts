@@ -27,8 +27,8 @@ export class Robot extends DeviceController {
     this.sendCode = null;
     this.maxSpeed = 1;
     this.minSpeed = 0.3;
-    this.angle_mapping_left = Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed/2, this.minSpeed, this.minSpeed, this.minSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
-    this.angle_mapping_right =Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.minSpeed, this.maxSpeed/2, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.minSpeed, this.minSpeed, this.minSpeed]);
+    this.angle_mapping_left = Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.minSpeed, this.minSpeed, this.minSpeed, this.minSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
+    this.angle_mapping_right =Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.minSpeed, this.minSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.minSpeed, this.minSpeed, this.minSpeed]);
   }
 
   // ----- BUTTONS -----
