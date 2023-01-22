@@ -46,18 +46,6 @@ export function diagnostic(angle?: number) {
 }
 
 
-// ----- MOVEMENT -----
-function start() {
-  robot.start();
-}
-function stop() {
-  robot.stop();
-};
-function getSpeeds(angle) {
-  robot.getSpeeds(angle);
-};
-
-
 /* RENDER HTML PAGES */
 
 /* JOYSTICK PAGE */
@@ -81,13 +69,12 @@ if (window.location.href.includes('joystick.html')) {
     };
     function bindNipple() {
       joystick.on('start', function(evt, data) {
-        start();
+        robot.start();
       }).on('end', function(evt, data) {
-        stop();
+        robot.stop();
       }
       ).on('move', function(evt, data) {
-        console.log(data);
-        getSpeeds(data.angle.degree);
+        robot.moveRobot(data.angle.degree, data.force);
       });
     }
     function createNipple(evt) {

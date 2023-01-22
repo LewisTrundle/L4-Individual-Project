@@ -11,9 +11,10 @@ export class Robot extends DeviceController {
   left_dir: number;
   right_dir: number;
   speeds: any[];
-  sendCode: any;
+  sendCodeFunc: any;
   maxSpeed: number;
   minSpeed: number;
+  maxForce: number;
   angle_mapping_left: any;
   angle_mapping_right: any;
   
@@ -24,9 +25,10 @@ export class Robot extends DeviceController {
     this.left_dir = 0;
     this.right_dir = 0;
     this.speeds = [];
-    this.sendCode = null;
+    this.sendCodeFunc = null;
     this.maxSpeed = 1;
     this.minSpeed = 0.4;
+    this.maxForce = 1.5;
     this.angle_mapping_left = Piecewise(angles, 
                                           [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.minSpeed, 0, 0, 0, 0, -this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
     this.angle_mapping_right = Piecewise(angles, 
@@ -64,24 +66,29 @@ export class Robot extends DeviceController {
     }
     this.Call.switchMotor("D8", 0);
     this.Call.switchMotor("D7", 0);
-    this.sendCode = window.setInterval(this.moveRobot.bind(this), 600);
+    this.sendCodeFunc = window.setInterval(this.sendCode.bind(this), 600);
   };
       
   stop() {
     console.log("Stopped moving joystick.\nChecking connection...");
     if (!this.checkConnection()) return;
-    window.clearInterval(this.sendCode);
+    window.clearInterval(this.sendCodeFunc);
     this.Call.stop();
     this.speeds = [];
   };
       
-  getSpeeds(angle) {
+  moveRobot(angle, force) {
     console.log("Moving robot.\nChecking connection...");
+
     if (!this.checkConnection()) return;
-    const a = angle; //Math.round(angle);
-    var l_speed = this.angle_mapping_left(a);
-    var r_speed = this.angle_mapping_right(a);
-    console.log(`Angle: ${angle}\t Left: ${l_speed}\t Right: ${r_speed}`);
+    var l_speed = this.angle_mapping_left(angle);
+    var r_speed = this.angle_mapping_right(angle);
+    const forceRatio = force / this.maxForce;
+    console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio) * 100}%) of ${this.maxForce}\n
+      \t\t\t\t\tLeft: ${l_speed}\t Right: ${r_speed}\n
+      After force calc: Left: ${l_speed*forceRatio}\t Right: ${r_speed*forceRatio}`);
+    l_speed = l_speed*forceRatio;
+    r_speed = r_speed*forceRatio;
       
     this.switchDirections(l_speed, r_speed);
     l_speed = Math.abs(l_speed);
@@ -94,7 +101,7 @@ export class Robot extends DeviceController {
     this.speeds.push([l_speed, r_speed]);
   };
       
-  moveRobot() {
+  sendCode() {
     const speed = this.speeds[(this.speeds).length-1];
     if (speed) {
       this.Call.turn(speed[0], speed[1]);
@@ -137,8 +144,8 @@ export class Robot extends DeviceController {
   };
 
   async test(angle: number) {
-    this.getSpeeds(angle);
-    this.moveRobot();
+    this.moveRobot(angle, this.maxForce);
+    this.sendCode();
     await delay(5000);
     this.stop();
   }
