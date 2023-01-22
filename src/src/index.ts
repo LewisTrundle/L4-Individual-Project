@@ -70,7 +70,7 @@ if (window.location.href.includes('joystick.html')) {
       static: {
         zone: joyZone,
         mode: 'static',
-        size: 200,
+        size: 180,
         position: {
           left: '50%',
           top: '50%'
