@@ -40,6 +40,9 @@ export function disconnect() {
 };
 export function getBattery() {
   robot.getBatteryRobot();
+};
+export function diagnostic(angle?: number) {
+  robot.diagnostic(angle);
 }
 
 
@@ -47,11 +50,9 @@ export function getBattery() {
 function start() {
   robot.start();
 }
-
 function stop() {
   robot.stop();
 };
-
 function getSpeeds(angle) {
   robot.getSpeeds(angle);
 };
@@ -69,7 +70,7 @@ if (window.location.href.includes('joystick.html')) {
       static: {
         zone: joyZone,
         mode: 'static',
-        size: 230,
+        size: 200,
         position: {
           left: '50%',
           top: '50%'
@@ -80,14 +81,13 @@ if (window.location.href.includes('joystick.html')) {
     };
     function bindNipple() {
       joystick.on('start', function(evt, data) {
-        console.log("moving robot");
         start();
       }).on('end', function(evt, data) {
-        console.log("stopping robot");
         stop();
       }
       ).on('move', function(evt, data) {
-        getSpeeds(data.angle);
+        console.log(data);
+        getSpeeds(data.angle.degree);
       });
     }
     function createNipple(evt) {

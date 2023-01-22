@@ -1,9 +1,9 @@
 import { DeviceController } from "@espruino-tools/core";
 
 var Piecewise = require('piecewise-function');
-//const angle_mapping_left = Piecewise([0, 45, 90, 135, 180, 225, 270, 315, 360], [1, 1, 1, 0, 0, 0, -1, 1, 1])
-//const angle_mapping_right = Piecewise([0, 45, 90, 135, 180, 225, 270, 315, 360], [0, 0, 1, 1, 1, 1, -1, 0, 0])
- 
+const angles = [0, 44.9, 45, 90, 135, 135.1, 180, 225, 259.9, 260, 270, 280, 280.1, 315, 360];
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 
 // speed should not be set less that 0.3
 export class Robot extends DeviceController {
@@ -26,10 +26,12 @@ export class Robot extends DeviceController {
     this.speeds = [];
     this.sendCode = null;
     this.maxSpeed = 1;
-    this.minSpeed = 0.3;
-    this.angle_mapping_left = Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.minSpeed, this.minSpeed, this.minSpeed, this.minSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
-    this.angle_mapping_right =Piecewise([0, 45, 90, 135, 180, 225, 259, 260, 280, 281, 315, 360], [this.minSpeed, this.minSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.minSpeed, this.minSpeed, this.minSpeed]);
-  }
+    this.minSpeed = 0.4;
+    this.angle_mapping_left = Piecewise(angles, 
+                                          [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.minSpeed, 0, 0, 0, 0, -this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
+    this.angle_mapping_right = Piecewise(angles, 
+                                          [0, 0, this.minSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, -this.maxSpeed, -this.maxSpeed, -this.maxSpeed, 0, 0, 0]);
+    }
 
   // ----- BUTTONS -----
   connectRobot() {
@@ -52,8 +54,11 @@ export class Robot extends DeviceController {
     });
   };
 
+
+  // ----- MOVEMENT -----
   start() {
-    if (!this.connected) {
+    console.log("Started moving joystick.\nChecking connection...");
+    if (!this.checkConnection()) {
       this.connect();
       return;
     }
@@ -63,18 +68,20 @@ export class Robot extends DeviceController {
   };
       
   stop() {
-    if (!this.connected) {
-      return;
-    }
+    console.log("Stopped moving joystick.\nChecking connection...");
+    if (!this.checkConnection()) return;
     window.clearInterval(this.sendCode);
     this.Call.stop();
+    this.speeds = [];
   };
       
   getSpeeds(angle) {
-    if (!this.connected) return;
-    const a = Math.round(angle.degree);
+    console.log("Moving robot.\nChecking connection...");
+    if (!this.checkConnection()) return;
+    const a = angle; //Math.round(angle);
     var l_speed = this.angle_mapping_left(a);
     var r_speed = this.angle_mapping_right(a);
+    console.log(`Angle: ${angle}\t Left: ${l_speed}\t Right: ${r_speed}`);
       
     this.switchDirections(l_speed, r_speed);
     l_speed = Math.abs(l_speed);
@@ -84,14 +91,12 @@ export class Robot extends DeviceController {
     if (r_speed < this.minSpeed && r_speed > 0) r_speed = this.minSpeed;
     if (l_speed > this.maxSpeed) l_speed = this.maxSpeed;
     if (r_speed > this.maxSpeed) r_speed = this.maxSpeed;
-      
     this.speeds.push([l_speed, r_speed]);
   };
       
   moveRobot() {
     const speed = this.speeds[(this.speeds).length-1];
     if (speed) {
-      console.log(`Left: ${speed[0]}\t Right: ${speed[1]}`);
       this.Call.turn(speed[0], speed[1]);
     }
   };
@@ -113,5 +118,37 @@ export class Robot extends DeviceController {
       this.Call.switchMotor("D7", 1);
       this.right_dir = 1;
     }
+  };
+
+
+  async diagnostic(angle?: number) {
+    console.log("\n\n\nEntering diagnostic mode\n\n\n");
+    if (!this.checkConnection()) return;
+    this.stop();
+
+    if (angle >= 0) {
+      await this.test(angle);
+    } 
+    else {
+      for (var i = 0; i < angles.length; i++) {
+        await this.test(angles[i]);
+      }
+    }
+  };
+
+  async test(angle: number) {
+    this.getSpeeds(angle);
+    this.moveRobot();
+    await delay(5000);
+    this.stop();
+  }
+
+  checkConnection() {
+    if (!this.connected) {
+      console.log("\nNot connected to robot!\n\n");
+      return false;
+    }
+    console.log("\n Device is connected!\n\n");
+    return true;
   };
 }

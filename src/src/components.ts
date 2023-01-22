@@ -93,7 +93,8 @@ export const selfDrivingPage = () => {
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
     let joystickdiv = createComponent("div", {id: "joystick", class: "joystick"}, null, contentdiv);
-    insertModal(contentdiv);
+    insertHelpModal(contentdiv);
+    insertDiagnosticModal(contentdiv);
   root.appendChild(contentdiv);
 
   openCloseModal();
@@ -110,7 +111,8 @@ export const joystickPage = () => {
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
     joyZone = insertJoystick(contentdiv);
-    insertModal(contentdiv);
+    insertHelpModal(contentdiv);
+    insertDiagnosticModal(contentdiv);
   root.appendChild(contentdiv);
 
   openCloseModal();
@@ -123,8 +125,8 @@ function joystickHeader(root: any, pageTitle: string) {
   title(pageTitle, headerdiv);
   let headerbuttonsdiv = headerButtonsDiv(headerdiv);
     batteryImage(headerbuttonsdiv);
-    let developerlink = developerLink(headerbuttonsdiv);
-    developerImage(developerlink);
+    let diagnosticLink = createComponent("button", {id: "diagBtn"}, null, headerbuttonsdiv);
+    developerImage(diagnosticLink);
   root.appendChild(headerdiv);
 }
 
@@ -132,18 +134,46 @@ function joystickButtons(root) {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
     createComponent("button", {onclick: "robot.connect()"}, "Connect", buttonsdiv);
     createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
-    createComponent("button", {id: "myBtn"}, "Help", buttonsdiv);
+    createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
 }
 
-function insertModal(root) {
-  let modal = createComponent("div", {id:"myModal", class: "modal"}, null, root);
+function insertHelpModal(root) {
+  let modal = createComponent("div", {id: "helpModal", class: "modal"}, null, root);
     let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
       let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
-        createComponent("span", {id: "close"}, `&times;`, modalheader);
+        createComponent("span", {class: "close"}, `&times;`, modalheader);
         createComponent("h2", {}, "How to Use", modalheader);
       let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
         createComponent("p", {}, `Detailed instructions are explained  <a href="https://github.com/Kirstin813/L4-Individual-Project/tree/main/src#connecting-to-robot">here</a>`, modalbody);
+      let modalfooter = createComponent("div", {class: "modal-footer"}, null, modalcontent);
+        createComponent("h3", {}, "Thanks for reading :)", modalfooter);
+  root.appendChild(modal);
+}
+
+function insertDiagnosticModal(root) {
+  let modal = createComponent("div", {id: "diagModal", class: "modal"}, null, root);
+    let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
+      let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
+        createComponent("span", {class: "close"}, `&times;`, modalheader);
+        createComponent("h2", {}, "How to Use", modalheader);
+      let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
+        let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, modalbody);
+          createComponent("button", {onclick: "robot.diagnostic()"}, "Test all angles", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(0)"}, `Test 0 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(44.9)"}, "Test 44.9 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(45)"}, "Test 45 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(90)"}, `Test 90 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(135)"}, "Test 135 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(135.1)"}, "Test 135.1 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(180)"}, `Test 180 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(225)"}, "Test 225 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(259.9)"}, "Test 259.9 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(260)"}, "Test 260 degrees", buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(270)"}, `Test 270 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(280)"}, `Test 280 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(280.1)"}, `Test 280.1 degrees`, buttonsdiv);
+          createComponent("button", {onclick: "robot.diagnostic(315)"}, "Test 315 degrees", buttonsdiv);
       let modalfooter = createComponent("div", {class: "modal-footer"}, null, modalcontent);
         createComponent("h3", {}, "Thanks for reading :)", modalfooter);
   root.appendChild(modal);
@@ -160,22 +190,33 @@ function insertJoystick(root) {
 
 
 function openCloseModal() {
-  var modal = document.getElementById("myModal");
-  var btn = document.getElementById("myBtn");
-  var span = document.getElementById("close");
+  var helpModal = document.getElementById("helpModal");
+  var diagModal = document.getElementById("diagModal");
+  var helpBtn = document.getElementById("helpBtn");
+  var diagBtn = document.getElementById("diagBtn");
+  var span = document.getElementsByClassName("close") as HTMLCollectionOf<HTMLElement>;
 
   // When the user clicks the button, open the modal 
-  btn.onclick = function() {
-    modal.style.display = "block";
+  helpBtn.onclick = function() {
+    helpModal.style.display = "block";
   }
+  diagBtn.onclick = function() {
+    diagModal.style.display = "block";
+  }
+
   // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
+  for (var i = 0; i < span.length; i++) {
+    span[i].onclick = function() {
+      helpModal.style.display = "none";
+      diagModal.style.display = "none";
+    }
   }
+
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target == helpModal || event.target == diagModal) {
+      helpModal.style.display = "none";
+      diagModal.style.display = "none";
     }
   }
 }
