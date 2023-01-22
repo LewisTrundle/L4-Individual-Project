@@ -2,6 +2,7 @@ import { DeviceController } from "@espruino-tools/core";
 
 var elements = [];
 
+
 /* CREATE COMPONENT */
 const createComponent = (component: string, properties: Object, text: string, parent?: any) => {
   let el = document.createElement(component);
@@ -93,8 +94,12 @@ export const selfDrivingPage = () => {
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
     let joystickdiv = createComponent("div", {id: "joystick", class: "joystick"}, null, contentdiv);
-    insertHelpModal(contentdiv);
-    insertDiagnosticModal(contentdiv);
+
+    let helpModal = createModal(contentdiv, "helpModal");
+    helpModalContent(helpModal);
+    let settingsModal = createModal(contentdiv, "settingsModal");
+    settingsModalContent(settingsModal);
+
   root.appendChild(contentdiv);
 
   openCloseModal();
@@ -111,8 +116,16 @@ export const joystickPage = () => {
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
     joyZone = insertJoystick(contentdiv);
-    insertHelpModal(contentdiv);
-    insertDiagnosticModal(contentdiv);
+
+    let helpModal = createModal(contentdiv, "helpModal");
+    helpModalContent(helpModal);
+    let settingsModal = createModal(contentdiv, "settingsModal");
+    settingsModalContent(settingsModal);
+    let mappingsModal = createModal(contentdiv, "mappingsModal");
+    mappingModalContent(mappingsModal);
+    let testAnglesModal = createModal(contentdiv, "testAnglesModal");
+    testAnglesModalContent(testAnglesModal);
+
   root.appendChild(contentdiv);
 
   openCloseModal();
@@ -125,7 +138,7 @@ function joystickHeader(root: any, pageTitle: string) {
   title(pageTitle, headerdiv);
   let headerbuttonsdiv = headerButtonsDiv(headerdiv);
     batteryImage(headerbuttonsdiv);
-    let diagnosticLink = createComponent("button", {id: "diagBtn"}, null, headerbuttonsdiv);
+    let diagnosticLink = createComponent("button", {id: "settingsBtn"}, null, headerbuttonsdiv);
     developerImage(diagnosticLink);
   root.appendChild(headerdiv);
 }
@@ -138,18 +151,42 @@ function joystickButtons(root) {
   root.appendChild(buttonsdiv);
 }
 
-function insertHelpModal(root) {
-  let modal = createComponent("div", {id: "helpModal", class: "modal"}, null, root);
+function createModal(root, modalId) {
+  let modal = createComponent("div", {id: modalId, class: "modal"}, null, root);
     let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
       let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
         createComponent("span", {class: "close"}, `&times;`, modalheader);
         createComponent("h2", {}, "How to Use", modalheader);
       let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
-        createComponent("p", {}, `Detailed instructions are explained  <a href="https://github.com/Kirstin813/L4-Individual-Project/tree/main/src#connecting-to-robot">here</a>`, modalbody);
       let modalfooter = createComponent("div", {class: "modal-footer"}, null, modalcontent);
         createComponent("h3", {}, "Thanks for reading :)", modalfooter);
   root.appendChild(modal);
+  return modalbody;
 }
+
+function helpModalContent(root) {
+  createComponent("p", {}, `Detailed instructions are explained  <a href="https://github.com/Kirstin813/L4-Individual-Project/tree/main/src#connecting-to-robot">here</a>`, root);
+}
+
+function settingsModalContent(root) {
+  let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
+    createComponent("button", {id: "mappingsBtn"}, "Select angle to motor mapping", buttonsdiv);
+    createComponent("button", {id: "testAnglesBtn"}, "Perform Diagnostic", buttonsdiv);
+};
+
+function mappingModalContent(root) {
+  let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
+    createComponent("button", {id: "tightControl"}, "Tight Mapping", buttonsdiv);
+    createComponent("button", {id: "looseControl"}, "Loose Mapping", buttonsdiv);
+};
+
+function testAnglesModalContent(root) {
+  let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
+    createComponent("button", {onclick: "robot.diagnostic()"}, "Test all angles", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(0)"}, `Test 0 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(44.9)"}, "Test 44.9 degrees", buttonsdiv);
+}
+
 
 function insertDiagnosticModal(root) {
   let modal = createComponent("div", {id: "diagModal", class: "modal"}, null, root);
@@ -191,32 +228,51 @@ function insertJoystick(root) {
 
 function openCloseModal() {
   var helpModal = document.getElementById("helpModal");
-  var diagModal = document.getElementById("diagModal");
+  var settingsModal = document.getElementById("settingsModal");
+  var mappingsModal = document.getElementById("mappingsModal");
+  var testAnglesModal = document.getElementById("testAnglesModal");
+
   var helpBtn = document.getElementById("helpBtn");
-  var diagBtn = document.getElementById("diagBtn");
+  var settingsBtn = document.getElementById("settingsBtn");
+  var mappingsBtn = document.getElementById("mappingsBtn");
+  var testAnglesBtn = document.getElementById("testAnglesBtn");
+
   var span = document.getElementsByClassName("close") as HTMLCollectionOf<HTMLElement>;
 
   // When the user clicks the button, open the modal 
   helpBtn.onclick = function() {
     helpModal.style.display = "block";
   }
-  diagBtn.onclick = function() {
-    diagModal.style.display = "block";
+  settingsBtn.onclick = function() {
+    settingsModal.style.display = "block";
+  }
+  mappingsBtn.onclick = function() {
+    settingsModal.style.display = "none";
+    mappingsModal.style.display = "block";
+  }
+  testAnglesBtn.onclick = function() {
+    settingsModal.style.display = "none";
+    testAnglesModal.style.display = "block"
   }
 
   // When the user clicks on <span> (x), close the modal
   for (var i = 0; i < span.length; i++) {
     span[i].onclick = function() {
       helpModal.style.display = "none";
-      diagModal.style.display = "none";
+      settingsModal.style.display = "none";
+      mappingsModal.style.display = "none";
+      testAnglesModal.style.display = "none";
     }
   }
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == helpModal || event.target == diagModal) {
+    if (event.target == helpModal || event.target == settingsModal || 
+      event.target == mappingsModal || event.target == testAnglesModal) {
       helpModal.style.display = "none";
-      diagModal.style.display = "none";
+      settingsModal.style.display = "none";
+      mappingsModal.style.display = "none";
+      testAnglesModal.style.display = "none";
     }
   }
 }

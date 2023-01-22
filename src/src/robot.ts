@@ -1,7 +1,4 @@
 import { DeviceController } from "@espruino-tools/core";
-
-var Piecewise = require('piecewise-function');
-const angles = [0, 44.9, 45, 90, 135, 135.1, 180, 225, 259.9, 260, 270, 280, 280.1, 315, 360];
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
@@ -15,6 +12,7 @@ export class Robot extends DeviceController {
   maxSpeed: number;
   minSpeed: number;
   maxForce: number;
+  angles: any;
   angle_mapping_left: any;
   angle_mapping_right: any;
   
@@ -27,12 +25,11 @@ export class Robot extends DeviceController {
     this.speeds = [];
     this.sendCodeFunc = null;
     this.maxSpeed = 1;
-    this.minSpeed = 0.4;
+    this.minSpeed = 0;
     this.maxForce = 1.5;
-    this.angle_mapping_left = Piecewise(angles, 
-                                          [this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.minSpeed, 0, 0, 0, 0, -this.maxSpeed, -this.maxSpeed, -this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed]);
-    this.angle_mapping_right = Piecewise(angles, 
-                                          [0, 0, this.minSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, this.maxSpeed, -this.maxSpeed, -this.maxSpeed, -this.maxSpeed, 0, 0, 0]);
+    this.angles = null;
+    this.angle_mapping_left = null;
+    this.angle_mapping_right = null;
     }
 
   // ----- BUTTONS -----
@@ -54,6 +51,35 @@ export class Robot extends DeviceController {
     this.getBattery().then((percentage) => {
       console.log(`Battery percentage is: ${percentage['data']}%`);
     });
+  };
+
+  async diagnostic(angle?: number) {
+    console.log("\n\n\nEntering diagnostic mode\n\n\n");
+    if (!this.checkConnection()) return;
+    this.stop();
+
+    if (angle >= 0) {
+      await this.test(angle);
+    } 
+    else {
+      for (var i = 0; i < this.angles.length; i++) {
+        await this.test(this.angles[i]);
+      }
+    }
+  };
+
+  async test(angle: number) {
+    this.moveRobot(angle, this.maxForce);
+    this.sendCode();
+    await delay(5000);
+    this.stop();
+  };
+
+  setMapping(mapping) {
+    console.log("Switching to", mapping.name);
+    this.angles = mapping.angles;
+    this.angle_mapping_left = mapping.leftMotorMapping;
+    this.angle_mapping_right = mapping.rightMotorMapping;
   };
 
 
@@ -80,11 +106,11 @@ export class Robot extends DeviceController {
   moveRobot(angle, force) {
     console.log("Moving robot.\nChecking connection...");
 
-    if (!this.checkConnection()) return;
+    //if (!this.checkConnection()) return;
     var l_speed = this.angle_mapping_left(angle);
     var r_speed = this.angle_mapping_right(angle);
     const forceRatio = force / this.maxForce;
-    console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio) * 100}%) of ${this.maxForce}\n
+    console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio * 100)}%) of ${this.maxForce}\n
       \t\t\t\t\tLeft: ${l_speed}\t Right: ${r_speed}\n
       After force calc: Left: ${l_speed*forceRatio}\t Right: ${r_speed*forceRatio}`);
     l_speed = l_speed*forceRatio;
@@ -127,28 +153,6 @@ export class Robot extends DeviceController {
     }
   };
 
-
-  async diagnostic(angle?: number) {
-    console.log("\n\n\nEntering diagnostic mode\n\n\n");
-    if (!this.checkConnection()) return;
-    this.stop();
-
-    if (angle >= 0) {
-      await this.test(angle);
-    } 
-    else {
-      for (var i = 0; i < angles.length; i++) {
-        await this.test(angles[i]);
-      }
-    }
-  };
-
-  async test(angle: number) {
-    this.moveRobot(angle, this.maxForce);
-    this.sendCode();
-    await delay(5000);
-    this.stop();
-  }
 
   checkConnection() {
     if (!this.connected) {

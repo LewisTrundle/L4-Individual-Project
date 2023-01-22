@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Build the web application
-npm run build
-
 # Checkout the "gh-pages" branch
 git checkout -b gh-pages
+
+# Build the web application
+npm run build
 
 mv build ..
 
@@ -12,7 +12,7 @@ mv build ..
 cd ..
 
 # Remove all files from the current directory, except for ".git"
-find . -maxdepth 1 ! -name 'build' ! -name '.git' ! -name 'gitignore' ! -name 'node_modules' -exec rm -rf {} \;
+find . -maxdepth 1 ! -name 'build' ! -name '.git' ! -name 'src\gitignore' ! -name 'src\node_modules' -exec rm -rf {} \;
 
 # Move all files in build up one level
 mv build/* .

@@ -1,4 +1,5 @@
 import { indexPage, joystickPage, selfDrivingPage, joyZone } from "./components";
+import { mappings } from "./angleMotorMappings";
 import { Host } from "@espruino-tools/peer";
 import { Robot } from './robot';
 import * as nipplejs from 'nipplejs';
@@ -43,7 +44,10 @@ export function getBattery() {
 };
 export function diagnostic(angle?: number) {
   robot.diagnostic(angle);
-}
+};
+export function setMapping(mapping) {
+  robot.setMapping(mapping);
+};
 
 
 /* RENDER HTML PAGES */
@@ -52,6 +56,14 @@ export function diagnostic(angle?: number) {
 if (window.location.href.includes('joystick.html')) {
   window.onload = function () {
     joystickPage();
+    setMapping(mappings["tightControl"]);
+
+    Object.keys(mappings).forEach(key => {
+      var btn = document.getElementById(key);
+      btn.onclick = function () {
+        setMapping(mappings[key]);
+      };
+    });
 
     var joystick;
     var joysticks = {
