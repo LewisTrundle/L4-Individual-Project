@@ -127,6 +127,17 @@ body {
         width: 100%;
     }
 
+    .buttons-row {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+
+        #codeToUpload,
+        #codeOnRobot {
+            width: 50%;
+        }
+    }
+
     .buttons button,
     .buttons a {
         cursor: pointer;

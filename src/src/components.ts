@@ -99,6 +99,12 @@ export const selfDrivingPage = () => {
     helpModalContent(helpModal);
     let settingsModal = createModal(contentdiv, "settingsModal");
     settingsModalContent(settingsModal);
+    let mappingsModal = createModal(contentdiv, "mappingsModal");
+    mappingModalContent(mappingsModal);
+    let testAnglesModal = createModal(contentdiv, "testAnglesModal");
+    testAnglesModalContent(testAnglesModal);
+    let robotCodeModal = createModal(contentdiv, "robotCodeModal");
+    robotCodeModalContent(robotCodeModal);
 
   root.appendChild(contentdiv);
 
@@ -125,6 +131,8 @@ export const joystickPage = () => {
     mappingModalContent(mappingsModal);
     let testAnglesModal = createModal(contentdiv, "testAnglesModal");
     testAnglesModalContent(testAnglesModal);
+    let robotCodeModal = createModal(contentdiv, "robotCodeModal");
+    robotCodeModalContent(robotCodeModal);
 
   root.appendChild(contentdiv);
 
@@ -173,6 +181,7 @@ function settingsModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
     createComponent("button", {id: "mappingsBtn"}, "Select angle to motor mapping", buttonsdiv);
     createComponent("button", {id: "testAnglesBtn"}, "Perform Diagnostic", buttonsdiv);
+    createComponent("button", {id: "robotCodeBtn"}, "Robot Code", buttonsdiv);
 };
 
 function mappingModalContent(root) {
@@ -198,6 +207,16 @@ function testAnglesModalContent(root) {
     createComponent("button", {onclick: "robot.diagnostic(360)"}, "Test 360 degrees", buttonsdiv);
 };
 
+function robotCodeModalContent(root) {
+  let buttonsdiv1 = createComponent("div", {class: "buttons buttons-row"}, null, root);
+    createComponent("button", {id: "uploadCodeBtn"}, "UPLOAD CODE", buttonsdiv1);
+    createComponent("button", {id: "getCodeBtn"}, "GET DEVICE CODE", buttonsdiv1);
+    createComponent("button", {id: "resetCodeBtn"}, "RESET CODE", buttonsdiv1);
+  let buttonsdiv2 = createComponent("div", {class: "buttons buttons-row"}, null, root);
+    createComponent("p", {id: "codeToUpload"}, "THERE IS NO CODE TO UPLOAD", buttonsdiv2);
+    createComponent("p", {id: "codeOnRobot"}, "hello", buttonsdiv2);
+};
+
 
 function insertJoystick(root) {
   let joystickdiv = createComponent("div", {class: "joystick"}, null, root);
@@ -214,11 +233,13 @@ function openCloseModal() {
   var settingsModal = document.getElementById("settingsModal");
   var mappingsModal = document.getElementById("mappingsModal");
   var testAnglesModal = document.getElementById("testAnglesModal");
+  var robotCodeModal = document.getElementById("robotCodeModal");
 
   var helpBtn = document.getElementById("helpBtn");
   var settingsBtn = document.getElementById("settingsBtn");
   var mappingsBtn = document.getElementById("mappingsBtn");
   var testAnglesBtn = document.getElementById("testAnglesBtn");
+  var robotCodeBtn = document.getElementById("robotCodeBtn");
 
   var span = document.getElementsByClassName("close") as HTMLCollectionOf<HTMLElement>;
 
@@ -235,7 +256,11 @@ function openCloseModal() {
   }
   testAnglesBtn.onclick = function() {
     settingsModal.style.display = "none";
-    testAnglesModal.style.display = "block"
+    testAnglesModal.style.display = "block";
+  }
+  robotCodeBtn.onclick = function() {
+    settingsModal.style.display = "none";
+    robotCodeModal.style.display = "block";
   }
 
   // When the user clicks on <span> (x), close the modal
@@ -245,17 +270,20 @@ function openCloseModal() {
       settingsModal.style.display = "none";
       mappingsModal.style.display = "none";
       testAnglesModal.style.display = "none";
+      robotCodeModal.style.display = "none";
     }
   }
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == helpModal || event.target == settingsModal || 
-      event.target == mappingsModal || event.target == testAnglesModal) {
+      event.target == mappingsModal || event.target == testAnglesModal ||
+      event.target == robotCodeModal) {
       helpModal.style.display = "none";
       settingsModal.style.display = "none";
       mappingsModal.style.display = "none";
       testAnglesModal.style.display = "none";
+      robotCodeModal.style.display = "none";
     }
   }
 }

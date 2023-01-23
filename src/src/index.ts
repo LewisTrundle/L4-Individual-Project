@@ -7,29 +7,6 @@ import "./styles/app.scss";
 
 
 var robot = new Robot();
-// no whitespace allowed between () and {
-// no whitespace allowed between functions
-// get device code doesn't work
-let code = `
-function turn(args){
-  speeds = args.split(',');
-  analogWrite("D10", speeds[0]);
-  analogWrite("D9", speeds[1]);
-}
-function switchMotor(args){
-  args = args.split(',');
-  pin = args[0];
-  d = args[1];
-  digitalWrite(pin, d);
-}
-function getPinValue(pin){
-  return eval(pin +".getInfo()");
-}
-function stop(){
-  digitalWrite("D9", 0);
-  digitalWrite("D10", 0);
-}
-`;
 
 
 // ----- BUTTONS -----
@@ -40,16 +17,93 @@ export function disconnect() {
   robot.disconnectRobot()
 };
 export function getBattery() {
-  robot.getBatteryRobot();
+  robot.getBattery().then((percentage) => {
+    console.log(`Battery percentage is: ${percentage['data']}%`);
+  });
 };
 export function diagnostic(angle?: number) {
   robot.diagnostic(angle);
 };
-export function setMapping(mapping) {
+
+function setMapping(mapping) {
   robot.setMapping(mapping);
   var mappingText = document.getElementById("mappingText");
   mappingText.innerHTML = `Angle-Motor Mapping: ${mapping.name}`;
 };
+
+function uploadCodeButton() {
+  const url = window.location.origin + "/robotCode.txt";
+  var uploadCodeBtn = document.getElementById("uploadCodeBtn");
+  var getCodeBtn = document.getElementById("getCodeBtn");
+  var resetCodeBtn = document.getElementById("resetCodeBtn");
+  var codeToUpload = document.getElementById("codeToUpload");
+  var codeOnRobot = document.getElementById("codeOnRobot");
+
+  // get code to be uploaded to robot
+  fetchToText(url).then(async (rawCode: string) => {
+    rawCode = formatCode(rawCode);
+    codeToUpload.innerHTML = rawCode;
+  });
+
+  if (!robot.connected) {
+    codeOnRobot.innerHTML = `Not connected to robot, please press <b>CONNECT<b>`
+  };
+  
+  uploadCodeBtn.onclick = async function() {
+    await robot.upload(url);
+    getDeviceCode(codeOnRobot);
+  };
+  getCodeBtn.onclick = function() {
+    getDeviceCode(codeOnRobot);
+  };
+  resetCodeBtn.onclick = async function() {
+    await robot.reset();
+    getDeviceCode(codeOnRobot);
+  };
+};
+
+
+function getDeviceCode(text: HTMLElement) {
+  robot.dump().then((deviceData) => {
+    if (deviceData['data'].length > 0) {
+      let formattedCode = formatCode(deviceData['data']);
+      text.innerHTML = formattedCode;
+    } else {
+      text.innerHTML = `<b>THERE IS NO CODE ON THE ROBOT!<b>`
+    }
+
+  });
+};
+
+
+// TAKEN FROM https://github.com/espruino-tools/core/blob/production/src/device-controller.ts
+async function fetchToText(url: string) {
+  let data = await fetch(url).then((res: any) => {
+    if (!res.ok) throw new Error(res.status);
+    return res;
+  });
+  if (!data) throw new Error(`fetch on :${url} failed`);
+  return await data.text();
+}
+
+const formatCode = (code) => {
+  let formattedCode = code;
+  const formats = {
+    "{" : "<br>    ",
+    ";" : "<br>    ",
+    "}" : "<br><br>"
+  };
+
+  Object.keys(formats).forEach(key => {
+    let idx = formattedCode.indexOf(key);
+    while (idx !== -1) {
+      formattedCode = [formattedCode.slice(0, idx+1), formats[key], formattedCode.slice(idx+1)].join('');
+      idx = formattedCode.indexOf(key, idx+1);
+    };
+  });
+  return formattedCode;
+};
+
 
 
 /* RENDER HTML PAGES */
@@ -59,6 +113,7 @@ if (window.location.href.includes('joystick.html')) {
   window.onload = function () {
     joystickPage();
     setMapping(mappings["tightControl"]);
+    uploadCodeButton();
 
     Object.keys(mappings).forEach(key => {
       var btn = document.getElementById(key);
@@ -66,6 +121,7 @@ if (window.location.href.includes('joystick.html')) {
         setMapping(mappings[key]);
       };
     });
+
 
     var joystick;
     var joysticks = {
@@ -146,11 +202,4 @@ export function getDeviceCode() {
     console.log(deviceData);
   });
 }
-
-export function reset() {
-  console.log("Resetting code on device");
-  robot.reset();
-  console.log("Code reset");
-}
-
 */

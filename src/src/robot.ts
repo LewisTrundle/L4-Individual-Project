@@ -47,12 +47,6 @@ export class Robot extends DeviceController {
     });
   };
 
-  getBatteryRobot() {
-    this.getBattery().then((percentage) => {
-      console.log(`Battery percentage is: ${percentage['data']}%`);
-    });
-  };
-
   async diagnostic(angle?: number) {
     console.log("\n\n\nEntering diagnostic mode\n\n\n");
     if (!this.checkConnection()) return;

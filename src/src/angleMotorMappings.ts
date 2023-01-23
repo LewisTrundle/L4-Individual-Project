@@ -6,7 +6,7 @@ class Mapping {
   leftMotorMapping: any;
   rightMotorMapping: any;
 
-  constructor(name, angles, leftMotorMapping, rightMotorMapping) {
+  constructor(name: string, angles: any, leftMotorMapping: any, rightMotorMapping: any) {
     this.name = name;
     this.angles = angles;
     this.leftMotorMapping = Piecewise(angles, leftMotorMapping);

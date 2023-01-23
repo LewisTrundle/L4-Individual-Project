@@ -1,0 +1,15 @@
+function turn(args){
+  speeds = args.split(',');
+  analogWrite("D10", speeds[0]);
+  analogWrite("D9", speeds[1]);
+}
+function switchMotor(args){
+  args = args.split(',');
+  pin = args[0];
+  d = args[1];
+  digitalWrite(pin, d);
+}
+function stop(){
+  digitalWrite("D9", 0);
+  digitalWrite("D10", 0);
+}
