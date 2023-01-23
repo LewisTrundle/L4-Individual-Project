@@ -145,6 +145,7 @@ function joystickHeader(root: any, pageTitle: string) {
 
 function joystickButtons(root) {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
+    createComponent("p", {id: "mappingText"}, "Angle-Motor Mapping: NOT SET!", buttonsdiv);
     createComponent("button", {onclick: "robot.connect()"}, "Connect", buttonsdiv);
     createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
@@ -183,48 +184,20 @@ function mappingModalContent(root) {
 
 function testAnglesModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
-  createComponent("button", {onclick: "robot.diagnostic()"}, "Test all angles", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(0)"}, `Test 0 degrees`, buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(45)"}, "Test 45 degrees", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(90)"}, `Test 90 degrees`, buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(135)"}, "Test 135 degrees", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(180)"}, `Test 180 degrees`, buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(225)"}, "Test 225 degrees", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(260)"}, "Test 260 degrees", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(270)"}, `Test 270 degrees`, buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(280)"}, `Test 280 degrees`, buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(315)"}, "Test 315 degrees", buttonsdiv);
-  createComponent("button", {onclick: "robot.diagnostic(360)"}, "Test 360 degrees", buttonsdiv);
-}
+    createComponent("button", {onclick: "robot.diagnostic()"}, "Test all angles", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(0)"}, `Test 0 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(45)"}, "Test 45 degrees", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(90)"}, `Test 90 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(135)"}, "Test 135 degrees", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(180)"}, `Test 180 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(225)"}, "Test 225 degrees", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(260)"}, "Test 260 degrees", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(270)"}, `Test 270 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(280)"}, `Test 280 degrees`, buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(315)"}, "Test 315 degrees", buttonsdiv);
+    createComponent("button", {onclick: "robot.diagnostic(360)"}, "Test 360 degrees", buttonsdiv);
+};
 
-
-function insertDiagnosticModal(root) {
-  let modal = createComponent("div", {id: "diagModal", class: "modal"}, null, root);
-    let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
-      let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
-        createComponent("span", {class: "close"}, `&times;`, modalheader);
-        createComponent("h2", {}, "How to Use", modalheader);
-      let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
-        let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, modalbody);
-          createComponent("button", {onclick: "robot.diagnostic()"}, "Test all angles", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(0)"}, `Test 0 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(44.9)"}, "Test 44.9 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(45)"}, "Test 45 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(90)"}, `Test 90 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(135)"}, "Test 135 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(135.1)"}, "Test 135.1 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(180)"}, `Test 180 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(225)"}, "Test 225 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(259.9)"}, "Test 259.9 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(260)"}, "Test 260 degrees", buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(270)"}, `Test 270 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(280)"}, `Test 280 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(280.1)"}, `Test 280.1 degrees`, buttonsdiv);
-          createComponent("button", {onclick: "robot.diagnostic(315)"}, "Test 315 degrees", buttonsdiv);
-      let modalfooter = createComponent("div", {class: "modal-footer"}, null, modalcontent);
-        createComponent("h3", {}, "Thanks for reading :)", modalfooter);
-  root.appendChild(modal);
-}
 
 function insertJoystick(root) {
   let joystickdiv = createComponent("div", {class: "joystick"}, null, root);

@@ -47,6 +47,8 @@ export function diagnostic(angle?: number) {
 };
 export function setMapping(mapping) {
   robot.setMapping(mapping);
+  var mappingText = document.getElementById("mappingText");
+  mappingText.innerHTML = `Angle-Motor Mapping: ${mapping.name}`;
 };
 
 
