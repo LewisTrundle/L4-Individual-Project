@@ -186,20 +186,3 @@ else {
     indexPage();
   };
 }
-
-
-
-/* CODE GRAVEYARD
-
-export function upload() {
-  console.log("Uploading code");
-  robot.loadCode(code);
-  console.log("Code Uploaded");
-}
-
-export function getDeviceCode() {
-  robot.dump().then((deviceData) => {
-    console.log(deviceData);
-  });
-}
-*/
