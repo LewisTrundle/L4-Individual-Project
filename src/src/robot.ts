@@ -100,7 +100,7 @@ export class Robot extends DeviceController {
   moveRobot(angle, force) {
     console.log("Moving robot.\nChecking connection...");
 
-    //if (!this.checkConnection()) return;
+    if (!this.checkConnection()) return;
     var l_speed = this.angle_mapping_left(angle);
     var r_speed = this.angle_mapping_right(angle);
     const forceRatio = force / this.maxForce;
