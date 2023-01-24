@@ -173,3 +173,32 @@
 ### 11 Jan 2023
 * *1.5 hours* Reorgansed all materials and links for project and re-wrote semester 2 plan.
 * *1 hours* Attended lecture on Computer Vision.
+
+### 12 Jan 2023
+* *5 hours* Started converting js website to typescript with webpack bundle.
+
+### 13 Jan 2023
+* *4 hours* Continued converting code to ts
+
+### 14 Jan 2023
+* *4.5 hours* Implemented basic functionality of peer package.
+
+
+## Week 14 [16/01/23]
+
+### 16 Jan 2023
+* *0.5 hours* Supervisor meeting
+* *1.5 hours* Started planning different joystick mapping types.
+
+### 21 Jan 2023
+* *4 hours* Implemented a diagnostic setting which allows user to test robot at specific angle.
+
+### 22 Jan 2023
+* *3 hours* Implemented a setting which allows user to select joystick mapping to use.
+
+
+## Week 15 [23/01/23]
+
+### 23 Jan 2023
+* *0.5 hours* Supervisor meeting.
+* *4 hours* Implemented setting which allows user to see code and upload code to robot.
