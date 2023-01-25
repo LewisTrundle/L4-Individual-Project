@@ -104,6 +104,22 @@ const formatCode = (code) => {
   return formattedCode;
 };
 
+function sendCodeSlider() {
+  var sendCodeSlider = document.getElementById("sendCodeSlider");
+  var output = document.getElementById("output");
+  var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
+
+  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.sendCodeSpeed} s`
+
+  // use 'change' instead to see the difference in response
+  sendCodeSlider.addEventListener('input', function () {
+    const value = sendCodeSlider['value'];
+    output.innerHTML = value;
+    robot.sendCodeSpeed = value*100;
+    sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.sendCodeSpeed} s`
+  }, false);
+}
+
 
 
 /* RENDER HTML PAGES */
@@ -114,6 +130,7 @@ if (window.location.href.includes('joystick.html')) {
     joystickPage();
     setMapping(mappings["tightControl"]);
     uploadCodeButton();
+    sendCodeSlider();
 
     Object.keys(mappings).forEach(key => {
       var btn = document.getElementById(key);

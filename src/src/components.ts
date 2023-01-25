@@ -154,6 +154,7 @@ function joystickHeader(root: any, pageTitle: string) {
 function joystickButtons(root) {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
     createComponent("p", {id: "mappingText"}, "Angle-Motor Mapping: NOT SET!", buttonsdiv);
+    createComponent("p", {id: "sendCodeSpeedText"}, "ERROR", buttonsdiv);
     createComponent("button", {onclick: "robot.connect()"}, "Connect", buttonsdiv);
     createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
@@ -179,10 +180,18 @@ function helpModalContent(root) {
 
 function settingsModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
+    sendCodeSlider(buttonsdiv);
     createComponent("button", {id: "mappingsBtn"}, "Select angle to motor mapping", buttonsdiv);
     createComponent("button", {id: "testAnglesBtn"}, "Perform Diagnostic", buttonsdiv);
     createComponent("button", {id: "robotCodeBtn"}, "Robot Code", buttonsdiv);
 };
+
+function sendCodeSlider(root) {
+  let slidercontainer = createComponent("div", {class: "slider-container"}, null, root);
+    let valuecontainer = createComponent("div", {class: "value-container"}, null, slidercontainer);
+      createComponent("span", {id: "output"}, "6", valuecontainer);
+    createComponent("input", {type: "range", min:"0", max:"10", value:"6", class:"slider", id:"sendCodeSlider"}, null, slidercontainer);
+}
 
 function mappingModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
@@ -262,6 +271,7 @@ function openCloseModal() {
     settingsModal.style.display = "none";
     robotCodeModal.style.display = "block";
   }
+
 
   // When the user clicks on <span> (x), close the modal
   for (var i = 0; i < span.length; i++) {

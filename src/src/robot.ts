@@ -15,6 +15,7 @@ export class Robot extends DeviceController {
   angles: any;
   angle_mapping_left: any;
   angle_mapping_right: any;
+  sendCodeSpeed: number;
   
 
   constructor() {
@@ -30,6 +31,7 @@ export class Robot extends DeviceController {
     this.angles = null;
     this.angle_mapping_left = null;
     this.angle_mapping_right = null;
+    this.sendCodeSpeed = 600;
     }
 
   // ----- BUTTONS -----
@@ -86,7 +88,7 @@ export class Robot extends DeviceController {
     }
     this.Call.switchMotor("D8", 0);
     this.Call.switchMotor("D7", 0);
-    this.sendCodeFunc = window.setInterval(this.sendCode.bind(this), 600);
+    this.sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
   };
       
   stop() {
@@ -98,15 +100,15 @@ export class Robot extends DeviceController {
   };
       
   moveRobot(angle, force) {
-    console.log("Moving robot.\nChecking connection...");
+    console.log("Moving robot");
 
     if (!this.checkConnection()) return;
     var l_speed = this.angle_mapping_left(angle);
     var r_speed = this.angle_mapping_right(angle);
     const forceRatio = force / this.maxForce;
-    console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio * 100)}%) of ${this.maxForce}\n
-      \t\t\t\t\tLeft: ${l_speed}\t Right: ${r_speed}\n
-      After force calc: Left: ${l_speed*forceRatio}\t Right: ${r_speed*forceRatio}`);
+    // console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio * 100)}%) of ${this.maxForce}\n
+    //   \t\t\t\t\tLeft: ${l_speed}\t Right: ${r_speed}\n
+    //   After force calc: Left: ${l_speed*forceRatio}\t Right: ${r_speed*forceRatio}`);
     l_speed = l_speed*forceRatio;
     r_speed = r_speed*forceRatio;
       
@@ -122,6 +124,7 @@ export class Robot extends DeviceController {
   };
       
   sendCode() {
+    console.log("sending code at speed of", String(this.sendCodeSpeed));
     const speed = this.speeds[(this.speeds).length-1];
     if (speed) {
       this.Call.turn(speed[0], speed[1]);
@@ -153,7 +156,34 @@ export class Robot extends DeviceController {
       console.log("\nNot connected to robot!\n\n");
       return false;
     }
-    console.log("\n Device is connected!\n\n");
     return true;
   };
-}
+};
+
+
+console["logOld"] = console.log;
+
+const deviceMessages = {
+  "Device" : "pink",
+  "Connected" : "pink",
+  "Sending" : "orange",
+  "Sent" : "green",
+  "Received": "blue",
+  "Busy" : "red",
+  "Executing" : "red",
+};
+
+// currently console.log will crash if not a string
+// console.log = function(data) {
+//   if (data.startsWith("<UART>")) {
+//     const op = data.split(" ")[1];
+//     if (String(op) in deviceMessages) {
+//       console["logOld"](`%c ROBOT DATA:\n${data}`, `background: ${deviceMessages[op]}; color: #ffffff`);
+//     } else {
+//       console["logOld"](`%c ROBOT DATA:\n${data}`, 'background: black; color: #ffffff');
+//     }
+
+//   } else {
+//     console["logOld"](data);
+//   }
+// };

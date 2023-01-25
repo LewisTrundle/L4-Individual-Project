@@ -5,9 +5,7 @@ function turn(args){
 }
 function switchMotor(args){
   args = args.split(',');
-  pin = args[0];
-  d = args[1];
-  digitalWrite(pin, d);
+  digitalWrite(args[0], args[1]);
 }
 function stop(){
   digitalWrite("D9", 0);
