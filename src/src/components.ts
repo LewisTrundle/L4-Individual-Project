@@ -109,11 +109,12 @@ export const selfDrivingPage = () => {
   root.appendChild(contentdiv);
 
   openCloseModal();
-}
+};
 
 
 /* JOYSTICK PAGE */
 export var joyZone;
+
 
 export const joystickPage = () => {
   let root = document.getElementById("page-root");
@@ -137,7 +138,8 @@ export const joystickPage = () => {
   root.appendChild(contentdiv);
 
   openCloseModal();
-}
+};
+
 
 function joystickHeader(root: any, pageTitle: string) {
   let headerdiv = headerDiv();
@@ -149,7 +151,8 @@ function joystickHeader(root: any, pageTitle: string) {
     let diagnosticLink = createComponent("button", {id: "settingsBtn"}, null, headerbuttonsdiv);
     developerImage(diagnosticLink);
   root.appendChild(headerdiv);
-}
+};
+
 
 function joystickButtons(root) {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
@@ -159,7 +162,8 @@ function joystickButtons(root) {
     createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
-}
+};
+
 
 function createModal(root, modalId) {
   let modal = createComponent("div", {id: modalId, class: "modal"}, null, root);
@@ -172,7 +176,8 @@ function createModal(root, modalId) {
         createComponent("h3", {}, "Thanks for reading :)", modalfooter);
   root.appendChild(modal);
   return modalbody;
-}
+};
+
 
 function helpModalContent(root) {
   createComponent("p", {}, `Detailed instructions are explained  <a href="https://github.com/Kirstin813/L4-Individual-Project/tree/main/src#connecting-to-robot">here</a>`, root);

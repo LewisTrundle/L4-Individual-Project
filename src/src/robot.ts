@@ -2,54 +2,44 @@ import { DeviceController } from "@espruino-tools/core";
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
-// speed should not be set less that 0.3
 export class Robot extends DeviceController {
-  connected: boolean;
-  left_dir: number;
-  right_dir: number;
-  speeds: any[];
-  sendCodeFunc: any;
-  maxSpeed: number;
-  minSpeed: number;
-  maxForce: number;
-  angles: any;
-  angle_mapping_left: any;
-  angle_mapping_right: any;
-  sendCodeSpeed: number;
-  
+  #motorDir: number[];
+  #buffer: number[][];
+  #sendCodeFunc: any;
+  #maxForce: number;
+  #sendCodeSpeed: number;
+  mapping: any;
+
 
   constructor() {
     super();
+    this.#motorDir = [0,0];
+    this.#buffer = [];
+    this.#sendCodeFunc = null;
+    this.#maxForce = 1.5;
+    this.#sendCodeSpeed = 600;
     this.connected = false;
-    this.left_dir = 0;
-    this.right_dir = 0;
-    this.speeds = [];
-    this.sendCodeFunc = null;
-    this.maxSpeed = 1;
-    this.minSpeed = 0;
-    this.maxForce = 1.5;
-    this.angles = null;
-    this.angle_mapping_left = null;
-    this.angle_mapping_right = null;
-    this.sendCodeSpeed = 600;
-    }
+    this.mapping = null;
+  };
+
 
   // ----- BUTTONS -----
-  connectRobot() {
+  connectRobot(): void {
     this.connect(() => {
       this.connected = true;
+      this.switchDirections(1, 1);
       console.log("connected");
     });
   };
 
-  disconnectRobot() {
+  disconnectRobot(): void {
     this.disconnect(() => {
       this.connected = false;
       console.log("disconnected");
     });
   };
 
-  async diagnostic(angle?: number) {
+  async diagnostic(angle?: number): Promise<void> {
     console.log("\n\n\nEntering diagnostic mode\n\n\n");
     if (!this.checkConnection()) return;
     this.stop();
@@ -58,100 +48,102 @@ export class Robot extends DeviceController {
       await this.test(angle);
     } 
     else {
-      for (var i = 0; i < this.angles.length; i++) {
-        await this.test(this.angles[i]);
+      for (var i = 0; i < this.mapping.angles.length; i++) {
+        await this.test(this.mapping.angles[i]);
       }
     }
   };
 
-  async test(angle: number) {
-    this.moveRobot(angle, this.maxForce);
+  async test(angle: number): Promise<void> {
+    this.moveRobot(angle, this.#maxForce);
     this.sendCode();
     await delay(5000);
     this.stop();
   };
 
-  setMapping(mapping) {
+
+  setMapping(mapping): void {
     console.log("Switching to", mapping.name);
-    this.angles = mapping.angles;
-    this.angle_mapping_left = mapping.leftMotorMapping;
-    this.angle_mapping_right = mapping.rightMotorMapping;
+    this.mapping = mapping;
   };
 
 
+
   // ----- MOVEMENT -----
-  start() {
-    console.log("Started moving joystick.\nChecking connection...");
+  start(): void {
+    console.log("Started moving joystick");
     if (!this.checkConnection()) {
       this.connect();
       return;
     }
-    this.Call.switchMotor("D8", 0);
-    this.Call.switchMotor("D7", 0);
-    this.sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
+    this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.#sendCodeSpeed);
   };
       
-  stop() {
-    console.log("Stopped moving joystick.\nChecking connection...");
-    if (!this.checkConnection()) return;
-    window.clearInterval(this.sendCodeFunc);
-    this.Call.stop();
-    this.speeds = [];
-  };
-      
-  moveRobot(angle, force) {
-    console.log("Moving robot");
 
+  stop(): void {
+    console.log("Stopped moving joystick");
     if (!this.checkConnection()) return;
-    var l_speed = this.angle_mapping_left(angle);
-    var r_speed = this.angle_mapping_right(angle);
-    const forceRatio = force / this.maxForce;
-    // console.log(`Angle: ${angle}\t Force: ${force} (${Math.round(forceRatio * 100)}%) of ${this.maxForce}\n
-    //   \t\t\t\t\tLeft: ${l_speed}\t Right: ${r_speed}\n
-    //   After force calc: Left: ${l_speed*forceRatio}\t Right: ${r_speed*forceRatio}`);
-    l_speed = l_speed*forceRatio;
-    r_speed = r_speed*forceRatio;
-      
-    this.switchDirections(l_speed, r_speed);
-    l_speed = Math.abs(l_speed);
-    r_speed = Math.abs(r_speed);
-      
-    if (l_speed < this.minSpeed && l_speed > 0) l_speed = this.minSpeed;
-    if (r_speed < this.minSpeed && r_speed > 0) r_speed = this.minSpeed;
-    if (l_speed > this.maxSpeed) l_speed = this.maxSpeed;
-    if (r_speed > this.maxSpeed) r_speed = this.maxSpeed;
-    this.speeds.push([l_speed, r_speed]);
+    window.clearInterval(this.#sendCodeFunc);
+    this.Call.stop();
+    this.#buffer = [];
   };
       
-  sendCode() {
-    console.log("sending code at speed of", String(this.sendCodeSpeed));
-    const speed = this.speeds[(this.speeds).length-1];
+
+  moveRobot(angle, force): void {
+    if (!this.checkConnection()) return;
+
+    const forceRatio = force < this.#maxForce ? force / this.#maxForce : 1;
+    var lSpeed = this.mapping.leftMotorMapping(angle)*forceRatio;
+    var rSpeed = this.mapping.rightMotorMapping(angle)*forceRatio;
+
+    console.log(`Angle: ${angle}\t Force: ${Math.round(forceRatio * 100)}% of ${this.#maxForce}\n
+      Left: ${lSpeed}\t Right: ${rSpeed}`);
+      
+    this.switchDirections(lSpeed, rSpeed);
+    lSpeed = Math.abs(lSpeed);
+    rSpeed = Math.abs(rSpeed);
+  
+    this.#buffer.push([lSpeed, rSpeed]);
+  };
+      
+
+  switchDirections(l_speed, r_speed): void {
+    const leftMotorDir = this.#motorDir[0];
+    const rightMotorDir = this.#motorDir[1];
+
+    if (l_speed > 0 && leftMotorDir == 1) {
+      this.Call.switchMotor("D8", 0);
+      this.#motorDir[0] = 0;
+    }
+    else if (l_speed < 0 && leftMotorDir == 0) {
+      this.Call.switchMotor("D8", 1);
+      this.#motorDir[0] = 1;
+    };
+    if (r_speed > 0 && rightMotorDir == 1) {
+      this.Call.switchMotor("D7", 0);
+      this.#motorDir[1] = 0;
+    }
+    else if (r_speed < 0 && rightMotorDir == 0) {
+      this.Call.switchMotor("D7", 1);
+      this.#motorDir[1] = 1;
+    };
+  };
+
+
+
+  // ----- CODE SENT TO ROBOT -----
+  sendCode(): void {
+    console.log("sending code at speed of", String(this.#sendCodeSpeed));
+    const speed = this.#buffer[(this.#buffer).length-1];
     if (speed) {
       this.Call.turn(speed[0], speed[1]);
     }
   };
-      
-  switchDirections(l_speed, r_speed) {
-    if (l_speed > 0 && this.left_dir == 1) {
-      this.Call.switchMotor("D8", 0);
-      this.left_dir = 0;
-        }
-    else if (l_speed < 0 && this.left_dir == 0) {
-      this.Call.switchMotor("D8", 1);
-      this.left_dir = 1;
-    }
-    if (r_speed > 0 && this.right_dir == 1) {
-      this.Call.switchMotor("D7", 0);
-      this.right_dir = 0;
-    }
-    else if (r_speed < 0 && this.right_dir == 0) {
-      this.Call.switchMotor("D7", 1);
-      this.right_dir = 1;
-    }
-  };
 
 
-  checkConnection() {
+
+  // ----- MISC -----
+  checkConnection(): boolean {
     if (!this.connected) {
       console.log("\nNot connected to robot!\n\n");
       return false;
