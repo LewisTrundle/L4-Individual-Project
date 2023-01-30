@@ -12,7 +12,6 @@ window.onload = function () {
   let btn = document.createElement("button");
   btn.innerText = "press me";
   btn.onclick = function () {
-    console.log("hello");
     p.conn.send("HEllo");
   };
   app_root.appendChild(btn);

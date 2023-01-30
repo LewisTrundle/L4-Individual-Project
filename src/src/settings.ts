@@ -9,14 +9,13 @@ export function sendCodeSlider(robot) {
   var sendCodeSlider = document.getElementById("sendCodeSlider");
   var output = document.getElementById("output");
   var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
-
-  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.sendCodeSpeed} s`
+  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${output.innerHTML} ms`
 
   sendCodeSlider.addEventListener('input', function () {
     const value = sendCodeSlider['value'];
-    output.innerHTML = value;
-    robot.sendCodeSpeed = value*100;
-    sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.sendCodeSpeed} s`
+    output.innerHTML = `${value} ms;`
+    robot.setSendCodeSpeed(value);
+    sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
   }, false);
 };
 
