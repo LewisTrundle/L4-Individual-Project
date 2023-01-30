@@ -127,8 +127,8 @@ export class Robot extends DeviceController {
 
   // ----- CODE SENT TO ROBOT -----
   sendCode(): void {
-    console.log("sending code at speed of", String(this.sendCodeSpeed));
     const speed = this.#buffer[(this.#buffer).length-1];
+    console.log(`sending code for left: ${speed[0]}, right: ${speed[1]}`);
     if (speed) {
       this.Call.turn(speed[0], speed[1]);
     }
