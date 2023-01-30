@@ -9,7 +9,7 @@ export function sendCodeSlider(robot) {
   var sendCodeSlider = document.getElementById("sendCodeSlider");
   var output = document.getElementById("output");
   var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
-  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${output.innerHTML} ms`
+  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
 
   sendCodeSlider.addEventListener('input', function () {
     const value = sendCodeSlider['value'];

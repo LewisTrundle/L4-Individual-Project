@@ -195,7 +195,7 @@ function sendCodeSlider(root) {
   let slidercontainer = createComponent("div", {class: "slider-container"}, null, root);
     let valuecontainer = createComponent("div", {class: "value-container"}, null, slidercontainer);
       createComponent("span", {id: "output"}, "100", valuecontainer);
-    createComponent("input", {type: "range", min:"0", max:"200", value:"100", class:"slider", id:"sendCodeSlider"}, null, slidercontainer);
+    createComponent("input", {type: "range", min:"0", max:"600", value:"100", class:"slider", id:"sendCodeSlider"}, null, slidercontainer);
 }
 
 function mappingModalContent(root) {

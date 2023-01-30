@@ -7,7 +7,7 @@ export class Robot extends DeviceController {
   #buffer: number[][];
   #sendCodeFunc: any;
   #maxForce: number;
-  #sendCodeSpeed: number;
+  sendCodeSpeed: number;
   mapping: any;
 
 
@@ -17,7 +17,7 @@ export class Robot extends DeviceController {
     this.#buffer = [];
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
-    this.#sendCodeSpeed = 100;
+    this.sendCodeSpeed = 100;
     this.connected = false;
     this.mapping = null;
   };
@@ -70,7 +70,7 @@ export class Robot extends DeviceController {
       this.connect();
       return;
     }
-    this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.#sendCodeSpeed);
+    this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
   };
       
 
@@ -127,10 +127,10 @@ export class Robot extends DeviceController {
 
   // ----- CODE SENT TO ROBOT -----
   sendCode(): void {
-    console.log("sending code at speed of", String(this.#sendCodeSpeed));
+    console.log("sending code at speed of", String(this.sendCodeSpeed));
     const speed = this.#buffer[(this.#buffer).length-1];
     if (speed) {
-      this.Call.turn(0, 0);
+      this.Call.turn(speed[0], speed[1]);
     }
   };
 
@@ -138,10 +138,10 @@ export class Robot extends DeviceController {
 
   // ----- SETTER & GETTER METHODS -----
   setSendCodeSpeed(speed: number) {
-    this.#sendCodeSpeed = speed;
+    this.sendCodeSpeed = speed;
   };
   getSendCodeSpeed() {
-    return this.#sendCodeSpeed;
+    return this.sendCodeSpeed;
   };
 
   setMapping(mapping): void {
