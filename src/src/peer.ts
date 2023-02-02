@@ -5,6 +5,7 @@ let p = new Connector();
 window.onload = function () {
   p.connectData((data) => {
     alert(data);
+    console.log("connectDataPeer ", data);
   });
   p.connectVideo("back");
 

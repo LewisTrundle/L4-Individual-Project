@@ -1,11 +1,63 @@
-export function setMapping(robot, mapping) {
+import { mappings } from "./angleMotorMappings";
+import * as nipplejs from 'nipplejs';
+
+
+export function settings(robot) {
+  setMapping(robot, mappings["tightControl"]);
+  uploadCodeButton(robot);
+  sendCodeSlider(robot);
+
+  Object.keys(mappings).forEach(key => {
+    var btn = document.getElementById(key);
+    btn.onclick = function () {
+      setMapping(robot, mappings[key]);
+    };
+  });
+};
+
+
+export function createNipple(evt, robot) {
+  const joyZone = document.getElementById("joyzone");
+  joysticks[evt].zone = joyZone;
+  var joystick = nipplejs.create(joysticks[evt]);
+  bindNipple(joystick, robot);
+};
+
+
+var joysticks = {
+  static: {
+    zone: null,
+    mode: 'static',
+    size: 180,
+    position: {
+      left: '50%',
+      top: '50%'
+    },
+    color: '#FF0000',
+    restOpacity: 0.8,
+  }
+};
+
+function bindNipple(joystick, robot) {
+  joystick.on('start', function(evt, data) {
+    robot.start();
+  }).on('end', function(evt, data) {
+    robot.stop();
+  }
+  ).on('move', function(evt, data) {
+    robot.moveRobot(data.angle.degree, data.force);
+  });
+};
+
+
+function setMapping(robot, mapping) {
   robot.setMapping(mapping);
   var mappingText = document.getElementById("mappingText");
   mappingText.innerHTML = `Angle-Motor Mapping: ${mapping.name}`;
 };
 
 
-export function sendCodeSlider(robot) {
+function sendCodeSlider(robot) {
   var sendCodeSlider = document.getElementById("sendCodeSlider");
   var output = document.getElementById("output");
   var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
@@ -21,7 +73,7 @@ export function sendCodeSlider(robot) {
 
 
 
-export function uploadCodeButton(robot) {
+function uploadCodeButton(robot) {
   const url = window.location.origin + "/robotCode.txt";
   var uploadCodeBtn = document.getElementById("uploadCodeBtn");
   var getCodeBtn = document.getElementById("getCodeBtn");
