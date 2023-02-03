@@ -64,10 +64,10 @@ export class Robot extends DeviceController {
 
 
   // ----- MOVEMENT -----
-  start(): void {
+  async start(): Promise<void> {
     console.log("Started moving joystick");
     if (!this.checkConnection()) {
-      this.connect();
+      await this.connect();
       return;
     }
     this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
@@ -84,6 +84,7 @@ export class Robot extends DeviceController {
       
 
   moveRobot(angle, force): void {
+    console.log("hell")
     if (!this.checkConnection()) return;
 
     const forceRatio = force < this.#maxForce ? force / this.#maxForce : 1;
@@ -97,6 +98,7 @@ export class Robot extends DeviceController {
     lSpeed = Math.abs(lSpeed);
     rSpeed = Math.abs(rSpeed);
   
+    console.log("adding speeds")
     this.#buffer.push([lSpeed, rSpeed]);
   };
       

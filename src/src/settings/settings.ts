@@ -2,15 +2,15 @@ import { mappings } from "./angleMotorMappings";
 import * as nipplejs from 'nipplejs';
 
 
-export function settings(robot) {
-  setMapping(robot, mappings["tightControl"]);
+export function settings(robot, isText: boolean = false) {
+  setMapping(robot, mappings["tightControl"], isText);
   uploadCodeButton(robot);
-  sendCodeSlider(robot);
+  sendCodeSlider(robot, isText);
 
   Object.keys(mappings).forEach(key => {
     var btn = document.getElementById(key);
     btn.onclick = function () {
-      setMapping(robot, mappings[key]);
+      setMapping(robot, mappings[key], isText);
     };
   });
 };
@@ -50,24 +50,30 @@ function bindNipple(joystick, robot) {
 };
 
 
-function setMapping(robot, mapping) {
+function setMapping(robot, mapping, isText) {
   robot.setMapping(mapping);
-  var mappingText = document.getElementById("mappingText");
-  mappingText.innerHTML = `Angle-Motor Mapping: ${mapping.name}`;
+  if (isText) {
+    var mappingText = document.getElementById("mappingText");
+    mappingText.innerHTML = `Angle-Motor Mapping: ${mapping.name}`;
+  };
 };
 
 
-function sendCodeSlider(robot) {
+function sendCodeSlider(robot, isText) {
   var sendCodeSlider = document.getElementById("sendCodeSlider");
   var output = document.getElementById("output");
-  var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
-  sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
+  if (isText) {
+    var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
+    sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
+  };
 
   sendCodeSlider.addEventListener('input', function () {
     const value = sendCodeSlider['value'];
     output.innerHTML = `${value} ms;`
     robot.setSendCodeSpeed(value);
-    sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
+    if (isText) {
+      sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`
+    };
   }, false);
 };
 

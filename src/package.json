@@ -28,6 +28,8 @@
     "@espruino-tools/peer": "^1.2.1",
     "file-loader": "^6.2.0",
     "nipplejs": "^0.10.0",
-    "piecewise-function": "^1.0.0"
+    "piecewise-function": "^1.0.0",
+    "tracking": "^1.1.3",
+    "tracking.js": "^0.1.1"
   }
 }

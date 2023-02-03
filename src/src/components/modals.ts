@@ -81,62 +81,43 @@ function robotCodeModalContent(root) {
 
 
 export function openCloseModal() {
-  var helpModal = document.getElementById("helpModal");
-  var settingsModal = document.getElementById("settingsModal");
-  var mappingsModal = document.getElementById("mappingsModal");
-  var testAnglesModal = document.getElementById("testAnglesModal");
-  var robotCodeModal = document.getElementById("robotCodeModal");
-
-  var helpBtn = document.getElementById("helpBtn");
-  var settingsBtn = document.getElementById("settingsBtn");
-  var mappingsBtn = document.getElementById("mappingsBtn");
-  var testAnglesBtn = document.getElementById("testAnglesBtn");
-  var robotCodeBtn = document.getElementById("robotCodeBtn");
-
+  const modals = {
+    help: {modal: "helpModal", button: "helpBtn"},
+    settings: {modal: "settingsModal", button: "settingsBtn"},
+    mappings: {modal: "mappingsModal", button: "mappingsBtn"},
+    testAngles: {modal: "testAnglesModal", button: "testAnglesBtn"},
+    robotCode: {modal: "robotCodeModal", button: "robotCodeBtn"}
+  };
+  var modalElements = [];
   var span = document.getElementsByClassName("close") as HTMLCollectionOf<HTMLElement>;
+  const settingsModal = document.getElementById("settingsModal");
 
-  // When the user clicks the button, open the modal 
-  helpBtn.onclick = function() {
-    helpModal.style.display = "block";
-  }
-  settingsBtn.onclick = function() {
-    settingsModal.style.display = "block";
-  }
-  mappingsBtn.onclick = function() {
-    settingsModal.style.display = "none";
-    mappingsModal.style.display = "block";
-  }
-  testAnglesBtn.onclick = function() {
-    settingsModal.style.display = "none";
-    testAnglesModal.style.display = "block";
-  }
-  robotCodeBtn.onclick = function() {
-    settingsModal.style.display = "none";
-    robotCodeModal.style.display = "block";
-  }
+  for (const [key, value] of Object.entries(modals)) {
+    const modal = document.getElementById(value.modal);
+    const button = document.getElementById(value.button);
+    modalElements.push(modal);
 
+    button.onclick = () => {
+      settingsModal.style.display = "none";
+      modal.style.display = "block";
+    };
+  };
 
   // When the user clicks on <span> (x), close the modal
   for (var i = 0; i < span.length; i++) {
     span[i].onclick = function() {
-      helpModal.style.display = "none";
-      settingsModal.style.display = "none";
-      mappingsModal.style.display = "none";
-      testAnglesModal.style.display = "none";
-      robotCodeModal.style.display = "none";
-    }
-  }
+      for (var j = 0; j < modalElements.length; j++) {
+        modalElements[j].style.display = "none";
+      };
+    };
+  };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == helpModal || event.target == settingsModal || 
-      event.target == mappingsModal || event.target == testAnglesModal ||
-      event.target == robotCodeModal) {
-      helpModal.style.display = "none";
-      settingsModal.style.display = "none";
-      mappingsModal.style.display = "none";
-      testAnglesModal.style.display = "none";
-      robotCodeModal.style.display = "none";
-    }
-  }
-}
+    for (var j = 0; j < modalElements.length; j++) {
+      if (event.target === modalElements[j]) {
+        modalElements[j].style.display = "none";
+      };
+    };
+  };
+};

@@ -11,14 +11,3 @@ export const header = (root: any, pageTitle: string) => {
       createComponent("img", {src: "./images/settings.svg", alt: "settings"}, null, diagnosticLink);;
   root.appendChild(headerdiv);
 };
-
-
-export const buttons = (root) => {
-  let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
-    createComponent("p", {id: "mappingText"}, "Angle-Motor Mapping: NOT SET!", buttonsdiv);
-    createComponent("p", {id: "sendCodeSpeedText"}, "ERROR", buttonsdiv);
-    createComponent("button", {onclick: "robot.connect()"}, "Connect", buttonsdiv);
-    createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
-    createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
-  root.appendChild(buttonsdiv);
-};

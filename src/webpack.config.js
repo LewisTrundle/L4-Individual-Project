@@ -15,7 +15,10 @@ process.env.NODE_ENV = "development";
 
 module.exports = () => ({
   mode: "development",
-  entry: { "./src/index": "./src/index.ts", "./src/peer": "./src/peer.ts" },
+  entry: {  "./src/index": "./src/pages/index.ts", 
+            "./src/joystick": "./src/pages/joystick.ts",
+            "./src/self-driving": "./src/pages/self-driving.ts",
+            "./src/peer": "./src/pages/peer.ts" },
   output: {
     path: path.join(__dirname, "build"),
     filename: "[name].js",
