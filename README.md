@@ -1,10 +1,3 @@
-# Guidance
-This is a suggested template for a project. You can modify it as you please, but
-but remember to keep:
-
-* a timelog, updated regularly in the `timelog.md` format;
-* all source under version control;
-* data well organised and with appropriate ethical approval (for human subject data);
 
 Here's an overview of the structure as it stands:
 
