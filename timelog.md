@@ -5,13 +5,13 @@
 * 2469635T
 * DR JONATHAN GRIZOU
 
-## Week 1 [26/09/22]
+## Week 1 [26/09/22] - 0.5 hours total
 
 ### 30 Sep 2022
 * *0.5 hours* Had first supervisor meeting.
 
 
-## Week 2 [03/10/22]
+## Week 2 [03/10/22] - 6.5 hours total
 
 ### 04 Oct 2022
 * *1.5 hours* Did background research on self-driving robot competitions.
@@ -25,7 +25,7 @@
 * *0.5 hours* Had supervisor meeting.
 
 
-## Week 3 [10/10/22]
+## Week 3 [10/10/22] - 6.5 hours total
 
 ### 12 Oct 2022
 * *1.5 hours* Followed tutorial to create GitHub page.
@@ -39,7 +39,7 @@
 * *0.5 hours* Supervisor meeting with Jonathan.
 
 
-## Week 4 [17/10/22]
+## Week 4 [17/10/22] - 10.5 hours total
 
 ### 18 Oct 2022
 * *4 hours* Continued with Figma design for website.
@@ -53,7 +53,7 @@
 * *0.5 hours* Supervisor meeting with Jonathan.
 
 
-## Week 5 [24/10/22]
+## Week 5 [24/10/22] - 16.5 hours total
 
 ### 24 Oct 2022
 * *4 hours* Looked into HTML templates for website and created mockups.
@@ -73,7 +73,7 @@
 * *1 hours* Created issue/merge templates for Github and created issues.
 
 
-## Week 6 [31/10/22]
+## Week 6 [31/10/22] - 22.5 hours total
 
 ### 31 Oct 2022
 * *4 hours* Made various pages on website and created multiple issues.
@@ -94,7 +94,7 @@
 * *0.5 hours* Supervisor meeting.
 
 
-## Week 7 [07/11/22]
+## Week 7 [07/11/22] - 9 hours total
 
 ### 08 Nov 2022
 * *5 hours* Continued with general improvements to website.
@@ -107,7 +107,7 @@
 * *0.5 hours* Supervisor meeting.
 
 
-## Week 8 [14/11/22]
+## Week 8 [14/11/22] - 4 hours total
 
 ### 14 Nov 2022
 * *2.5 hours* Tested different functions of the Puck.
@@ -119,19 +119,19 @@
 * *0.5 hours* Weekly supervisor meeting.
 
 
-## Week 9 [21/11/22] 
+## Week 9 [21/11/22] - 0.5 hours total
 
 ### 25 Nov 2022
 * *0.5 hours* Weekly supervisor meeting
 
 
-## Week 10 [28/11/22]
+## Week 10 [28/11/22] -0.5 hours total
 
 ### 02 Dec 2022
 * *0.5 hours* Weekly supervisor meeting
 
 
-## Week 11 [05/12/22]
+## Week 11 [05/12/22] - 3.5 hours total
 
 ### 06 Dec 2022
 * *2 hours* Started implementing basic joystick controller for robot.
@@ -141,13 +141,13 @@
 * *1 hours* Continued implementing joystick controller.
 
 
-## Week 12 [12/12/22]
+## Week 12 [12/12/22] - 2.5 hours total
 
 ### 12 Dec 2022
 * *2.5 hours* Continued getting joystick controller code onto robot.
 
 
-## Winter
+## Winter - 19 hours total
 
 ### 21 Dec 2022
 * *5 hours* Joystick code now works with robot, albeit still janky.
@@ -168,7 +168,7 @@
 * *1.5 hours* Created index page for controllers.
 
 
-## Week 13 [09/01/23]
+## Week 13 [09/01/23] - 16 hours total
 
 ### 11 Jan 2023
 * *1.5 hours* Reorgansed all materials and links for project and re-wrote semester 2 plan.
@@ -184,7 +184,7 @@
 * *4.5 hours* Implemented basic functionality of peer package.
 
 
-## Week 14 [16/01/23]
+## Week 14 [16/01/23] - 9 hours total
 
 ### 16 Jan 2023
 * *0.5 hours* Supervisor meeting
@@ -197,8 +197,39 @@
 * *3 hours* Implemented a setting which allows user to select joystick mapping to use.
 
 
-## Week 15 [23/01/23]
+## Week 15 [23/01/23] - 11 hours total
 
 ### 23 Jan 2023
 * *0.5 hours* Supervisor meeting.
 * *4 hours* Implemented setting which allows user to see code and upload code to robot.
+
+### 25 Jan 2023
+* *3.5 hours* Implemented a slider which allows user to dynamically change code speed.
+
+### 27 Jan 2023
+* *3 hours* Created a minimal version joystick for testing.
+
+
+## Week 16 [30/01/23] - 24 hours total
+
+### 30 Jan 2023
+* *0.5 hours* Supervisor meeting.
+* *2.5 hours* Investigated different sources for using camera with robot.
+
+### 01 Feb 2023
+* *1 hours*  Started refactoring code.
+
+### 02 Feb 2023
+* *5 hours* Continued refactoring codebase.
+
+### 03 Feb 2023
+* *5 hours* Implemented the peer package and can now display both host and peer camera on host device.
+
+### 04 Feb 2023
+* *6 hours* Implemented various self-driving features, such as line-tracking, colour detection, and colour conversion.
+
+### 05 Feb 2023
+* *4 hours* Improved upon self-driving features.
+
+
+## Week 17 [06/02/23]
