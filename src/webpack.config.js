@@ -17,7 +17,7 @@ module.exports = () => ({
   mode: "development",
   entry: {  "./src/index": "./src/pages/index.ts", 
             "./src/joystick": "./src/pages/joystick.ts",
-            "./src/self-driving": "./src/pages/self-driving.ts",
+            "./src/host": "./src/pages/host.ts",
             "./src/peer": "./src/pages/peer.ts" },
   output: {
     path: path.join(__dirname, "build"),
@@ -68,9 +68,9 @@ module.exports = () => ({
       chunks: ["joystick"],
     }),
     new HtmlWebpackPlugin({
-      filename: "self-driving.html",
-      template: "public/self-driving.html",
-      chunks: ["self-driving"],
+      filename: "host.html",
+      template: "public/host.html",
+      chunks: ["host"],
     }),
     new HtmlWebpackPlugin({
       filename: "peer.html",

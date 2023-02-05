@@ -5,6 +5,7 @@
 
 $black: #0c0c0c;
 $white: #ffffff;
+$grey: #808080;
 $dark-blue: #0B406C;
 $dark-red: #FF0000AA;
 $light-red: #FF000033;
@@ -182,15 +183,15 @@ body {
     margin: 0px;
 }
 
-.buttons button:hover,
-.buttons button:hover a {
-    background-color: grey;
+.buttons button:hover:enabled,
+.buttons button:hover:enabled a {
+    background-color: $grey;
 }
 
 .camera-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     height: 60px;
     margin: 10px;
     width: 75%;
@@ -200,12 +201,19 @@ body {
         height: 100%;
         max-width: 50%;
         font-size: 12px;
-        margin: 0px;
+        margin: 10px;
 
         &.active {
-            background-color: grey;
+            background-color: $grey;
         }
     }
+}
+
+button:disabled {
+    cursor: default;
+    border: 1px solid #999999;
+    background-color: $grey;
+    opacity: 0.7;
 }
 /* ---------- BUTTONS SECTION END ----------*/
 
@@ -223,8 +231,6 @@ body {
     }
 
     .canvas {
-        padding: 30px;
-        max-width: 100%;
         display: block;
         position: relative;
         left: 0;

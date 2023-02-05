@@ -21,11 +21,11 @@ const mainButtons = (root) => {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
     let camerabuttons1 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
       createComponent("button", {id:"frontHostBtn", class:"connection"}, "Host Front Camera", camerabuttons1);
-      createComponent("button", {id:"backHostBtn", class:"connection"}, "Host Back Camera", camerabuttons1);
-    let camerabuttons2 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
-      createComponent("button", {id:"frontPeerBtn", class:"connection"}, "Peer Front Camera", camerabuttons2);
-      createComponent("button", {id:"backPeerBtn", class:"connection active"}, "Peer Back Camera", camerabuttons2);
-    createComponent("button", {}, "Connect to Camera", buttonsdiv);
+      createComponent("button", {id:"backHostBtn", class:"connection", disabled: true}, "Host Back Camera", camerabuttons1);
+    let cameraselect = createComponent("div", {class: "custom-select"}, null, buttonsdiv);
+      let select = createComponent("select", {id: "select"}, null, cameraselect);
+        createComponent("option", {value: "0"}, "Select Camera", select); 
+    createComponent("button", {id: "cameraConnBtn", onclick: "controller.videoDisplay()"}, "Connect to Host Camera", buttonsdiv);
     createComponent("button", {onclick: "robot.connect()"}, "Connect to Robot", buttonsdiv);
     createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
@@ -37,4 +37,7 @@ const video = (root) => {
   let videocontainer = createComponent("div", {class: "video-container"}, null, root);
     createComponent("video", {id: "video", class: "video"}, null, videocontainer);
     createComponent("canvas", {id: "canvas", class: "canvas"}, null, videocontainer);
+  let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
+    let camerabuttons1 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
+      createComponent("button", {id:"stopColourBtn", class:"connection"}, "Stop Colour Tracking", camerabuttons1);
 };

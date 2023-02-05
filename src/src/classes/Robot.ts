@@ -17,7 +17,7 @@ export class Robot extends DeviceController {
     this.#buffer = [];
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
-    this.sendCodeSpeed = 100;
+    this.sendCodeSpeed = 600;
     this.connected = false;
     this.mapping = null;
   };
@@ -83,8 +83,7 @@ export class Robot extends DeviceController {
   };
       
 
-  moveRobot(angle, force): void {
-    console.log("hell")
+  moveRobot(angle, force, reverseDirection=false): void {
     if (!this.checkConnection()) return;
 
     const forceRatio = force < this.#maxForce ? force / this.#maxForce : 1;
@@ -94,7 +93,9 @@ export class Robot extends DeviceController {
     console.log(`Angle: ${angle}\t Force: ${Math.round(forceRatio * 100)}% of ${this.#maxForce}\n
       Left: ${lSpeed}\t Right: ${rSpeed}`);
       
-    this.switchDirections(lSpeed, rSpeed);
+    if (!reverseDirection) {
+      this.switchDirections(lSpeed, rSpeed);
+    }
     lSpeed = Math.abs(lSpeed);
     rSpeed = Math.abs(rSpeed);
   
@@ -130,8 +131,8 @@ export class Robot extends DeviceController {
   // ----- CODE SENT TO ROBOT -----
   sendCode(): void {
     const speed = this.#buffer[(this.#buffer).length-1];
-    console.log(`sending code for left: ${speed[0]}, right: ${speed[1]}`);
     if (speed) {
+      console.log(`sending code for left: ${speed[0]}, right: ${speed[1]}`);
       this.Call.turn(speed[0], speed[1]);
     }
   };
