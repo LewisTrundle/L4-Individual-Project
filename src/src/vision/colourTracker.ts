@@ -8,7 +8,7 @@ const colours = {
 };
 
 
-export const colourTracker = (tracking, canvas, context): void => {
+export const colourTracker = (host, tracking, canvas, context): void => {
   for (const [colourName, colourValues] of Object.entries(colours)) {
     registerColour(tracking, colourName, colourValues);
   };
@@ -31,7 +31,7 @@ export const colourTracker = (tracking, canvas, context): void => {
   });
 
   var colourTracking = tracking.track('#video', colors, {fps: 60});
-  toggleColourTracking(colourTracking);
+  toggleColourTrackingBtn(host, colourTracking);
 };
 
 
@@ -49,17 +49,24 @@ const registerColour = (tracking: any, colourName: string, values): void => {
 };
 
 
-const toggleColourTracking = (trackerTask): void => {
-  let stopColourBtn = document.getElementById("stopColourBtn");
-  stopColourBtn.addEventListener("click", () => {
-    if (!isColourTracking) {
-      trackerTask.run();
-      stopColourBtn.innerHTML = `Stop Colour Tracking`;
-      isColourTracking = true;
-    } else {
-      trackerTask.stop();
-      stopColourBtn.innerHTML = `Start Colour Tracking`;
-      isColourTracking = false;
-    };
+const toggleColourTrackingBtn = (host, trackerTask): void => {
+  let colourTrackingBtn = document.getElementById("colourTrackingBtn");
+  var isColourTracking = host.getIsColourTrackingEnabled();
+  toggleColourTracking(host, trackerTask, colourTrackingBtn, isColourTracking);
+  colourTrackingBtn.addEventListener("click", () => {
+    isColourTracking = host.getIsColourTrackingEnabled();
+    toggleColourTracking(host, trackerTask, colourTrackingBtn, isColourTracking);
   });
+};
+
+const toggleColourTracking = (host, trackerTask, button, isColourTracking): void => {
+  if (!isColourTracking) {
+    trackerTask.run();
+    button.innerHTML = `Stop Colour Tracking`;
+    host.setIsColourTrackingEnabled(true);
+  } else {
+    trackerTask.stop();
+    button.innerHTML = `Start Colour Tracking`;
+    host.setIsColourTrackingEnabled(false);
+  };
 };

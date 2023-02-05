@@ -1,14 +1,42 @@
 import { convertToGreyscale } from "./colourSpaceConversion";
 import { convertColourSpace } from "./colourSpaceConversion";
 
-export const drawCanvas = (video, canvas, context): void => {
+let greyscaleBtn;
+let colourSpaceBtn;
+
+
+export const canvasSetup = (host, video, canvas, context): void => {
+  convertToGreyscaleBtn(host);
+  convertColourSpaceBtn(host);
+  drawCanvas(host, video, canvas, context);
+};
+
+const convertToGreyscaleBtn = (host): void => {
+  greyscaleBtn = document.getElementById("greyscaleBtn");
+  greyscaleBtn.addEventListener("click", () => { 
+    host.setIsGreyscaleEnabled(!host.getIsGreyscaleEnabled());
+  })
+};
+
+const convertColourSpaceBtn = (host): void => {
+  colourSpaceBtn = document.getElementById("colourSpaceBtn");
+  colourSpaceBtn.addEventListener("click", () => { 
+    host.setIsColourSpaceConversionEnabled(!host.getIsColourSpaceConversionEnabled());
+  })
+};
+
+const drawCanvas = (host, video, canvas, context): void => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
   if (canvas.width > 0 && canvas.height > 0) {
-    convertToGreyscale(context);
+    
+    convertToGreyscale(host, greyscaleBtn, context);
+
     context.drawImage(video, 0, 0);
-    convertColourSpace(canvas, context);
+
+    convertColourSpace(host, colourSpaceBtn, canvas, context);
+
     outlineSensors(context, canvas);
 
     var left = getAverage(context.getImageData(0, canvas.height - 50, (canvas.width / 3), 50));
@@ -20,7 +48,7 @@ export const drawCanvas = (video, canvas, context): void => {
   };
 
   setTimeout(function () {
-    drawCanvas(video, canvas, context);
+    drawCanvas(host, video, canvas, context);
   }, 10);
 };
 

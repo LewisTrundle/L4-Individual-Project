@@ -196,6 +196,12 @@ body {
     margin: 10px;
     width: 75%;
 
+    &.vertical {
+        flex-direction: column;
+        height: 50%;
+        width: 100%;
+    }
+
     .connection {
         width: 45%;
         height: 100%;

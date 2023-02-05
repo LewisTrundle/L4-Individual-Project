@@ -38,6 +38,8 @@ const video = (root) => {
     createComponent("video", {id: "video", class: "video"}, null, videocontainer);
     createComponent("canvas", {id: "canvas", class: "canvas"}, null, videocontainer);
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
-    let camerabuttons1 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
-      createComponent("button", {id:"stopColourBtn", class:"connection"}, "Stop Colour Tracking", camerabuttons1);
+    let camerabuttons1 = createComponent("div", {class: "camera-buttons vertical"}, null, buttonsdiv);
+      createComponent("button", {id:"colourTrackingBtn", class:"connection"}, "Camera Not Active", camerabuttons1);
+      createComponent("button", {id:"greyscaleBtn", class:"connection"}, "Camera Not Active", camerabuttons1);
+      createComponent("button", {id:"colourSpaceBtn", class:"connection"}, "Camera Not Active", camerabuttons1);
 };

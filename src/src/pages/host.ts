@@ -11,11 +11,6 @@ import { isCameraSelected, detectCameras } from "../helpers/displayVideo";
 let robot = new Robot();
 let host = new VideoFeed(window.location.origin + "/peer.html");
 
-const tracking = require('jstracking');
-
-var AR = require('js-aruco').AR;
-var detector = new AR.Detector();
-
 let video;
 let stream;
 
@@ -38,7 +33,7 @@ window.onload = async function () {
   
   video = document.querySelector('#video') as HTMLVideoElement;
   video.addEventListener('loadeddata', function() {
-    visionPipeline(tracking, video);
+    visionPipeline(host, video);
  }, false);
 
  video.addEventListener('onended', function() {
