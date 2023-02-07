@@ -12,7 +12,7 @@ export const colourTracker = (host, tracking, canvas, context): void => {
   for (const [colourName, colourValues] of Object.entries(colours)) {
     registerColour(tracking, colourName, colourValues);
   };
-  var colors = new tracking.ColorTracker(['red', 'black', 'blue', 'green']);
+  var colors = new tracking.ColorTracker(['black', 'red', 'green', 'blue']);
 
   colors.on('track', function(event) {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -36,7 +36,7 @@ export const colourTracker = (host, tracking, canvas, context): void => {
 
 
 const registerColour = (tracking: any, colourName: string, values): void => {
-  const uncertainty = 50;
+  const uncertainty = 40;
   tracking.ColorTracker.registerColor(colourName, function(r, g, b) {
     if  ( (r >= values.r-uncertainty) && (r <= values.r+uncertainty) &&
       (g >= values.g-uncertainty) && (g <= values.g+uncertainty) &&
@@ -51,15 +51,15 @@ const registerColour = (tracking: any, colourName: string, values): void => {
 
 const toggleColourTrackingBtn = (host, trackerTask): void => {
   let colourTrackingBtn = document.getElementById("colourTrackingBtn");
-  var isColourTracking = host.getIsColourTrackingEnabled();
   toggleColourTracking(host, trackerTask, colourTrackingBtn, isColourTracking);
+  
   colourTrackingBtn.addEventListener("click", () => {
-    isColourTracking = host.getIsColourTrackingEnabled();
     toggleColourTracking(host, trackerTask, colourTrackingBtn, isColourTracking);
   });
 };
 
 const toggleColourTracking = (host, trackerTask, button, isColourTracking): void => {
+  isColourTracking = host.getIsColourTrackingEnabled();
   if (!isColourTracking) {
     trackerTask.run();
     button.innerHTML = `Stop Colour Tracking`;

@@ -8,7 +8,6 @@ export const peerPage = () => {
   
   let contentdiv = createComponent("div", {class: "content"}, null);
     mainButtons(contentdiv);
-    video(contentdiv);
 
   root.appendChild(contentdiv);
 };
@@ -23,11 +22,4 @@ const mainButtons = (root) => {
     createComponent("button", {id: "peerDisConnBtn"}, "Close Connection", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
-};
-
-
-const video = (root) => {
-  let videocontainer = createComponent("div", {class: "video-container"}, null, root);
-    createComponent("video", {id: "video", class: "video"}, null, videocontainer);
-    createComponent("canvas", {id: "canvas", class: "canvas"}, null, videocontainer);
 };

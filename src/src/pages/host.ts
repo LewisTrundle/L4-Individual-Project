@@ -14,15 +14,10 @@ let host = new VideoFeed(window.location.origin + "/peer.html");
 let video;
 let stream;
 
-function addSettings(robot, isText: boolean = false) {
-  settings(robot, isText);
-};
-
-
 
 window.onload = async function () {
   selfDrivingPage();
-  addSettings(robot);
+  settings(robot, false);
   detectCameras(host);
   pickCamera();
 
@@ -33,7 +28,7 @@ window.onload = async function () {
   
   video = document.querySelector('#video') as HTMLVideoElement;
   video.addEventListener('loadeddata', function() {
-    visionPipeline(host, video);
+    visionPipeline(host, video, robot);
  }, false);
 
  video.addEventListener('onended', function() {
@@ -47,6 +42,22 @@ export const videoDisplay = async (): Promise<void> => {
   isCameraSelected(host);
   await stopVideo();
   displayVideo(stream);
+};
+
+export const connectRobot = (): void => {
+  robot.connect();
+};
+
+export const disconnectRobot = ():void => {
+  robot.disconnect();
+};
+
+export const startRobot = (): void => {
+  robot.start();
+};
+
+export const stopRobot = (): void => {
+  robot.stop();
 };
 
 
@@ -89,12 +100,4 @@ function moveRobot(leftSensor, centreSensor, rightSensor) {
     robot.moveRobot(90, 0.6, true);
   } 
   return
-}
-
-
-const checkRobotConnection = (): void => {
-  if (!robot.connected) {
-    robot.connect();
-  };
-  if (!robot.connected) return;     // if user doesn't connect to robot, don't connect to camera
 };

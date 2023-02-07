@@ -31,8 +31,8 @@ const joystickButtons = (root) => {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
     createComponent("p", {id: "mappingText"}, "Angle-Motor Mapping: NOT SET!", buttonsdiv);
     createComponent("p", {id: "sendCodeSpeedText"}, "ERROR", buttonsdiv);
-    createComponent("button", {onclick: "robot.connect()"}, "Connect", buttonsdiv);
-    createComponent("button", {onclick:"robot.disconnect()"}, "Disconnect", buttonsdiv);
+    createComponent("button", {onclick: "controller.connect()"}, "Connect", buttonsdiv);
+    createComponent("button", {onclick:"controller.disconnect()"}, "Disconnect", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
 };

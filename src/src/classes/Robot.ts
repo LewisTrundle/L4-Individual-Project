@@ -162,31 +162,3 @@ export class Robot extends DeviceController {
     return true;
   };
 };
-
-
-console["logOld"] = console.log;
-
-const deviceMessages = {
-  "Device" : "pink",
-  "Connected" : "pink",
-  "Sending" : "orange",
-  "Sent" : "green",
-  "Received": "blue",
-  "Busy" : "red",
-  "Executing" : "red",
-};
-
-// currently console.log will crash if not a string
-// console.log = function(data) {
-//   if (data.startsWith("<UART>")) {
-//     const op = data.split(" ")[1];
-//     if (String(op) in deviceMessages) {
-//       console["logOld"](`%c ROBOT DATA:\n${data}`, `background: ${deviceMessages[op]}; color: #ffffff`);
-//     } else {
-//       console["logOld"](`%c ROBOT DATA:\n${data}`, 'background: black; color: #ffffff');
-//     }
-
-//   } else {
-//     console["logOld"](data);
-//   }
-// };

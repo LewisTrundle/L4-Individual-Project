@@ -1,4 +1,4 @@
-export const convertToGreyscale = (host, button, context): void => {
+export const convertToGreyscale = (host, button, context, video): void => {
   const isGreyscale = host.getIsGreyscaleEnabled();
   if (isGreyscale) {
     button.innerHTML = "Convert to greyscale";
@@ -6,9 +6,11 @@ export const convertToGreyscale = (host, button, context): void => {
     button.innerHTML = "Unconvert from greyscale";
     context.filter = 'grayscale(1)';
   };
+  context.drawImage(video, 0, 0);
 };
 
-export const convertColourSpace = (host, button, canvas, context): void => {
+export const convertColourSpace = (host, button, canvas, context, video): void => {
+  context.drawImage(video, 0, 0);
   const isColourSpaceEnabled = host.getIsColourSpaceConversionEnabled();
   if (isColourSpaceEnabled) {
     button.innerHTML = "Convert colour space";

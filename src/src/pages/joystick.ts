@@ -7,28 +7,24 @@ var robot = new Robot();
 
 
 // ----- BUTTONS -----
-export function connect() {
+export const connect = (): void => {
   robot.connectRobot();
 };
-export function disconnect() {
+export const disconnect = (): void => {
   robot.disconnectRobot()
 };
-export function getBattery() {
+export const getBattery = (): void => {
   robot.getBattery().then((percentage) => {
-    console.log(`Battery percentage is: ${percentage['data']}%`);
+    alert(`Battery percentage is: ${percentage['data']}%`);
   });
 };
-export function diagnostic(angle?: number) {
+export const diagnostic = (angle?: number): void => {
   robot.diagnostic(angle);
 };
 
 
-function addSettings(robot, isText: boolean = false) {
-  settings(robot, isText);
-};
-
 window.onload = function () {
   joystickPage();
-  addSettings(robot, true);
+  settings(robot, true);
   createNipple('static', robot);
 };

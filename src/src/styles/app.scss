@@ -172,7 +172,7 @@ body {
     height: 100px;
     min-height: 10%;
     border-radius: 15px;
-    font-size: 17px;
+    font-size: 15px;
     margin: 25px;
     text-decoration: none;
     text-align: center;
@@ -215,6 +215,7 @@ body {
     }
 }
 
+
 button:disabled {
     cursor: default;
     border: 1px solid #999999;
@@ -232,6 +233,8 @@ button:disabled {
     align-items:center;
 
     video {
+        width: 480px;
+        height: 640px;
         display: block;
         position: absolute;
     }
