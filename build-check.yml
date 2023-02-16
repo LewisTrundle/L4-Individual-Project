@@ -16,5 +16,5 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd src && npm install && npm run build
+    cd src && npm install && npm install @espruino-tools/core && npm run build
   displayName: 'npm install and build'
