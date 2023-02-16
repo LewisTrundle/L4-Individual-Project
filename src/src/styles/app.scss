@@ -233,13 +233,15 @@ button:disabled {
     align-items:center;
 
     video {
-        width: 480px;
-        height: 640px;
+        width: 640px;
+        height: 480px;
         display: block;
         position: absolute;
     }
 
     .canvas {
+        width: 640px;
+        height: 480px;
         display: block;
         position: relative;
         left: 0;
