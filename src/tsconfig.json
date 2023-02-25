@@ -1,11 +1,12 @@
 {
+    // specifies options to be used by the Typescript compiler.
     "compilerOptions": {
-        "target": "ES6",
-        "module": "CommonJS",
-        "declaration": true,
-        "outDir": "./build/src",
-        "strict": false
+        "target": "ES6",            // compile code using ES6 syntax
+        "module": "CommonJS",       // use CommonJS module system
+        "declaration": true,        // generate declaration files
+        "outDir": "./build/src",    // output director for compiled JS files
+        "strict": false             // enable strict mode for type checking
     },
-    "include": ["src"],
-    "exclude": ["node_modules","**/tests/*","src/future/*","src/test/*"]
+    "include": ["src"],     // include files in src folder for compilation
+    "exclude": ["node_modules","**/tests/*","src/future/*","src/test/*"]       // exclude files from compilation
 }

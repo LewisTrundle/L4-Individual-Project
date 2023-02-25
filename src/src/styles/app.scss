@@ -235,13 +235,13 @@ button:disabled {
     video {
         width: 640px;
         height: 480px;
+        margin: 0px;
+        padding: 0px;
         display: block;
         position: absolute;
     }
 
     .canvas {
-        width: 640px;
-        height: 480px;
         display: block;
         position: relative;
         left: 0;

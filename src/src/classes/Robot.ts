@@ -13,8 +13,8 @@ export class Robot extends DeviceController {
 
   constructor() {
     super();
-    this.#motorDir = [0,0];
-    this.#buffer = [];
+    this.#motorDir = [0,0];       // directions of left and right motor ()
+    this.#buffer = [];            // buffer to keep backlog of instructions
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
     this.sendCodeSpeed = 600;
@@ -22,9 +22,29 @@ export class Robot extends DeviceController {
     this.mapping = null;
   };
 
+  
+  // ----- SETTER & GETTER METHODS -----
+  getMotorDir = (): number[] => {
+    return this.#motorDir;
+  };
+  setMotorDir = (left: number, right: number): void => {
+    this.#motorDir = [left, right];
+  };
+
+  setSendCodeSpeed(speed: number) {
+    this.sendCodeSpeed = speed;
+  };
+  getSendCodeSpeed() {
+    return this.sendCodeSpeed;
+  };
+
+  setMapping(mapping): void {
+    this.mapping = mapping;
+  };
+
 
   // ----- BUTTONS -----
-  connectRobot(): void {
+  connectRobot = (): void => {
     this.connect(() => {
       this.connected = true;
       this.switchDirections(1, 1);
@@ -32,16 +52,16 @@ export class Robot extends DeviceController {
     });
   };
 
-  disconnectRobot(): void {
+  disconnectRobot = (): void => {
     this.disconnect(() => {
       this.connected = false;
       console.log("disconnected");
     });
   };
 
-  async diagnostic(angle?: number): Promise<void> {
-    console.log("\n\n\nEntering diagnostic mode\n\n\n");
+  diagnostic = async (angle?: number): Promise<void> => {
     if (!this.checkConnection()) return;
+    alert("Entering diagnostic mode");
     this.stop();
 
     if (angle >= 0) {
@@ -54,7 +74,8 @@ export class Robot extends DeviceController {
     }
   };
 
-  async test(angle: number): Promise<void> {
+  test = async (angle: number): Promise<void> => {
+    alert(`Testing angle ${angle}`)
     this.moveRobot(angle, this.#maxForce);
     this.sendCode();
     await delay(5000);
@@ -139,24 +160,10 @@ export class Robot extends DeviceController {
 
 
 
-  // ----- SETTER & GETTER METHODS -----
-  setSendCodeSpeed(speed: number) {
-    this.sendCodeSpeed = speed;
-  };
-  getSendCodeSpeed() {
-    return this.sendCodeSpeed;
-  };
-
-  setMapping(mapping): void {
-    this.mapping = mapping;
-  };
-
-
-
   // ----- MISC -----
   checkConnection(): boolean {
     if (!this.connected) {
-      console.log("\nNot connected to robot!\n\n");
+      alert("Not connected to robot!");
       return false;
     }
     return true;
