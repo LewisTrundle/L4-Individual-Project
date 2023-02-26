@@ -24,7 +24,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "@espruino-tools/core": "github:espruino-tools/core",
     "@espruino-tools/device-controller": "^2.1.0",
     "@espruino-tools/peer": "^1.2.1",
     "aruco-marker": "^2.0.0",
