@@ -1,7 +1,4 @@
-# Node.js
 # Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
 - develop
@@ -18,5 +15,6 @@ steps:
 - script: |
     cd src
     npm install
+    npm install '@espruino-tools/core'
     npm run build
   displayName: 'npm install and build'
