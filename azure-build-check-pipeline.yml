@@ -15,5 +15,6 @@ steps:
 - script: |
     cd src
     npm install
+    npm install 'espruino-tools/core'
     npm run build
   displayName: 'npm install and build'
