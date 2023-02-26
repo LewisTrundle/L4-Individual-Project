@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - develop
-  merge:
-    branches:
-      - develop
 
-obs:
+jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
     steps:
