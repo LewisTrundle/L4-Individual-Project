@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
+      - run: cd src
       - run: npm install
       - run: npm run build
       - name: Deploy
