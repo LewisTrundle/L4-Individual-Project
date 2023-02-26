@@ -17,4 +17,19 @@ steps:
     npm install
     npm install '@espruino-tools/core'
     npm run build
-  displayName: 'npm install and build'
+    npm run deploy
+  displayName: 'Build and Deploy'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    artifactName: 'gh-pages'
+    targetPath: '$(Build.SourcesDirectory)/dist'
+  condition: succeededOrFailed()
+
+- task: GitHubPages@3
+  inputs:
+    githubConnection: 'LewisTrundle'
+    repositoryName: 'L4-Individual-Project'
+    folderPath: 'dist'
+    targetBranch: 'gh-pages'
+    useExternalRepository: true
