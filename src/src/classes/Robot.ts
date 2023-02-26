@@ -1,6 +1,11 @@
 import { DeviceController } from "@espruino-tools/core";
+import { uart } from "@espruino-tools/uart";
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+
+let UART = uart;
+
+var connection;
 
 export class Robot extends DeviceController {
   #motorDir: number[];
@@ -17,7 +22,7 @@ export class Robot extends DeviceController {
     this.#buffer = [];            // buffer to keep backlog of instructions
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
-    this.sendCodeSpeed = 600;
+    this.sendCodeSpeed = 10;
     this.connected = false;
     this.mapping = null;
   };
@@ -42,14 +47,29 @@ export class Robot extends DeviceController {
     this.mapping = mapping;
   };
 
+  getBuffer() {
+    return this.#buffer;
+  };
+
 
   // ----- BUTTONS -----
   connectRobot = (): void => {
-    this.connect(() => {
-      this.connected = true;
-      this.switchDirections(1, 1);
-      console.log("connected");
+    // this.connect(() => {
+    //   this.connected = true;
+    //   this.switchDirections(1, 1);
+    //   console.log("connected");
+    // });
+
+    UART.connect(function (c) {
+      if (!c) {
+        console.log("not connected")
+        return
+      }
+      console.log("connected")
+      connection = c;
     });
+    this.connected = true;
+    console.log("connection", connection);
   };
 
   disconnectRobot = (): void => {
@@ -92,6 +112,7 @@ export class Robot extends DeviceController {
       return;
     }
     this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
+    console.log("connection", connection)
   };
       
 
@@ -99,9 +120,13 @@ export class Robot extends DeviceController {
     console.log("Stopped moving joystick");
     if (!this.checkConnection()) return;
     window.clearInterval(this.#sendCodeFunc);
-    this.Call.stop();
+    connection.write("stop();\n");
     this.#buffer = [];
   };
+
+  continue(): void {
+    this.#sendCodeFunc = window.setInterval(this.sendCode.bind(this), this.sendCodeSpeed);
+  }
       
 
   moveRobot(angle, force, reverseDirection=false): void {
@@ -130,19 +155,19 @@ export class Robot extends DeviceController {
     const rightMotorDir = this.#motorDir[1];
 
     if (l_speed > 0 && leftMotorDir == 1) {
-      this.Call.switchMotor("D8", 0);
+      //this.Call.switchMotor("D8", 0);
       this.#motorDir[0] = 0;
     }
     else if (l_speed < 0 && leftMotorDir == 0) {
-      this.Call.switchMotor("D8", 1);
+      //this.Call.switchMotor("D8", 1);
       this.#motorDir[0] = 1;
     };
     if (r_speed > 0 && rightMotorDir == 1) {
-      this.Call.switchMotor("D7", 0);
+      //this.Call.switchMotor("D7", 0);
       this.#motorDir[1] = 0;
     }
     else if (r_speed < 0 && rightMotorDir == 0) {
-      this.Call.switchMotor("D7", 1);
+      //this.Call.switchMotor("D7", 1);
       this.#motorDir[1] = 1;
     };
   };
@@ -151,10 +176,12 @@ export class Robot extends DeviceController {
 
   // ----- CODE SENT TO ROBOT -----
   sendCode(): void {
-    const speed = this.#buffer[(this.#buffer).length-1];
-    if (speed) {
-      console.log(`sending code for left: ${speed[0]}, right: ${speed[1]}`);
-      this.Call.turn(speed[0], speed[1]);
+    console.log("Im happing")
+    const speed = this.#buffer.pop();
+    if (speed && connection) {
+      console.log(`${connection} sending code for left: ${speed[0]}, right: ${speed[1]}`);
+      connection.write(`turn(${speed[0]},${speed[1]});\n`)
+      //this.Call.turn(speed[0], speed[1]);
     }
   };
 

@@ -45,11 +45,11 @@ export const videoDisplay = async (): Promise<void> => {
 };
 
 export const connectRobot = (): void => {
-  robot.connect();
+  robot.connectRobot();
 };
 
 export const disconnectRobot = ():void => {
-  robot.disconnect();
+  robot.disconnectRobot();
 };
 
 export const startRobot = (): void => {
