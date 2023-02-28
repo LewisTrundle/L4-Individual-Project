@@ -61,5 +61,5 @@ const drawCanvas = (host, video, canvas, context, robot): void => {
 
   setTimeout(function () {
     drawCanvas(host, video, canvas, context, robot);
-  }, 40);
+  }, 20);
 };

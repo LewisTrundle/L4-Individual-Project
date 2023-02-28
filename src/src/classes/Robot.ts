@@ -22,7 +22,7 @@ export class Robot extends DeviceController {
     this.#buffer = [];            // buffer to keep backlog of instructions
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
-    this.sendCodeSpeed = 10;
+    this.sendCodeSpeed = 5;
     this.connected = false;
     this.mapping = null;
   };
