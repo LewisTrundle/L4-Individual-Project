@@ -45,11 +45,11 @@ export const videoDisplay = async (): Promise<void> => {
 };
 
 export const connectRobot = (): void => {
-  robot.connect();
+  robot.connectRobot();
 };
 
 export const disconnectRobot = ():void => {
-  robot.disconnect();
+  robot.disconnectRobot();
 };
 
 export const startRobot = (): void => {
@@ -79,25 +79,4 @@ const stopVideo = async (): Promise<void> => {
 const displayVideo = (data): void => {
   video.srcObject = data;
   video.play();
-};
-
-
-
-/* Conditionals for each sensor signalling which direction to move the robot */
-function moveRobot(leftSensor, centreSensor, rightSensor) {
-  console.log(leftSensor, centreSensor, rightSensor);
-  
-  if (leftSensor < 80) {
-    console.log("robot moving left");
-    robot.moveRobot(0, 1, true);
-  } 
-  else if (rightSensor < 80) {
-    console.log("robot moving right");
-    robot.moveRobot(180, 1, true);
-  }
-  else if (centreSensor < 80) {
-    console.log("robot moving forward");
-    robot.moveRobot(90, 0.6, true);
-  } 
-  return
 };

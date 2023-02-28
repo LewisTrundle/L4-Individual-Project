@@ -1,7 +1,7 @@
 import { colourTracker } from "./colourTracker";
 import { convertToGreyscale } from "./colourSpaceConversion";
 import { convertColourSpace } from "./colourSpaceConversion";
-import { detectArucoMarkers } from "./arucoDetection";
+import { detectMarkers } from "./markerDetection";
 import { lineTracking } from "./lineTracking";
 
 const tracking = require('jstracking');
@@ -14,7 +14,7 @@ export const visionPipeline = async (host, video, robot): Promise<void> => {
   let context = canvas.getContext('2d');
 
   canvasSetup(host);
-  drawCanvas(host, video, canvas, context)
+  drawCanvas(host, video, canvas, context, robot)
   colourTracker(host, tracking, canvas, context);
 };
 
@@ -43,7 +43,7 @@ const convertColourSpaceBtn = (host): void => {
 
 
 
-const drawCanvas = (host, video, canvas, context): void => {
+const drawCanvas = (host, video, canvas, context, robot): void => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
@@ -55,11 +55,11 @@ const drawCanvas = (host, video, canvas, context): void => {
 
     //lineTracking(canvas, context);
 
-    detectArucoMarkers(canvas, context);
+    detectMarkers(canvas, context, robot);
 
   };
 
   setTimeout(function () {
-    drawCanvas(host, video, canvas, context);
-  }, 10);
+    drawCanvas(host, video, canvas, context, robot);
+  }, 20);
 };
