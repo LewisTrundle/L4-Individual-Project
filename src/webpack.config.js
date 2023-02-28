@@ -18,7 +18,7 @@ module.exports = () => ({
   entry: {  "./src/index": "./src/pages/index.ts", 
             "./src/joystick": "./src/pages/joystick.ts",
             "./src/host": "./src/pages/host.ts",
-            "./src/peer": "./src/pages/peer.ts" },
+            "./src/peer": "./src/pages/host.ts" },
   output: {
     path: path.join(__dirname, "build"),
     filename: "[name].js",

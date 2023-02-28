@@ -8,6 +8,7 @@ export const peerPage = () => {
   
   let contentdiv = createComponent("div", {class: "content"}, null);
     mainButtons(contentdiv);
+    video(contentdiv);
 
   root.appendChild(contentdiv);
 };
@@ -15,11 +16,17 @@ export const peerPage = () => {
 
 const mainButtons = (root) => {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
-    let camerabuttons1 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
-      createComponent("button", {id:"frontPeerBtn", class:"connection"}, "Front Camera", camerabuttons1);
-      createComponent("button", {id:"backPeerBtn", class:"connection"}, "Back Camera", camerabuttons1);
+    let cameraselect = createComponent("div", {class: "custom-select"}, null, buttonsdiv);
+      let select = createComponent("select", {id: "select"}, null, cameraselect);
+        createComponent("option", {value: "0"}, "Select Camera", select);
     createComponent("button", {id: "peerConnBtn", onclick: "controller.videoTransfer()"}, "Transfer video to host", buttonsdiv);
     createComponent("button", {id: "peerDisConnBtn"}, "Close Connection", buttonsdiv);
     createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
+};
+
+const video = (root): void => {
+  let videocontainer = createComponent("div", {class: "video-container"}, null, root);
+    createComponent("video", {id: "video", class: "video"}, null, videocontainer);
+    createComponent("canvas", {id: "canvas", class: "canvas"}, null, videocontainer);
 };

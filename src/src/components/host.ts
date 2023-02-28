@@ -19,9 +19,6 @@ export const selfDrivingPage = () => {
 
 const mainButtons = (root) => {
   let buttonsdiv = createComponent("div", {class: "buttons"}, null, root);
-    let camerabuttons1 = createComponent("div", {class: "camera-buttons"}, null, buttonsdiv);
-      createComponent("button", {id:"frontHostBtn", class:"connection"}, "Host Front Camera", camerabuttons1);
-      createComponent("button", {id:"backHostBtn", class:"connection", disabled: true}, "Host Back Camera", camerabuttons1);
     let cameraselect = createComponent("div", {class: "custom-select"}, null, buttonsdiv);
       let select = createComponent("select", {id: "select"}, null, cameraselect);
         createComponent("option", {value: "0"}, "Select Camera", select); 

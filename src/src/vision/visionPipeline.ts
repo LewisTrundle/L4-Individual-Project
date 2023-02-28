@@ -55,7 +55,7 @@ const drawCanvas = (host, video, canvas, context, robot): void => {
 
     //lineTracking(canvas, context);
 
-    detectMarkers(canvas, context, robot);
+    //detectMarkers(canvas, context, robot);
 
   };
 
