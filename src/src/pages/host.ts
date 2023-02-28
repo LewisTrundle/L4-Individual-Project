@@ -1,82 +1,93 @@
+// get page components
 import { selfDrivingPage } from "../components/host";
-import { settings } from '../settings/settings';
+import { peerPage } from "../components/peer";
+// get classes
 import { Robot } from '../classes/Robot';
-import { VideoFeed } from "../classes/VideoFeed";
-import { pickCamera } from "../helpers/pickCamera";
+import { VideoTransfer } from "../classes/VideoFeed";
+// import settings
+import { settings } from '../settings/settings';
+// import vision pipeline
 import { visionPipeline } from "../vision/visionPipeline";
+// import styles
 import "../styles/app.scss";
-import { isCameraSelected, detectCameras } from "../helpers/displayVideo";
 
 
 let robot = new Robot();
-let host = new VideoFeed(window.location.origin + "/peer.html");
+let connection = new VideoTransfer(window.location.origin + "/peer.html");
 
-let video;
-let stream;
-
-
-window.onload = async function () {
-  selfDrivingPage();
-  settings(robot, false);
-  detectCameras(host);
-  pickCamera();
-
-  host.getVideo(async function (data) {
-    await stopVideo();
-    displayVideo(data);
-  });
-  
-  video = document.querySelector('#video') as HTMLVideoElement;
-  video.addEventListener('loadeddata', function() {
-    visionPipeline(host, video, robot);
- }, false);
-
- video.addEventListener('onended', function() {
-    alert("video ended");
- }, false);
+export const videoTransfer = (): void => {
+  connection.videoTransfer();
 };
 
-
-
-export const videoDisplay = async (): Promise<void> => {
-  isCameraSelected(host);
-  await stopVideo();
-  displayVideo(stream);
+export const videoDisplay = async (data?, isRecieving=false): Promise<void> => {
+  connection.displayVideo(data, isRecieving);
 };
 
 export const connectRobot = (): void => {
   robot.connectRobot();
 };
-
 export const disconnectRobot = ():void => {
   robot.disconnectRobot();
 };
-
 export const startRobot = (): void => {
   robot.start();
 };
-
 export const stopRobot = (): void => {
   robot.stop();
 };
 
 
-const stopVideo = async (): Promise<void> => {
-  try {
-    if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
-    }
-    stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true});
-  }
-  catch (e) {
-    alert(e);
+
+if (window.location.toString().includes("host")) {
+  window.onload = async function () {
+    selfDrivingPage();
+    settings(robot, false);
+    detectCameras();
+
+    let video = document.querySelector('#video') as HTMLVideoElement;
+    connection.setHostVideo(video);
+
+    video.addEventListener('loadeddata', function() {
+      visionPipeline(connection, video, robot);
+    }, false);
+
+    connection.getHost().getVideo(async function (data) {
+      await videoDisplay(data, true);
+    });
+  };
+}
+
+
+else if (window.location.toString().includes("peer")) {
+  window.onload = function () {
+    peerPage();
+    detectCameras(true);
+
+    let video = document.querySelector('#video') as HTMLVideoElement;
+    connection.setPeerVideo(video);
   };
 };
 
 
 
-const displayVideo = (data): void => {
-  video.srcObject = data;
-  video.play();
+const detectCameras = async (isPeer=false): Promise<void> => {
+  let c = [];
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter((device) => device.kind === "videoinput")
+  var select = document.getElementById("select") as HTMLSelectElement;
+  select.addEventListener("change", () => {
+    const camera = c.filter((camera) => camera.label==select.value)[0];
+    if (isPeer) {
+      connection.setActivePeerCamera(camera);
+    } else {
+      connection.setActiveHostCamera(camera);
+    };
+  });
+
+  videoDevices.forEach((device) => {
+    const d = document.createElement("option");
+    d.innerHTML = device.label;
+    select.appendChild(d);
+    c.push(device)
+  });
 };
