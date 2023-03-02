@@ -12,7 +12,7 @@ import { visionPipeline } from "../vision/visionPipeline";
 import "../styles/app.scss";
 
 let robot = new Robot();
-let connection = new VideoTransfer(window.location.origin + "/peer.html");
+let connection;
 
 
 export const videoTransfer = (): void => {
@@ -42,6 +42,13 @@ if (window.location.toString().includes("host")) {
     settings(robot, false);
     detectCameras();
 
+    if (window.location.href.includes("github")) {
+      connection = new VideoTransfer("https://lewistrundle.github.io/L4-Individual-Project/peer.html");
+    }
+    else {
+      connection = new VideoTransfer(window.location.origin + '/peer.html');
+    }
+
     let video = document.querySelector('#video') as HTMLVideoElement;
     connection.setHostVideo(video);
 
@@ -60,6 +67,13 @@ else if (window.location.toString().includes("peer")) {
     peerPage();
     detectCameras(true);
 
+    if (window.location.href.includes("github")) {
+      connection = new VideoTransfer("https://lewistrundle.github.io/L4-Individual-Project/peer.html");
+    }
+    else {
+      connection = new VideoTransfer(window.location.origin + '/peer');
+    }
+
     let video = document.querySelector('#video') as HTMLVideoElement;
     connection.setPeerVideo(video);
   };
@@ -71,13 +85,6 @@ else if (window.location.toString().includes("peer")) {
  * @param isPeer is the device a peer or host
  */
 const detectCameras = async (isPeer: boolean = false): Promise<void> => {
-  // try getting camera permissions
-  try {
-    await navigator.mediaDevices.getUserMedia({video: true});
-  } catch (err) {
-    alert("Please give camera permissions");
-  };
-
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter((device) => device.kind === "videoinput")
   var select = document.getElementById("select") as HTMLSelectElement;

@@ -1,5 +1,4 @@
-import { Host } from "@espruino-tools/peer";
-import { Connector } from "@espruino-tools/peer";
+import { Host, Connector } from "@espruino-tools/peer";
 
 
 export class VideoTransfer {
