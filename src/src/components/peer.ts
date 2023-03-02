@@ -4,7 +4,8 @@ import { header } from "./common";
 
 export const peerPage = () => {
   let root = document.getElementById("page-root");
-  header(root, "Camera");
+  let headerdiv = createComponent("div", {class: "header"}, null, root);
+    createComponent("h1", {}, "Camera", headerdiv);
   
   let contentdiv = createComponent("div", {class: "content"}, null);
     mainButtons(contentdiv);
@@ -21,7 +22,6 @@ const mainButtons = (root) => {
         createComponent("option", {value: "0"}, "Select Camera", select);
     createComponent("button", {id: "peerConnBtn", onclick: "controller.videoTransfer()"}, "Transfer video to host", buttonsdiv);
     createComponent("button", {id: "peerDisConnBtn"}, "Close Connection", buttonsdiv);
-    createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
   root.appendChild(buttonsdiv);
 };
 
