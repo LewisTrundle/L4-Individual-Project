@@ -54,7 +54,7 @@ var joysticks = {
   static: {
     zone: null,
     mode: 'static',
-    size: 180,
+    size: 150,
     position: {
       left: '50%',
       top: '50%'

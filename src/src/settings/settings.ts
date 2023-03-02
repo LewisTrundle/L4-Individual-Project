@@ -69,7 +69,7 @@ function uploadCodeButton(robot) {
   };
   
   uploadCodeBtn.onclick = async function() {
-    await robot.upload(url);
+    await robot.upload(url, true);
     getDeviceCode(robot, codeOnRobot);
   };
   getCodeBtn.onclick = function() {

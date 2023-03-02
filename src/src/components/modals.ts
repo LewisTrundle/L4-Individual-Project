@@ -50,7 +50,6 @@ function sendCodeSlider(root) {
 function mappingModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
     createComponent("button", {id: "tightControl"}, "Tight Mapping", buttonsdiv);
-    createComponent("button", {id: "middleControl"}, "Middle Mapping", buttonsdiv);
     createComponent("button", {id: "looseControl"}, "Loose Mapping", buttonsdiv);
 };
 
