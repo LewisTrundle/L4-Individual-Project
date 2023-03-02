@@ -19,7 +19,7 @@
 
 ### Overall Project
 * [Timelog](./timelog.md)
-* [Meeting Minutes]()
+* Meeting Minutes
 * [December Status Report](status_reports/December_Status_Report.pdf)
 * [January Status Report](status_reports/January_Status_Report.pdf)
 * [February Status Report](status_reports/February_Status_Report.pdf)
