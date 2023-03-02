@@ -1,5 +1,4 @@
 import { mappings } from "./angleMotorMappings";
-import * as nipplejs from 'nipplejs';
 
 
 export function settings(robot, isText: boolean = false) {
@@ -12,40 +11,6 @@ export function settings(robot, isText: boolean = false) {
     btn.onclick = function () {
       setMapping(robot, mappings[key], isText);
     };
-  });
-};
-
-
-export function createNipple(evt, robot) {
-  const joyZone = document.getElementById("joyzone");
-  joysticks[evt].zone = joyZone;
-  var joystick = nipplejs.create(joysticks[evt]);
-  bindNipple(joystick, robot);
-};
-
-
-var joysticks = {
-  static: {
-    zone: null,
-    mode: 'static',
-    size: 180,
-    position: {
-      left: '50%',
-      top: '50%'
-    },
-    color: '#FF0000',
-    restOpacity: 0.8,
-  }
-};
-
-function bindNipple(joystick, robot) {
-  joystick.on('start', function(evt, data) {
-    robot.start();
-  }).on('end', function(evt, data) {
-    robot.stop();
-  }
-  ).on('move', function(evt, data) {
-    robot.moveRobot(data.angle.degree, data.force);
   });
 };
 

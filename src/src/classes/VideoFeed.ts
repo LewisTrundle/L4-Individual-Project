@@ -1,7 +1,6 @@
 import { Host } from "@espruino-tools/peer";
 import { Connector } from "@espruino-tools/peer";
 
-let x;
 
 export class VideoTransfer {
   #isColourTrackingEnabled: boolean;
@@ -9,11 +8,12 @@ export class VideoTransfer {
   #isColourSpaceConversionEnabled: boolean;
   #host: Host;
   #peer: Connector;
-  #hostVideo: HTMLVideoElement;
-  #peerVideo: HTMLVideoElement;
-  #stream: MediaStream;
-  #activeHostCamera: InputDeviceInfo;
-  #activePeerCamera: InputDeviceInfo;
+  #hostVideo: HTMLVideoElement | null;
+  #peerVideo: HTMLVideoElement | null;
+  #stream: MediaStream | null;
+  #activeHostCamera: InputDeviceInfo | null;
+  #activePeerCamera: InputDeviceInfo | null;
+  #cameras: MediaDeviceInfo[];
 
   constructor(peerDomain: string) {
     this.#host = new Host(peerDomain);
@@ -26,6 +26,7 @@ export class VideoTransfer {
     this.#isColourSpaceConversionEnabled = false;
     this.#activeHostCamera = null;
     this.#activePeerCamera = null;
+    this.#cameras = [];
   };
 
   getHost = (): Host => {
@@ -56,30 +57,37 @@ export class VideoTransfer {
     this.#isColourSpaceConversionEnabled = value;
   };
 
-  getHostVideo = (): HTMLVideoElement => {
+  getHostVideo = (): HTMLVideoElement | null => {
     return this.#hostVideo;
   };
   setHostVideo = (video: HTMLVideoElement): void => {
     this.#hostVideo = video;
   };
-  getPeerVideo = (): HTMLVideoElement => {
+  getPeerVideo = (): HTMLVideoElement | null => {
     return this.#peerVideo;
   };
   setPeerVideo = (video: HTMLVideoElement): void => {
     this.#peerVideo = video;
   };
 
-  getActiveHostCamera = (): InputDeviceInfo => {
+  getActiveHostCamera = (): InputDeviceInfo | null => {
     return this.#activeHostCamera;
   };
   setActiveHostCamera = (camera: InputDeviceInfo): void => {
     this.#activeHostCamera = camera
   };
-  getActivePeerCamera = (): InputDeviceInfo => {
+  getActivePeerCamera = (): InputDeviceInfo | null => {
     return this.#activePeerCamera;
   };
   setActivePeerCamera = (camera: InputDeviceInfo): void => {
     this.#activePeerCamera = camera
+  };
+
+  getCameras = (): MediaDeviceInfo[] => {
+    return this.#cameras;
+  };
+  addCamera = (camera: MediaDeviceInfo): void => {
+    this.#cameras.push(camera);
   };
 
 
@@ -87,16 +95,16 @@ export class VideoTransfer {
     await this.getVideo(true, false);
   };
 
-  displayVideo = async (data = null, isRecieving=false): Promise<void> => {
+  displayVideo = async (data: any = null, isRecieving: boolean = false): Promise<void> => {
     await this.getVideo(false, isRecieving);
-    this.#hostVideo.srcObject = data != null ? data : this.#stream;
-    this.#hostVideo.addEventListener('canplay', () => {
+    if (this.#hostVideo) {
+      this.#hostVideo.srcObject = data != null ? data : this.#stream;
       this.#hostVideo.play();
-    });
+    };
   };
 
 
-  getVideo = async (isPeer=false, isRecieving=false) => {
+  getVideo = async (isPeer: boolean = false, isRecieving: boolean = false) => {
     try {
       if (this.#stream) {
         this.#stream.getTracks().forEach(track => track.stop());

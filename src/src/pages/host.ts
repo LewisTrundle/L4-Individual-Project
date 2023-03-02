@@ -11,18 +11,16 @@ import { visionPipeline } from "../vision/visionPipeline";
 // import styles
 import "../styles/app.scss";
 
-
 let robot = new Robot();
 let connection = new VideoTransfer(window.location.origin + "/peer.html");
 
+
 export const videoTransfer = (): void => {
-  //connection.videoTransfer();
+  connection.videoTransfer();
 };
-
-export const videoDisplay = async (data?, isRecieving=false): Promise<void> => {
-  //connection.displayVideo(data, isRecieving);
+export const videoDisplay = async (data?: any, isRecieving: boolean = false): Promise<void> => {
+  connection.displayVideo(data, isRecieving);
 };
-
 export const connectRobot = (): void => {
   robot.connectRobot();
 };
@@ -51,12 +49,11 @@ if (window.location.toString().includes("host")) {
       visionPipeline(connection, video, robot);
     }, false);
 
-    connection.getHost().getVideo(async function (data) {
-      //await videoDisplay(data, true);
+    connection.getHost().getVideo(async function (data: any) {
+      await videoDisplay(data, true);
     });
   };
 }
-
 
 else if (window.location.toString().includes("peer")) {
   window.onload = function () {
@@ -69,20 +66,25 @@ else if (window.location.toString().includes("peer")) {
 };
 
 
-
-const detectCameras = async (isPeer=false): Promise<void> => {
+/**
+ * Gets camera permissions from the user and displays a drop-down list of all connected cameras.
+ * @param isPeer is the device a peer or host
+ */
+const detectCameras = async (isPeer: boolean = false): Promise<void> => {
+  // try getting camera permissions
   try {
     await navigator.mediaDevices.getUserMedia({video: true});
   } catch (err) {
     alert("Please give camera permissions");
   };
 
-  let c = [];
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter((device) => device.kind === "videoinput")
   var select = document.getElementById("select") as HTMLSelectElement;
+
+  // set active camera
   select.addEventListener("change", () => {
-    const camera = c.filter((camera) => camera.label==select.value)[0];
+    const camera = connection.getCameras().filter((camera) => camera.label==select.value)[0];
     if (isPeer) {
       connection.setActivePeerCamera(camera);
     } else {
@@ -90,10 +92,11 @@ const detectCameras = async (isPeer=false): Promise<void> => {
     };
   });
 
+  // add devices to list
   videoDevices.forEach((device) => {
     const d = document.createElement("option");
     d.innerHTML = device.label;
     select.appendChild(d);
-    c.push(device)
+    connection.addCamera(device);
   });
 };
