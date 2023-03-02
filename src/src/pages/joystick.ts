@@ -25,6 +25,7 @@ export const diagnostic = (angle?: number): void => {
 
 
 window.onload = function () {
+  robot.setSendCodeSpeed(100);
   joystickPage();
   settings(robot, true);
   createNipple('static', robot);
@@ -39,7 +40,9 @@ function createNipple(evt, robot) {
 };
 
 function bindNipple(joystick, robot) {
-  joystick.on('end', function(evt, data) {
+  joystick.on('start', function(evt, data) {
+    robot.start()
+  }).on('end', function(evt, data) {
     robot.stop();
   }).on('move', function(evt, data) {
     robot.moveRobot(data.angle.degree, data.force);

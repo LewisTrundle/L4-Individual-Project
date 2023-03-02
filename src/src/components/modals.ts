@@ -4,7 +4,7 @@ export const createModal = (root, modalId) => {
   let modal = createComponent("div", {id: modalId, class: "modal"}, null, root);
     let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
       let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
-        createComponent("span", {class: "close"}, `&times;`, modalheader);
+        createComponent("span", {class: "close"}, "X", modalheader);
         createComponent("h2", {}, "How to Use", modalheader);
       let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
       createComponent("div", {class: "modal-footer"}, "Thanks for reading", modalcontent);
@@ -45,7 +45,7 @@ function sendCodeSlider(root) {
     let valuecontainer = createComponent("div", {class: "value-container"}, null, slidercontainer);
       createComponent("span", {id: "output"}, "100", valuecontainer);
     createComponent("input", {type: "range", min:"0", max:"600", value:"100", class:"slider", id:"sendCodeSlider"}, null, slidercontainer);
-}
+};
 
 function mappingModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);

@@ -11,6 +11,8 @@ $dark-red: #FF0000AA;
 $light-red: #FF000033;
 $green: #0B8600;
 $main-font: "Digital Numbers";
+$header-height: 65px;
+$content-margin: 20px;
 
 body {
     height: 100vh;
@@ -23,10 +25,6 @@ body {
     flex-direction: column;
 }
 
-#page-root {
-    height: 100vh;
-    width: 100vw;
-}
     
 .header {
     display: flex;
@@ -56,10 +54,11 @@ body {
     }
 }
 
+
 .content {
     display: flex;
-    height: 85%;
-    margin: 20px;
+    height: calc(100vh - $header-height - (2*$content-margin));
+    margin: 20px 20px 20px 20px;
 }
    
 
@@ -193,17 +192,20 @@ body {
     color: $white;
     font-family: $main-font;
     width: 50%;
-    height: 100px;
-    min-height: 10%;
+    height: 30%;
+    min-height: 30px;
+    max-height: 120px;
     border-radius: 15px;
-    font-size: 15px;
-    margin: 25px;
+    font-size: 12px;
+    margin-top: 3%;
+    margin-bottom: 0px;
     text-decoration: none;
     text-align: center;
 }
 
 .buttons a button {
     width: 100%;
+    height: 100%;
     margin: 0px;
 }
 
@@ -306,6 +308,11 @@ button:disabled {
         border-radius: 10px;
         background-color: $light-red;
     }
+}
+
+
+.info-text {
+    font-size: 12px;
 }
 /* ---------- JOYSTICK SECTION END ----------*/
 

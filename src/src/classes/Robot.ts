@@ -16,19 +16,19 @@ export class Robot extends DeviceController {
   #maxForce: number;
   #sendCodeSpeed: number;
   #mapping: any;
-  #usingUart: boolean;
+  #connecting: boolean;
 
 
   constructor() {
     super();
     this.isConnected = false;
-    this.#usingUart = true;
     this.#motorDir = [0,0];       // directions of left and right motor ()
     this.#buffer = [];            // buffer to keep backlog of instructions
     this.#sendCodeFunc = null;
     this.#maxForce = 1.5;
     this.#sendCodeSpeed = 5;
     this.#mapping = null;
+    this.#connecting = false;
   };
 
   
@@ -78,31 +78,30 @@ export class Robot extends DeviceController {
 
   // ----- BUTTONS -----
   connectRobot = (): void => {
-    if (this.#usingUart) {
+    try {
       let r = this;
+      r.#connecting = true;
       UART.connect((c: any) => {
-        if (!c) {
+        if (!c || null) {
           console.log("not connected")
-        }
-        connection = c;
-        r.isConnected = true;
-        r.switchDirections(1, 1);
+        } else {
+          connection = c;
+          r.isConnected = true;
+          r.#connecting = false;
+          r.switchDirections(1, 1);
+        };
       });
-    } 
-    else {
-      this.connect(() => {
-        this.isConnected = true;
-        this.switchDirections(1, 1);
-      });
-    };
+    }
+    catch (err) {
+      console.log(err)
+    }
   };
 
 
   disconnectRobot = (): void => {
-    this.disconnect(() => {
-      this.isConnected = false;
-      console.log("disconnected");
-    });
+    UART.close();
+    this.isConnected = false;
+    console.log("disconnected");
   };
 
   diagnostic = async (angle?: number): Promise<void> => {
@@ -120,7 +119,7 @@ export class Robot extends DeviceController {
       for (var i = 0; i < this.#mapping.angles.length; i++) {
         await this.#test(this.#mapping.angles[i]);
       }
-    }
+    };
   };
 
   #test = async (angle: number): Promise<void> => {
@@ -159,9 +158,10 @@ export class Robot extends DeviceController {
       
 
   moveRobot = async (angle: number, force: number, reverseDirection=false): Promise<void> => {
-    console.log(this)
     if (!this.isConnected) {
-      await this.connectRobot();
+      if (!this.#connecting) {
+        await this.connectRobot();
+      }
       return;
     };
 
@@ -178,7 +178,6 @@ export class Robot extends DeviceController {
     lSpeed = Math.abs(lSpeed);
     rSpeed = Math.abs(rSpeed);
   
-    console.log("adding speeds")
     this.#buffer.push([lSpeed, rSpeed]);
   };
       
@@ -186,35 +185,27 @@ export class Robot extends DeviceController {
   switchDirections(l_speed, r_speed): void {
     const leftMotorDir = this.#motorDir[0];
     const rightMotorDir = this.#motorDir[1];
-    let motor;
-    let dir;
 
     if (l_speed > 0 && leftMotorDir == 1) {
-      motor = "D8";
-      dir = 0;
+      this.#sendSwitchDirection("D8", 0);
       this.#motorDir[0] = 0;
     }
     else if (l_speed < 0 && leftMotorDir == 0) {
-      motor = "D8";
-      dir = 1;
+      this.#sendSwitchDirection("D8", 1);
       this.#motorDir[0] = 1;
     };
     if (r_speed > 0 && rightMotorDir == 1) {
-      motor = "D7";
-      dir = 0;
+      this.#sendSwitchDirection("D7", 0);
       this.#motorDir[1] = 0;
     }
     else if (r_speed < 0 && rightMotorDir == 0) {
-      motor = "D7";
-      dir = 1
+      this.#sendSwitchDirection("D7", 1);
       this.#motorDir[1] = 1;
     };
+  };
 
-    if (connection) {
-      connection.write(`switchMotor(${motor},${dir});\n`);
-    } else {
-      this.Call.switchMotor(motor, dir)
-    }
+  #sendSwitchDirection = (motor, dir): void => {
+    connection.write(`switchMotor("${motor}",${dir});\n`);
   };
 
 
@@ -223,12 +214,7 @@ export class Robot extends DeviceController {
   sendCode(): void {
     const speed = this.#buffer.pop();
     if (speed) {
-      console.log(`sending code for left: ${speed[0]}, right: ${speed[1]}`);
-      if (connection) {
-        connection.write(`turn(${speed[0]},${speed[1]});\n`);
-      } else {
-        this.Call.turn(speed[0], speed[1]);
-      }
-    }
+      connection.write(`turn(${speed[0]},${speed[1]});\n`);
+    };
   };
 };
