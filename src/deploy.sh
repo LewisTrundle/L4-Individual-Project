@@ -34,3 +34,5 @@ git checkout -
 
 # delete gh-pages branch
 git branch -D gh-pages
+
+npm install
