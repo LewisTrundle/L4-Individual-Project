@@ -3,7 +3,7 @@
 ## Important Links
 * [Competition Submission Form](https://forms.gle/LDLXWPZB9BomwcrW8)
 * [Track Design](https://www.figma.com/file/p5jf9avmuazf1W6wpArfBC/Track-Design?node-id=0%3A1&t=aimGM4e57DGKQQKU-1)
-* [Website Design](https://www.figma.com/file/f0m3vaIETOb2ZpTYRg89y4/Robot-Competition-Website?node-id=0%3A1)
+* [Website UI Design](https://www.figma.com/file/f0m3vaIETOb2ZpTYRg89y4/Robot-Competition-Website?node-id=0%3A1)
 
 ---
 <br>
