@@ -5,6 +5,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 require("dotenv").config({ path: "./.env" });
 const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 
 // Gets absolute path of file within app directory
 const resolveAppPath = (relativePath) =>
@@ -79,6 +80,11 @@ module.exports = () => ({
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "public/images", to: "images"}
+      ],
     }),
   ],
 });
