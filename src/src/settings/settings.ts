@@ -1,4 +1,5 @@
 import { mappings } from "./angleMotorMappings";
+const REPO_NAME: string = "L4-Individual-Project";
 
 
 export function settings(robot, isText: boolean = false) {
@@ -45,8 +46,7 @@ function sendCodeSlider(robot, isText) {
 
 
 function uploadCodeButton(robot) {
-  const url = window.location.href + "/robotCode/robotCode.txt";
-  console.log(window.location.origin, window.location.href)
+  const url = window.location.href + `/{REPO_NAME}/robotCode/robotCode.txt`;
   var uploadCodeBtn = document.getElementById("uploadCodeBtn");
   var getCodeBtn = document.getElementById("getCodeBtn");
   var resetCodeBtn = document.getElementById("resetCodeBtn");
@@ -91,10 +91,10 @@ function getDeviceCode(robot, text: HTMLElement) {
 
 async function getText(url: string) {
   let d = await fetch(url).then((res: any) => {
-    if (!res.ok) throw new Error(res.status);
+    if (!res.ok) console.log(res.status);
     return res;
   });
-  if (!d) throw new Error(`fetch failed`);
+  if (!d) console.log(`fetch failed`);
   return await d.text();
 }
 
