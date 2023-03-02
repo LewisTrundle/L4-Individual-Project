@@ -53,7 +53,7 @@ function uploadCodeButton(robot) {
   var codeOnRobot = document.getElementById("codeOnRobot");
 
   // get code to be uploaded to robot
-  fetchToText(url).then(async (rawCode: string) => {
+  getText(url).then(async (rawCode: string) => {
     rawCode = formatCode(rawCode);
     codeToUpload.innerHTML = rawCode;
   });
@@ -88,14 +88,13 @@ function getDeviceCode(robot, text: HTMLElement) {
 };
 
 
-// TAKEN FROM https://github.com/espruino-tools/core/blob/production/src/device-controller.ts
-async function fetchToText(url: string) {
-  let data = await fetch(url).then((res: any) => {
+async function getText(url: string) {
+  let d = await fetch(url).then((res: any) => {
     if (!res.ok) throw new Error(res.status);
     return res;
   });
-  if (!data) throw new Error(`fetch on :${url} failed`);
-  return await data.text();
+  if (!d) throw new Error(`fetch failed`);
+  return await d.text();
 }
 
 const formatCode = (code) => {
