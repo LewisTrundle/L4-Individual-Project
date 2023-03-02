@@ -1,4 +1,5 @@
 import { createComponent } from "./helpers";
+import { createModal, helpModalContent, openCloseModal } from "./modals";
 
 export const indexPage = () => {
   let root = document.getElementById("page-root");
@@ -12,4 +13,10 @@ export const indexPage = () => {
         createComponent("button", {}, "Joystick", joysticklink);
       let lineLink = createComponent("a", {href: "host.html"}, null, buttonsdiv);
         createComponent("button", {}, "Self-driving", lineLink);
+      createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
+    
+    let helpModal = createModal(contentdiv, "helpModal");
+      helpModalContent(helpModal, "controller");
+
+  openCloseModal();
 };

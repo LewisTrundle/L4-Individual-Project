@@ -10,7 +10,7 @@ export const selfDrivingPage = () => {
     mainButtons(contentdiv);
     video(contentdiv);
 
-    addModals(contentdiv)
+    addModals(contentdiv, "self-driving")
 
   root.appendChild(contentdiv);
   openCloseModal();

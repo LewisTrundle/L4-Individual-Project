@@ -1,21 +1,20 @@
 import { createComponent } from "./helpers";
 
-const createModal = (root, modalId) => {
+export const createModal = (root, modalId) => {
   let modal = createComponent("div", {id: modalId, class: "modal"}, null, root);
     let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
       let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
         createComponent("span", {class: "close"}, `&times;`, modalheader);
         createComponent("h2", {}, "How to Use", modalheader);
       let modalbody = createComponent("div", {class: "modal-body"}, null, modalcontent);
-      let modalfooter = createComponent("div", {class: "modal-footer"}, null, modalcontent);
-        createComponent("h3", {}, "Thanks for reading :)", modalfooter);
+      createComponent("div", {class: "modal-footer"}, "Thanks for reading", modalcontent);
   root.appendChild(modal);
   return modalbody;
 };
 
-export const addModals = (root) => {
+export const addModals = (root, helpLink) => {
   let helpModal = createModal(root, "helpModal");
-    helpModalContent(helpModal);
+    helpModalContent(helpModal, helpLink);
   let settingsModal = createModal(root, "settingsModal");
     settingsModalContent(settingsModal);
   let mappingsModal = createModal(root, "mappingsModal");
@@ -27,8 +26,10 @@ export const addModals = (root) => {
 };
 
 
-function helpModalContent(root) {
-  createComponent("p", {}, `Detailed instructions are explained  <a href="https://github.com/Kirstin813/L4-Individual-Project/tree/main/src#connecting-to-robot">here</a>`, root);
+export function helpModalContent(root, link) {
+  createComponent("p", {}, `For detailed instructions, please read the user manual`, root);
+  let userManualLink = createComponent("a", {href:`https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/src/user_manual.md#${link}`}, null, root);
+    createComponent("button", {}, "User manual", userManualLink);
 }
 
 function settingsModalContent(root) {
@@ -87,10 +88,15 @@ export function openCloseModal() {
   for (const [key, value] of Object.entries(modals)) {
     const modal = document.getElementById(value.modal);
     const button = document.getElementById(value.button);
+    if (!(modal && button)) {
+      break
+    }
     modalElements.push(modal);
 
     button.onclick = () => {
-      settingsModal.style.display = "none";
+      if (settingsModal) {
+        settingsModal.style.display = "none";
+      }
       modal.style.display = "block";
     };
   };
