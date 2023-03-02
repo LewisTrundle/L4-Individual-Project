@@ -125,7 +125,7 @@
 * *0.5 hours* Weekly supervisor meeting
 
 
-## Week 10 [28/11/22] -0.5 hours total
+## Week 10 [28/11/22] - 0.5 hours total
 
 ### 02 Dec 2022
 * *0.5 hours* Weekly supervisor meeting
@@ -229,7 +229,61 @@
 * *6 hours* Implemented various self-driving features, such as line-tracking, colour detection, and colour conversion.
 
 ### 05 Feb 2023
-* *4 hours* Improved upon self-driving features.
+* *5 hours* Improved upon self-driving features.
 
 
-## Week 17 [06/02/23]
+## Week 17 [06/02/23] - 8 hours total
+### 06 Feb 2023
+* *4 hours* Added ability to toggle on and off various features.
+
+### 07 Feb 2023
+* *3.5 hours* Started writing start of dissertation.
+
+### 08 Feb 2023
+* *0.5 hours* Supervisor meeting.
+
+
+## Week 18 [13/02/23] - 8.5 hours total
+### 16 Feb 2023
+* *1.5 hours* Started writing background of dissertation.
+
+### 17 Feb 2023
+* *4.5 hours* Continued writing dissertation - focusing on background and introduction.
+
+### 19 Feb 2023
+* *2 hours* Attempted to move deploy script to pipeline.
+* *0.5 hours* Made various issues on Github to complete for controller.
+
+
+## Week 19 [20/02/23] - 34 hours total
+### 21 Feb 2023
+* *4.5 hours* Worked in motivation and aims for dissertation.
+
+### 22 Feb 2023
+* *5 hours* Worked on analysis for competition for dissertation.
+* *1.5 hours* Finished introduction of dissertation.
+
+### 23 Feb 2023
+* *5 hours* Continued working on analysis for competition for dissertation and also the design.
+
+### 24 Feb 2023
+* *5.5 hours* Started the controller analysis section.
+* *1 hours* Added more issues to be completed to the Github.
+
+### 25 Feb 2023
+* *4 hours* Worked on virtual lead feature - making the robot follow the midpoint of the camera.
+
+### 26 Feb 2023
+* *7.5 hours* Finished the virtual lead feature.
+
+
+## Week 20 [27/02/23]
+### 27 Feb 2023
+* *2.5 hours* Meeting prep.
+* *0.5 hours* Supervisor meeting.
+
+### 28 Feb 2023
+* *5 hours* Big fixing on controller - most of the day was spent attempting to show camera feed on mobile device.
+
+### 01 March 2023
+* *5.5 hours* Added design to Github and improved readmes.

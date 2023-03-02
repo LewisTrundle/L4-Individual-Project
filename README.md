@@ -26,8 +26,3 @@
 
 
 ## Project Description
-##### Inspiration
-
-##### Aim
-
-##### Outline
