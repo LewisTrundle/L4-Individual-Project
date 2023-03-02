@@ -46,8 +46,12 @@ function sendCodeSlider(robot, isText) {
 
 
 function uploadCodeButton(robot) {
-  const url = window.location.href + `/{REPO_NAME}/robotCode/robotCode.txt`;
-  console.log(url)
+  let url;
+  if (window.location.href.includes("github")) {
+    url = `https://lewistrundle.github.io/L4-Individual-Project/robotCode/robotCode.txt`;
+  } else {
+    url = window.location.origin + `/robotCode/robotCode.txt`;
+  };
   var uploadCodeBtn = document.getElementById("uploadCodeBtn");
   var getCodeBtn = document.getElementById("getCodeBtn");
   var resetCodeBtn = document.getElementById("resetCodeBtn");
