@@ -45,7 +45,7 @@ function sendCodeSlider(robot, isText) {
 
 
 function uploadCodeButton(robot) {
-  const url = window.location.origin + "/robotCode.txt";
+  const url = window.location.origin + "/robotCode/robotCode.txt";
   var uploadCodeBtn = document.getElementById("uploadCodeBtn");
   var getCodeBtn = document.getElementById("getCodeBtn");
   var resetCodeBtn = document.getElementById("resetCodeBtn");
