@@ -16,11 +16,11 @@ let robot = new Robot();
 let connection = new VideoTransfer(window.location.origin + "/peer.html");
 
 export const videoTransfer = (): void => {
-  connection.videoTransfer();
+  //connection.videoTransfer();
 };
 
 export const videoDisplay = async (data?, isRecieving=false): Promise<void> => {
-  connection.displayVideo(data, isRecieving);
+  //connection.displayVideo(data, isRecieving);
 };
 
 export const connectRobot = (): void => {
@@ -52,7 +52,7 @@ if (window.location.toString().includes("host")) {
     }, false);
 
     connection.getHost().getVideo(async function (data) {
-      await videoDisplay(data, true);
+      //await videoDisplay(data, true);
     });
   };
 }
@@ -71,6 +71,12 @@ else if (window.location.toString().includes("peer")) {
 
 
 const detectCameras = async (isPeer=false): Promise<void> => {
+  try {
+    await navigator.mediaDevices.getUserMedia({video: true});
+  } catch (err) {
+    alert("Please give camera permissions");
+  };
+
   let c = [];
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter((device) => device.kind === "videoinput")

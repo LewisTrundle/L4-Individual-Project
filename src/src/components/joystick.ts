@@ -10,7 +10,7 @@ export const joystickPage = () => {
   let contentdiv = createComponent("div", {class: "content"}, null);
     joystickButtons(contentdiv);
     insertJoystick(contentdiv);
-    addModals(contentdiv);
+    addModals(contentdiv, "joystick");
 
   root.appendChild(contentdiv);
 
