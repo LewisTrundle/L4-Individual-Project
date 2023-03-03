@@ -367,3 +367,9 @@ button:disabled {
 .remove-margin {
     margin-top: 5px !important;
 }
+
+#settingsBtn {
+    background-color: $black;
+    border: none;
+    cursor: pointer;
+}

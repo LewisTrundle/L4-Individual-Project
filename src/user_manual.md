@@ -24,3 +24,6 @@ To connect to the robot, select the 'Web Bluetooth' option. Then select your dev
 When 'pair' is selected, the browser will then attempt to connect to your device - this may take a couple of seconds.
 
 ## Self-Driving
+
+## Settings
+
