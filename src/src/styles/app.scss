@@ -344,9 +344,8 @@ button:disabled {
 
 .slider {
     width: 60%;
-    background: linear-gradient(to right, #6b8dff 0%, "red" 0%, white 0%, white 0%);
+    background-color: $dark-red;
     height: 20px;
-    transition: background 450ms ease-in;
     -webkit-appearance: none;
     border-radius: 25px;
     box-shadow: 2px 8px, 13px, -3px;
@@ -357,7 +356,7 @@ button:disabled {
     appearance: none;
     height: 35px;
     width: 35px;
-    background-color: red;
+    background-color: $dark-red;
     border-radius: 50%;
     border: 7px solid;
 }
