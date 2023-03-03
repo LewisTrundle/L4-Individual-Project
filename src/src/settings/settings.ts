@@ -28,6 +28,8 @@ function setMapping(robot, mapping, isText) {
 function sendCodeSlider(robot, isText) {
   var sendCodeSlider = document.getElementById("sendCodeSlider");
   var output = document.getElementById("output");
+  output.innerHTML = `${robot.getSendCodeSpeed()} ms;`
+  sendCodeSlider['value'] = robot.getSendCodeSpeed();
   if (isText) {
     var sendCodeSpeedText = document.getElementById("sendCodeSpeedText");
     sendCodeSpeedText.innerHTML = `Speed is sent to robot every: ${robot.getSendCodeSpeed()} ms`

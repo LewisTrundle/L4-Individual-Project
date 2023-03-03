@@ -15,9 +15,7 @@ export const disconnect = (): void => {
   robot.disconnectRobot()
 };
 export const getBattery = (): void => {
-  robot.getBattery().then((percentage) => {
-    alert(`Battery percentage is: ${percentage['data']}%`);
-  });
+  robot.getBatteryLevel();
 };
 export const diagnostic = (angle?: number): void => {
   robot.diagnostic(angle);

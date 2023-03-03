@@ -19,9 +19,9 @@ export const addModals = (root, helpLink) => {
     settingsModalContent(settingsModal);
   let mappingsModal = createModal(root, "mappingsModal");
     mappingModalContent(mappingsModal);
-  let testAnglesModal = createModal(root, "testAnglesModal");
+  let testAnglesModal = createModal(root, "testAnglesModal", "extra-large");
     testAnglesModalContent(testAnglesModal);
-  let robotCodeModal = createModal(root, "robotCodeModal");
+  let robotCodeModal = createModal(root, "robotCodeModal", "extra-large");
     robotCodeModalContent(robotCodeModal);
 };
 
@@ -57,7 +57,7 @@ function testAnglesModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
     createComponent("button", {onclick: "controller.diagnostic()"}, "Test all angles", buttonsdiv);
     for (let i = 0; i <= 360; i+=45) {
-      createComponent("button", {onclick: `controller.diagnostic(${i})`}, `Test ${i} degrees`, buttonsdiv);
+      createComponent("button", {onclick: `controller.diagnostic(${i})`, class:"remove-margin"}, `Test ${i} degrees`, buttonsdiv);
     };
 };
 

@@ -13,6 +13,8 @@ export class VideoTransfer {
   #activeHostCamera: InputDeviceInfo | null;
   #activePeerCamera: InputDeviceInfo | null;
   #cameras: MediaDeviceInfo[];
+  canvas: any;
+  context: any;
 
   constructor(peerDomain: string) {
     this.#host = new Host(peerDomain);
@@ -88,6 +90,18 @@ export class VideoTransfer {
   addCamera = (camera: MediaDeviceInfo): void => {
     this.#cameras.push(camera);
   };
+
+  getCanvas = (): any => {
+    return this.canvas;
+  };
+  setCanvas = (canvas: any): void => {
+    this.canvas = canvas;
+    this.context = canvas.getContext('2d');
+  };
+  getContext = (): any => {
+    return this.context;
+  }
+
 
 
   videoTransfer = async (): Promise<void> => {

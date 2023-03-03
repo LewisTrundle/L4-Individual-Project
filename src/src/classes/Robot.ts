@@ -130,6 +130,15 @@ export class Robot extends DeviceController {
     this.stop();
   };
 
+  getBatteryLevel = (): void => {
+    this.getBattery().then((percentage) => {
+      console.log(percentage);
+      if (percentage['log'] == 'success') {
+        alert(`Battery percentage is: ${percentage['data']}%`);
+      };
+    });
+  };
+
 
 
   // ----- MOVEMENT -----

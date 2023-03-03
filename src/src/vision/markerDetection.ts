@@ -1,61 +1,63 @@
 const jsQR = require("jsqr");
+const aruco = require('js-aruco');
+var detector = new aruco.AR.Detector();
+let canvasMidpoint;
 
-
-// marker has to be at least 0.5m away from camera
-export const detectMarkers = (canvas, context, robot): void => {
-  let canvasMidpoint = {x: canvas.width / 2, y: canvas.height / 2};
-  drawMidpoint(canvas, context, canvasMidpoint);
-  detectQRMarkers(canvas, context, canvasMidpoint, robot);
-  //detectArucoMarkers(canvas, context, canvasMidpoint);
+/**
+ * The main function for controlling marker detection.
+ * @param connection the camera connection
+ * @param robot the connected robot
+ */
+export const detectMarkers = (connection, robot): void => {
+  canvasMidpoint = {x: connection.getCanvas().width / 2, y: connection.getCanvas().height / 2};
+  drawMidpoint(connection);
+  detectQRMarkers(connection, robot);
 };
 
 
-const drawMidpoint = (canvas, context, canvasMidpoint): void => {
-  context.strokeStyle = 'white';
-  context.lineWidth = 2;
+/**
+ * Draws a central point on the canvas.
+ * @param connection the camera connection
+ * @param canvasMidpoint the central point of the canvas
+ */
+const drawMidpoint = (connection): void => {
+  let c = connection.getContext();
+  let canvas = connection.getCanvas();
+  c.strokeStyle = 'white';
+  c.lineWidth = 2;
 
-  context.moveTo(0, canvasMidpoint.y);
-  context.lineTo(canvas.width, canvasMidpoint.y);
-  context.stroke();
-  context.moveTo(canvasMidpoint.x, 0);
-  context.lineTo(canvasMidpoint.x, canvas.height);
-  context.stroke();
+  c.moveTo(0, canvasMidpoint.y);
+  c.lineTo(canvas.width, canvasMidpoint.y);
+  c.stroke();
+  c.moveTo(canvasMidpoint.x, 0);
+  c.lineTo(canvasMidpoint.x, canvas.height);
+  c.stroke();
 
-  context.beginPath();
-  context.arc(canvasMidpoint.x, canvasMidpoint.y, 10, 0, 2 * Math.PI);
-  context.stroke();
+  c.beginPath();
+  c.arc(canvasMidpoint.x, canvasMidpoint.y, 10, 0, 2 * Math.PI);
+  c.stroke();
 };
 
 
-const detectQRMarkers = (canvas, context, canvasMidpoint, robot): void => {
+const detectQRMarkers = (connection, robot): void => {
+  let canvas = connection.getCanvas();
   let imageData = new Uint8Array();
-  imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  imageData = connection.getContext().getImageData(0, 0, canvas.width, canvas.height);
+  
   const qrCode = jsQR(imageData["data"], canvas.width, canvas.height);
+  var markers = detector.detect(connection.getContext().getImageData(0, 0, canvas.width, canvas.height));
+  let angle;
 
   if (qrCode) {
     robot.continue();
-
-    // get orientation vector
-    const orientation = getQROrientation(qrCode);
-    const orientationVector = { x: Math.cos(orientation), y: Math.sin(orientation) };
-
-    // get mid-point of qr code attached to robot
-    let x = (qrCode.location.bottomLeftCorner.x + qrCode.location.topRightCorner.x)/2
-    let y = (qrCode.location.bottomLeftCorner.y + qrCode.location.topRightCorner.y)/2
-    // get direction vector from mid-point of qr code to canvas center
-    const dx = canvasMidpoint.x - x;  // calculate the x-distance from robot to canvas center
-    const dy = canvasMidpoint.y - y;  // calculate the y-distance from robot to canvas center
-    const directionVector = { x: dx, y: dy };
-
-    // gets the degree of alignment between the orientation and direction vector
-    const dotProduct = directionVector.x * orientationVector.x + directionVector.y * orientationVector.y;
-    // gets vector which is perpendicular to both the direction vector and orientation vector
-    const crossProduct = (directionVector.x * orientationVector.y) - (directionVector.y * orientationVector.x);
-    // gets the angle between the robot's orientation vector and the direction vector
-    const angleToTurn = Math.atan2(crossProduct, dotProduct);
-    const adjustedAngle = ((angleToTurn * 180 / Math.PI) +360) % 360;
-
-    robot.moveRobot(adjustedAngle, 1.0);
+    angle = getAngleToTurn(qrCode, true);
+    robot.moveRobot(angle, 1.0);
+  }
+  else if (markers.length > 0) {
+    robot.continue();
+    var aruco = markers[0].corners;
+    angle = getAngleToTurn(aruco, false);
+    robot.moveRobot(angle, 1.0);
   }
   else {
     robot.stop();
@@ -63,122 +65,54 @@ const detectQRMarkers = (canvas, context, canvasMidpoint, robot): void => {
 };
 
 
+const getAngleToTurn = (marker, isQR: boolean): number => {
+  let orientationVector;
+  let directionVector;
+  if (isQR) {
+    orientationVector = getOrientationVector(marker.location.topLeftCorner, marker.location.topRightCorner);
+    directionVector = getDirectionVector(marker.location.bottomLeftCorner, marker.location.topRightCorner);
+  }
+  else {
+    orientationVector = getOrientationVector(marker[0], marker[1]);
+    directionVector = getDirectionVector(marker[0], marker[2]);
+  }
+
+  // gets the degree of alignment between the orientation and direction vector
+  const dotProduct = directionVector.x * orientationVector.x + directionVector.y * orientationVector.y;
+  // gets vector which is perpendicular to both the direction vector and orientation vector
+  const crossProduct = (directionVector.x * orientationVector.y) - (directionVector.y * orientationVector.x);
+  // gets the angle between the robot's orientation vector and the direction vector
+  const angleToTurn = Math.atan2(crossProduct, dotProduct);
+  const adjustedAngle = ((angleToTurn * 180 / Math.PI) +360) % 360;
+
+  return adjustedAngle;
+}
+
+
+const getDirectionVector = (c1, c2) => {
+  // get direction vector from mid-point of qr code to canvas center
+  let x = (c1.x + c2.x)/2
+  let y = (c1.y + c2.y)/2
+  const dx = canvasMidpoint.x - x;
+  const dy = canvasMidpoint.y - y;
+  return { x: dx, y: dy };
+};
+
+
 // calculate angle between top right and top left corner
 // atan2 takes sign into account allowing for correct angle in all 4 quadrants
-const getQROrientation = (qrCode): number => {
+const getQROrientation = (qrCode) => {
   const topLeft = qrCode.location.topLeftCorner;
   const topRight = qrCode.location.topRightCorner;
   const dx = topRight.x - topLeft.x;
   const dy = topRight.y - topLeft.y;
-  return Math.atan2(dy, dx);
+  const orientation =  Math.atan2(dy, dx);
+  return { x: Math.cos(orientation), y: Math.sin(orientation) };
 };
 
-
-// var robot;
-// var angles = []
-// const sendAngle = (): void => {
-//   const angle = angles.pop();
-//   if (angle) {
-//     robot.moveRobot(angle, 0.6);
-//   }
-// };
-// let sendAngleFunc = window.setInterval(sendAngle, 0.5);
-
-
-
-// const aruco = require('js-aruco');
-// const glMatrix = require('gl-matrix');
-// import { mat3, vec3, quat } from 'gl-matrix';
-// var detector = new aruco.AR.Detector();
-// var POS = aruco.POS1;
-
-// const detectArucoMarkers = (canvas, context, canvasMidpoint): void => {
-//   var markers = detector.detect(context.getImageData(0, 0, canvas.width, canvas.height));
-//   let acuroMidpoint = {x: null, y: null};
-//   if (markers.length > 0) {
-//     console.log(markers[0])
-//     var corners = markers[0].corners;
-
-//     // find the midpoint between corner 0 and 2
-//     acuroMidpoint.x = (corners[0].x + corners[2].x)/2
-//     acuroMidpoint.y = (corners[0].y + corners[2].y)/2
-//     let theta = calcAlpha(canvasMidpoint.x, canvasMidpoint.y, acuroMidpoint.x, acuroMidpoint.y);
-//     console.log("theta", theta)
-//     //getOrientation(canvas, corners);
-//   };
-// }
-
-
-
-// const getOrientation = (canvas, corners): void => {
-//   var posit = new POS.Posit(50, canvas.width);
-//   var pose = posit.pose(corners);
-//   console.log("pose", pose)
-//   let rotation = pose.bestRotation;
-
-//   // Assume that we have a 3x3 rotation matrix stored in the `rotation` variable
-//   console.log('rotation matrix:', rotation);
-
-//   // Flatten the matrix into a single array of 9 numbers
-//   rotation = [].concat(...rotation);
-//   console.log('rotation matrix:', rotation)
-  
-//   // Convert the rotation matrix to a quaternion
-//   let q = quat.create();
-//   quat.fromMat3(q, rotation);
-
-
-//   // Calculate the magnitude of the quaternion
-//   let magnitude = Math.sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]);
-
-//   // Normalize the quaternion by dividing each component by the magnitude
-//   q[0] /= magnitude;
-//   q[1] /= magnitude;
-//   q[2] /= magnitude;
-//   q[3] /= magnitude;
-
-//   console.log(q)
-
-//   // Extract the angle of rotation from the quaternion
-//   let axisOfRotation = vec3.create();
-//   let angleInRadians = quat.getAxisAngle(axisOfRotation, q);
-//   let angle = angleInRadians * 180 / Math.PI;
-//   //let angle = 2 * Math.acos(q[3]) * 180 / Math.PI;
-//   console.log('angle of rotation:', angle);
-// };
-
-// const calcAlpha = (x1: number, y1: number, x2: number, y2: number): number => {
-//   let height = Math.abs(y2-y1);
-//   let width = Math.abs(x2-x1);
-//   let alpha;
-
-//   if (x2 > x1) {
-//     if (y2 < y1) {        // A quadrant
-//       alpha = 270 - (Math.atan(width / height) * 180 / Math.PI);
-//     }
-//     else if (y2 >= y1) {   // C quadrant
-//       alpha = 180 - (Math.atan(height / width) * 180 / Math.PI);
-//     };
-//   }
-//   else if (x2 < x1) { 
-//     if (y2 >= y1) {        // T quadrant
-//       alpha = Math.atan(height / width) * 180 / Math.PI;
-//     }
-//     else if (y2 < y1) {   // S quadrant
-//       alpha = 270 + (Math.atan(width / height) * 180 / Math.PI);
-//     };
-//   }
-//   else {
-//     if (y2 > y1) {        
-//       alpha = 270
-//     }
-//     else if (y2 < y1) {   
-//       alpha = 90
-//     }
-//     else {
-//       alpha = null;
-//     };
-//   };
-
-//   return alpha;
-// }; 
+const getOrientationVector = (c1, c2) => {
+  const dx = c2.x - c1.x;
+  const dy = c2.y - c1.y;
+  const orientation =  Math.atan2(dy, dx);
+  return { x: Math.cos(orientation), y: Math.sin(orientation) };
+};

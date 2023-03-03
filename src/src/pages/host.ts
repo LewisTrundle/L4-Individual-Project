@@ -33,11 +33,15 @@ export const startRobot = (): void => {
 export const stopRobot = (): void => {
   robot.stop();
 };
+export const getBattery = (): void => {
+  robot.getBatteryLevel();
+};
 
 
 
 if (window.location.toString().includes("host")) {
   window.onload = async function () {
+    robot.setSendCodeSpeed(100);
     selfDrivingPage();
     settings(robot, false);
     detectCameras();
@@ -85,6 +89,7 @@ else if (window.location.toString().includes("peer")) {
  * @param isPeer is the device a peer or host
  */
 const detectCameras = async (isPeer: boolean = false): Promise<void> => {
+  navigator.permissions.query({ name: 'camera' as PermissionName });
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter((device) => device.kind === "videoinput")
   var select = document.getElementById("select") as HTMLSelectElement;

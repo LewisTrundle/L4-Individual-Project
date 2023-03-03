@@ -2,20 +2,19 @@ import { colourTracker } from "./colourTracker";
 import { convertToGreyscale } from "./colourSpaceConversion";
 import { convertColourSpace } from "./colourSpaceConversion";
 import { detectMarkers } from "./markerDetection";
-import { lineTracking } from "./lineTracking";
 
 const tracking = require('jstracking');
+const FRAME_RATE: number = 20;
 
 let greyscaleBtn;
 let colourSpaceBtn;
 
-export const visionPipeline = async (host, video, robot): Promise<void> => {
-  let canvas = document.getElementById("canvas") as HTMLCanvasElement;
-  let context = canvas.getContext('2d');
+export const visionPipeline = async (connection, video, robot): Promise<void> => {
+  connection.setCanvas(document.getElementById("canvas") as HTMLCanvasElement);
 
-  canvasSetup(host);
-  drawCanvas(host, video, canvas, context, robot)
-  colourTracker(host, tracking, canvas, context);
+  canvasSetup(connection);
+  drawCanvas(connection, video, robot)
+  colourTracker(connection, tracking, connection.getCanvas(), connection.getContext());
 };
 
 
@@ -43,23 +42,21 @@ const convertColourSpaceBtn = (host): void => {
 
 
 
-const drawCanvas = (host, video, canvas, context, robot): void => {
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+const drawCanvas = (connection, video, robot): void => {
+  connection.getCanvas().width = video.videoWidth;
+  connection.getCanvas().height = video.videoHeight;
 
-  if (canvas.width > 0 && canvas.height > 0) {
+  if (connection.getCanvas().width > 0 && connection.getCanvas().height > 0) {
     
-    convertToGreyscale(host, greyscaleBtn, context, video);
+    convertToGreyscale(connection, greyscaleBtn, connection.getContext(), video);
 
-    convertColourSpace(host, colourSpaceBtn, canvas, context, video);
+    convertColourSpace(connection, colourSpaceBtn, connection.getCanvas(), connection.getContext(), video);
 
-    //lineTracking(canvas, context);
-
-    //detectMarkers(canvas, context, robot);
+    detectMarkers(connection, robot);
 
   };
 
   setTimeout(function () {
-    drawCanvas(host, video, canvas, context, robot);
-  }, 20);
+    drawCanvas(connection, video, robot);
+  }, FRAME_RATE);
 };
