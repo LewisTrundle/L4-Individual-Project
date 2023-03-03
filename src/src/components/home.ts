@@ -17,7 +17,7 @@ export const indexPage = () => {
         createComponent("button", {}, "Peer device", peerLink);
       createComponent("button", {id: "helpBtn"}, "Help", buttonsdiv);
     
-    let helpModal = createModal(contentdiv, "helpModal");
+    let helpModal = createModal(contentdiv, "helpModal", "small");
       helpModalContent(helpModal, "controller");
 
   openCloseModal();

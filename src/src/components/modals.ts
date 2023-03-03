@@ -1,8 +1,8 @@
 import { createComponent } from "./helpers";
 
-export const createModal = (root, modalId) => {
+export const createModal = (root, modalId, size="large") => {
   let modal = createComponent("div", {id: modalId, class: "modal"}, null, root);
-    let modalcontent = createComponent("div", {class: "modal-content"}, null, modal);
+    let modalcontent = createComponent("div", {class: `modal-content ${size}`}, null, modal);
       let modalheader = createComponent("div", {class: "modal-header"}, null, modalcontent);
         createComponent("span", {class: "close"}, "X", modalheader);
         createComponent("h2", {}, "How to Use", modalheader);
@@ -13,7 +13,7 @@ export const createModal = (root, modalId) => {
 };
 
 export const addModals = (root, helpLink) => {
-  let helpModal = createModal(root, "helpModal");
+  let helpModal = createModal(root, "helpModal", "small");
     helpModalContent(helpModal, helpLink);
   let settingsModal = createModal(root, "settingsModal");
     settingsModalContent(settingsModal);
@@ -35,9 +35,9 @@ export function helpModalContent(root, link) {
 function settingsModalContent(root) {
   let buttonsdiv = createComponent("div", {class: "buttons center-buttons"}, null, root);
     sendCodeSlider(buttonsdiv);
-    createComponent("button", {id: "mappingsBtn"}, "Select angle to motor mapping", buttonsdiv);
-    createComponent("button", {id: "testAnglesBtn"}, "Perform Diagnostic", buttonsdiv);
-    createComponent("button", {id: "robotCodeBtn"}, "Robot Code", buttonsdiv);
+    createComponent("button", {id: "mappingsBtn", class: "remove-margin"}, "Select angle to motor mapping", buttonsdiv);
+    createComponent("button", {id: "testAnglesBtn", class: "remove-margin"}, "Perform Diagnostic", buttonsdiv);
+    createComponent("button", {id: "robotCodeBtn", class: "remove-margin"}, "Robot Code", buttonsdiv);
 };
 
 function sendCodeSlider(root) {

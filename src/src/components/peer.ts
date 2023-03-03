@@ -5,6 +5,8 @@ import { header } from "./common";
 export const peerPage = () => {
   let root = document.getElementById("page-root");
   let headerdiv = createComponent("div", {class: "header"}, null, root);
+    let backlink = createComponent("a", {href: "index.html"}, null, headerdiv);
+      createComponent("img", {id: "back", src: "./images/back_button.svg", alt: "back button"}, null, backlink);
     createComponent("h1", {}, "Camera", headerdiv);
   
   let contentdiv = createComponent("div", {class: "content"}, null);
