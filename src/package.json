@@ -1,7 +1,7 @@
 {
-  "name": "example",
-  "version": "0.0.0",
-  "description": "",
+  "name": "controller",
+  "version": "1.0.0",
+  "description": "A controller for robots",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --https --config ./webpack.config.js",
