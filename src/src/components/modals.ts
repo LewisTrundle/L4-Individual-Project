@@ -28,8 +28,8 @@ export const addModals = (root, helpLink) => {
 
 export function helpModalContent(root, link) {
   createComponent("p", {}, `For detailed instructions, please read the user manual`, root);
-  let userManualLink = createComponent("a", {href:`https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/src/user_manual.md#${link}`}, null, root);
-    createComponent("button", {}, "User manual", userManualLink);
+  let userManualLink = createComponent("a", {target: '_blank', href:`https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/src/user_manual.md#${link}`}, null, root);
+  createComponent("button", {}, "User manual", userManualLink);
 }
 
 function settingsModalContent(root) {
