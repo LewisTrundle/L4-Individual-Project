@@ -12,9 +12,8 @@
 ### The Controller
 * [Robot Controller](https://lewistrundle.github.io/L4-Individual-Project/)
 * [Design](./design/Controller/README.md)
-* demos
 * user evaluation
-* user manual
+* [User manual](./src/user_manual.md)
 
 
 ### Overall Project

@@ -51,11 +51,26 @@ To enable camera permissions on Chrome, simply click the lock icon next to the s
 ### Connecting to Host Cameras
 To connect to your host cameras (the device running the web-browser), select a camera from the drop-down list, then click the 'Connect to Host Camera' button.
 
+<img width="50%" src="../demos/host-camera.gif">
+
 ### Connecting to Peer Cameras
-To connect to cameras on a separate device, the devices first need to be linked. This can be done by scanning the QR code in the bottom-right corner.
+The self-driving page allows a user to connect and display a camera on a separate device (such as a mobile phone). To do this, please complete the following steps:
+* Firstly, it is important that the host (the device the controller is running on) and the peer (the device whose camera you'd like to use) are sharing the same _public_ wifi. For example, a hotspot could be used for both devices, or a public wifi (such as 'UofGvisitor' for those at Glasgow University) could be used. You may need to refresh the page once this is done.
+* Once the above step is complete, the devices first need to be linked. This can be done by using the peer device to scan the QR code in the bottom-right corner of the host - this will take your peer device to the _peer page_, from which you can share your camera feed. Alternatively, you can click the link just below the QR code to transfer the camera from the same device (such as in the example below) - however, this is equivalent to simply connecting to a host camera.
+* On your peer device, select a camera, the press 'Transfer Video To Host' to transfer the camera feed to the host.
+* The video should now be displayed on your host - make sure to close the QR code and enjoy!
+
+<img width="50%" src="../demos/connect-peer.gif">
 
 ### Controlling Vision Methods
-The buttons at the right-side of the screen can be used to toggle which vision methods are active.
+The buttons at the right-side of the screen can be used to toggle which vision methods are active. There are three options to toggle:
+* Colour Tracking
+* Greyscale
+* Colour Space Conversion
+
+Note that marker detection cannot be toggled as is always active - as marked by the center point drawn on the canvas.
+
+<img width="50%" src="../demos/control-vision.gif">
 
 <br>
 <br>
@@ -74,10 +89,14 @@ To use this feature, please do the following:
 * Connect to the robot [_Connecting to the Robot_](#connecting-to-the-robot).
 * Enjoy!
 
+<br>
+
+### Important Please Read
 There are a couple of important things to note while using this feature.
 * The markers are detected best when your camera is ~0.5 meters away from the marker. The markers are also not detected well when they are at the edge of the camera screen.
 * The quality of detection greatly depends on the quality of the camera used. Common Andriod phones have a poor camera quality, making the marker detection difficult.
 * The lighting conditions matter greatly when detecting markers. It may take a few minutes to find the right lighting conditions which aren't too bright or dark.
+* This feature has only been tested on browsers such as Google Chrome, therefore it might not work on all browsers.
 
 <br>
 <br>
