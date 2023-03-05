@@ -3,7 +3,7 @@
 ## Important Links
 * [Controller](https://lewistrundle.github.io/L4-Individual-Project/)
 * [Competition Website](https://robot-competition.github.io/robot-competition/)
-* [Participant Brief](./participant-brief)
+* [Participant Brief](./participant-brief.md)
 * [Participant Questionnaire](https://forms.gle/5F1kry14zfDuMifk9)
 * [Data](../data)
 * [Results]
