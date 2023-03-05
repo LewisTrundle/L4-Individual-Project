@@ -39,12 +39,15 @@ The self-driving page of the controller allows the robot to drive autonomously u
 
 Before these features can be used, please first enable camera permissions on your web browser [Enabling Camera Permissions](#enabling-camera-permissions).
 
-To use the Virtual Lead feature, please see [_Virtual Lead_](#virtual-lead).
+
+**To use the Virtual Lead feature, please see [_Virtual Lead_](#virtual-lead).**
 
 <br>
 
 ### Enabling Camera Permissions
-To enable camera permissions on Chrome, simply click the lock icon next to the search bar and toggle camera permissions on.
+To enable camera permissions on Chrome, simply click the lock icon next to the search bar and toggle camera permissions on. You may need to refresh the page after doing this.
+
+On mobile devices, this can be done by navigating to your app permissions and clicking the option allowing camera permissions always on.
 
 <img width="50%" src="../demos/camera-permissions.gif">
 
@@ -56,9 +59,12 @@ To connect to your host cameras (the device running the web-browser), select a c
 ### Connecting to Peer Cameras
 The self-driving page allows a user to connect and display a camera on a separate device (such as a mobile phone). To do this, please complete the following steps:
 * Firstly, it is important that the host (the device the controller is running on) and the peer (the device whose camera you'd like to use) are sharing the same _public_ wifi. For example, a hotspot could be used for both devices, or a public wifi (such as 'UofGvisitor' for those at Glasgow University) could be used. You may need to refresh the page once this is done.
-* Once the above step is complete, the devices first need to be linked. This can be done by using the peer device to scan the QR code in the bottom-right corner of the host - this will take your peer device to the _peer page_, from which you can share your camera feed. Alternatively, you can click the link just below the QR code to transfer the camera from the same device (such as in the example below) - however, this is equivalent to simply connecting to a host camera.
+* Once the above step is complete, make sure there are no other tabs or apps on your mobile device using the camera.
+* The devices then need to be linked. This can be done by using the peer device to scan the QR code in the bottom-right corner of the host - this will take your peer device to the _peer page_, from which you can share your camera feed. Alternatively, you can click the link just below the QR code to transfer the camera from the same device (such as in the example below) - however, this is equivalent to simply connecting to a host camera.
 * On your peer device, select a camera, the press 'Transfer Video To Host' to transfer the camera feed to the host.
 * The video should now be displayed on your host - make sure to close the QR code and enjoy!
+
+_Note:_ It may also be handy to change your screen timeout time on your mobile device to 'never'. This is because when using a peer camera, it will disconnect from the host when your phone is off.
 
 <img width="50%" src="../demos/connect-peer.gif">
 
@@ -111,6 +117,8 @@ There are a number of ways to connect to the robot, however, the easiest option 
 <img width="50%" src="../demos/connection-options.gif">
 
 To connect to the robot, select the 'Web Bluetooth' option. Then select your device. When 'pair' is selected, the browser will then attempt to connect to your device - this may take a couple of seconds.
+
+_Note_: It is not possible to connect to the robot using an IOS device.
 
 <br>
 <br>

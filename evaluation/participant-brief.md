@@ -11,8 +11,14 @@ This evaluation will ask you to complete a series of tasks, followed by a short 
 Provided with the controller is a link to the user manual. <br>
 __Please feel free to consult the user manual for help with any of these tasks.__
 
+_Note_: **The controller is best used in landscape**.
+
 When you’re ready to begin, please navigate to the controller via the link below, then complete the following stages. During the evaluation, you will need to use the controller on both a laptop and a phone. <br>
 https://lewistrundle.github.io/L4-Individual-Project/index.html
+
+<br>
+
+_Note_: Participants with an IOS device cannot connect to the robot. In this case, an Android device will be given to the participant to use for stages 1-4.
 
 <br>
 <br>
@@ -22,7 +28,7 @@ https://lewistrundle.github.io/L4-Individual-Project/index.html
 <br>
 
 ## Stage 1
-Your first task is to navigate to the Joystick page. Upon reaching this page, you will be given 5 minutes to explore the controller and joystick. You are free to do whatever you want in this phase. Some recommendations are:
+Your first task is to navigate to the Joystick page. Upon reaching this page, you will be given 2 minutes to explore the controller and joystick. You are free to do whatever you want in this phase. Some recommendations are:
 * Connect to the robot
 * Use the joystick to manually control the robot
 * Change the settings of the robot
@@ -41,8 +47,8 @@ When 5 minutes have passed, you will move to the next stage.
 Please perform the following actions:
 * Set the send code speed to 100 ms.
 * Choose a tight angle-motor mapping
-* Reset the code on the robot
-* Upload new code onto the robot
+* Reset the code on the robot (please press 'Get Device Code' to check you were successful).
+* Upload new code onto the robot (please press 'Get Device Code' to check you were successful).
 
 <br>
 <br>
@@ -90,7 +96,7 @@ _Feel free to refer to the user manual to do this._
 <br>
 
 ## Stage 6
-You will now be asked to navigate to the following website. This website is supposed to serve as a way to inform people about the competition. Please if you could spend no more than five minutes looking through the website and note that the website uses the name _‘UofG Cup’_ to refer to the competition - this is simply a placeholder name and would most likely not refer to the final product. <br>
+You will now be asked to navigate to the following website. This website is supposed to serve as a way to inform people about the competition. Please if you could spend no more than 3 minutes looking through the website and note that the website uses the name _‘UofG Cup’_ to refer to the competition - this is simply a placeholder name and would most likely not refer to the final product. <br>
 https://robot-competition.github.io/robot-competition/index.html
 
 <br>
