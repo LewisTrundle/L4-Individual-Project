@@ -76,18 +76,6 @@ You will now be asked to do the same, however this time using the __loose angle-
 <br>
 
 ## Stage 5
-You will now be asked to navigate the robot around an __object__ (roughly 2 metres away) and back using the __Virtual Lead__ feature. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
-
-_Feel free to refer to the user manual to do this._
-
-<br>
-<br>
-
----
-<br>
-<br>
-
-## Stage 6
 You will now be asked to navigate the robot through a slalom and back using the __Virtual Lead__ feature. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
 
 _Feel free to refer to the user manual to do this._
@@ -99,7 +87,7 @@ _Feel free to refer to the user manual to do this._
 <br>
 <br>
 
-## Stage 7
+## Stage 6
 You will now be asked to navigate to the following website. This website is supposed to serve as a way to inform people about the competition. Please if you could spend no more than five minutes looking through the website and note that the website uses the name _‘UofG Cup’_ to refer to the competition - this is simply a placeholder name and would most likely not refer to the final product. <br>
 https://robot-competition.github.io/robot-competition/index.html
 
@@ -110,6 +98,6 @@ https://robot-competition.github.io/robot-competition/index.html
 <br>
 <br>
 
-## Stage 8
+## Stage 7
 Thank you completing these tasks! Your contribution is really valuable in helping improve the project. The last thing we ask is if you could now complete the following questionnaire: <br>
 https://forms.gle/5F1kry14zfDuMifk9
