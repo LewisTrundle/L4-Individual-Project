@@ -11,7 +11,7 @@ This evaluation will ask you to complete a series of tasks, followed by a short 
 Provided with the controller is a link to the user manual. <br>
 __Please feel free to consult the user manual for help with any of these tasks.__
 
-When you’re ready to begin, please navigate to the controller via the link below, then complete the following stages. <br>
+When you’re ready to begin, please navigate to the controller via the link below, then complete the following stages. During the evaluation, you will need to use the controller on both a laptop and a phone. <br>
 https://lewistrundle.github.io/L4-Individual-Project/index.html
 
 <br>
@@ -53,6 +53,8 @@ Please perform the following actions:
 
 ## Stage 3
 You will now be asked to navigate the robot around an __object__ (roughly 2 metres away) and back using the __joystick__. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
+
+*Note: this is best done on a mobile device.*
 
 You will now be asked to do the same, however this time using the __loose angle-motor mapping__.
 
