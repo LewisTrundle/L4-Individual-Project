@@ -77,7 +77,7 @@ const getAngleToTurn = (marker: any, isQR: boolean): number => {
     directionVector = getDirectionVector(marker.location.bottomLeftCorner, marker.location.topRightCorner);
   }
   else {
-    orientationVector = getOrientationVector(marker[0], marker[1]);
+    orientationVector = getOrientationVector(marker[3], marker[2]);
     directionVector = getDirectionVector(marker[0], marker[2]);
   };
 
