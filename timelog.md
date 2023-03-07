@@ -277,7 +277,7 @@
 * *7.5 hours* Finished the virtual lead feature.
 
 
-## Week 20 [27/02/23]
+## Week 20 [27/02/23] - 34.5 hours total
 ### 27 Feb 2023
 * *2.5 hours* Meeting prep.
 * *0.5 hours* Supervisor meeting.
@@ -287,3 +287,17 @@
 
 ### 01 March 2023
 * *5.5 hours* Added design to Github and improved readmes.
+
+### 02 March 2023
+* *5 hours* Fixed various bugs in controller.
+* *4.5 hours* Made user manual and filmed various demos.
+
+### 03 March 2023
+* *5 hours* Planned evaluation for project and finished readme.
+
+### 04 March 2023
+* *4.5 hours* Finished planning evaluation and fixed various other bugs in controller.
+
+### 05 March 2023
+* *1 hours* Fixed bug with aruco marker detection.
+* *1 hours* Performed first evaluation.

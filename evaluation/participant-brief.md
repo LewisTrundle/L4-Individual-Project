@@ -28,13 +28,17 @@ _Note_: Participants with an IOS device cannot connect to the robot. In this cas
 <br>
 
 ## Stage 1
-Your first task is to navigate to the Joystick page. Upon reaching this page, you will be given 2 minutes to explore the controller and joystick. You are free to do whatever you want in this phase. Some recommendations are:
+_Please perform this stage on a **mobile device**_
+
+Your first task is to navigate to the Joystick page. Upon reaching this page, you will be given 2 minutes to explore the controller and joystick. You are free to do whatever you want in this phase (__however please stick to the joystick page__). Some recommendations are:
 * Connect to the robot
 * Use the joystick to manually control the robot
 * Change the settings of the robot
 * Consult the user manual for help on how to perform specific actions
 
-When 5 minutes have passed, you will move to the next stage.
+When 2 minutes have passed, you will move to the next stage.
+
+_Feel free to refer to the user manual to do this._
 
 <br>
 <br>
@@ -44,11 +48,15 @@ When 5 minutes have passed, you will move to the next stage.
 <br>
 
 ## Stage 2
+_Please perform this stage on a **mobile device**_
+
 Please perform the following actions:
 * Set the send code speed to 100 ms.
 * Choose a tight angle-motor mapping
 * Reset the code on the robot (please press 'Get Device Code' to check you were successful).
 * Upload new code onto the robot (please press 'Get Device Code' to check you were successful).
+
+_Feel free to refer to the user manual to do this._
 
 <br>
 <br>
@@ -58,11 +66,17 @@ Please perform the following actions:
 <br>
 
 ## Stage 3
+_Please perform this stage on a **mobile device**_
+
 You will now be asked to navigate the robot around an __object__ (roughly 2 metres away) and back using the __joystick__. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
+
+Please stand behind the robot while navigating it - you can navigate around the object either way you wish.
 
 *Note: this is best done on a mobile device.*
 
 You will now be asked to do the same, however this time using the __loose angle-motor mapping__.
+
+_Feel free to refer to the user manual to do this._
 
 <br>
 <br>
@@ -72,9 +86,13 @@ You will now be asked to do the same, however this time using the __loose angle-
 <br>
 
 ## Stage 4
+_Please perform this stage on a **mobile device**_
+
 You will now be asked to navigate the robot through a __slalom__ and back using the __joystick__. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
 
 You will now be asked to do the same, however this time using the __loose angle-motor mapping__.
+
+_Feel free to refer to the user manual to do this._
 
 <br>
 <br>
@@ -84,6 +102,8 @@ You will now be asked to do the same, however this time using the __loose angle-
 <br>
 
 ## Stage 5
+_You will need both a laptop and a mobile device for this stage_
+
 You will now be asked to navigate the robot through a slalom and back using the __Virtual Lead__ feature. Before doing this, please make sure you’re using the __tight angle-motor mapping__.
 
 _Feel free to refer to the user manual to do this._
