@@ -51,6 +51,7 @@
 % set bibliography styling
 \usepackage{natbib}
 \bibpunct{(}{)}{;}{a}{}{;}
+%\bibpunct{[}{]}{,}{n}{}{}
 
 
 \usepackage{etoolbox}
