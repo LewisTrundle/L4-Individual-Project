@@ -301,3 +301,58 @@
 ### 05 March 2023
 * *1 hours* Fixed bug with aruco marker detection.
 * *1 hours* Performed first evaluation.
+
+
+## Week 21 [06/03/23] - 13 hours total
+### 6 March 2023
+* *1 hours* Supervisor meeting.
+
+### 7 March 2023
+* *2 hours* Perfomed some evaluations.
+
+### 11 March 2023
+* *5.5 hours* Wrote about analysis of the robot in the diss.
+* *1.5 hours* Performed some evaluations.
+
+### 12 March 2023
+* *3 hours* Wrote about limitations of using a smartphone in the controller analysis section.
+
+
+## Week 22 [13/03/23] - 36.5 hours total
+### 13 March 2023
+* *1 hours* Supervisor meeting.
+* *4 hours* Started design section of the robot controller.
+
+### 14 March 2023
+* *7.5 hours* Continued with design of the robot controller - added figures for angle motor mapping and virtual lead plan.
+
+### 15 March 2023
+* *6.5 hours* Wrote about implementation of design choices, such as the angle motor mappings and robot control system.
+
+### 16 March 2023
+* *4 hours* Redrafted introduction to include additional aims for the robot controller.
+
+### 17 March 2023
+* *4.5 hours* Started redrafting background - removed a lot of unecessary content and reformated competition background to discuss aims.
+
+### 18 March 2023
+* *3.5 hours* Started redraft of competition section - described general problem of competition and and described competition rules and structure.
+* *2 hours* Finished redraft of background.
+
+### 19 March 2023
+* *3.5 hours* Redrafted requirements of the website and also wrote about the simplified version of the competition.
+
+
+## Week 23 [20/03/23]
+### 20 March 2023
+* *3 hours* Moved to implementation section of website - wrote about chosen technologies.
+* *1 hours* Supervisor meeting.
+
+### 21 March 2023
+* *4.5 hours* Finished redrafting imlpementation of website section.
+
+### 22 March
+* *3.5 hours* Wrote smartphone section in diss - wrote about Android Car and Bluetooth.
+
+### 23 March 2023
+* *3.5 hours* Finished smartphone background and wrote about placement of smartphones in analysis.

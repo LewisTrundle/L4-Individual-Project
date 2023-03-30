@@ -5,6 +5,7 @@ import { detectMarkers } from "./markerDetection";
 
 const tracking = require('jstracking');
 const FRAME_RATE: number = 20;
+let COLOUR = "red";
 
 let greyscaleBtn;
 let colourSpaceBtn;
@@ -50,7 +51,7 @@ const drawCanvas = (connection, video, robot): void => {
     
     convertToGreyscale(connection, greyscaleBtn, connection.getContext(), video);
 
-    convertColourSpace(connection, colourSpaceBtn, connection.getCanvas(), connection.getContext(), video);
+    convertColourSpace(connection, colourSpaceBtn, connection.getCanvas(), connection.getContext(), video, COLOUR);
 
     detectMarkers(connection, robot);
 

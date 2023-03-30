@@ -93,7 +93,6 @@ const detectCameras = async (isPeer: boolean = false): Promise<void> => {
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter((device) => device.kind === "videoinput")
   var select = document.getElementById("select") as HTMLSelectElement;
-
   // set active camera
   select.addEventListener("change", () => {
     const camera = connection.getCameras().filter((camera) => camera.label==select.value)[0];

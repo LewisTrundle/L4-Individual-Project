@@ -1,10 +1,10 @@
 let isColourTracking = true;
 
 const colours = {
-  'red': {r: 227, g: 12, b:12},
+  'red': {r: 200, g: 30, b: 30},
   'black': {r: 0, g: 0, b: 0},
-  'blue': {r:66, g:0, b:255},
-  'green': {r: 51, g: 117, b:143}
+  'blue': {r: 30, g:30, b: 200},
+  'green': {r: 30, g: 200, b: 30}
 };
 
 
@@ -36,7 +36,7 @@ export const colourTracker = (host, tracking, canvas, context): void => {
 
 
 const registerColour = (tracking: any, colourName: string, values): void => {
-  const uncertainty = 40;
+  const uncertainty = 50;
   tracking.ColorTracker.registerColor(colourName, function(r, g, b) {
     if  ( (r >= values.r-uncertainty) && (r <= values.r+uncertainty) &&
       (g >= values.g-uncertainty) && (g <= values.g+uncertainty) &&
