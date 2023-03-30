@@ -6,7 +6,11 @@ So what is it? My project is to create a competition for a self-driving robot, a
 * The first is the robot controller (the entry into the competition). This controller provides a way to control a connected robot, both manually, and autonomously, by providing it with the necessary features to drive itself.
 * The second is the competition. The competition has multiple parts to it (such as a website and a physical track). However, today, you’ll only be asked to evaluate the website.
 
+The reason for this user study is to assess the usability of the controller in its ability to provide efficient manual and autonomous control over a robot.
+
 This evaluation will ask you to complete a series of tasks, followed by a short questionnaire at the end. I will be observing you using the controller, but don’t worry, I’m not evaluating your performance! I’m just taking notes on how you use the product.
+
+You are free to withdraw at any time and ask any questions before we begin.
 
 Provided with the controller is a link to the user manual. <br>
 __Please feel free to consult the user manual for help with any of these tasks.__
