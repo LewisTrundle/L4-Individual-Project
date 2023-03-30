@@ -19,9 +19,9 @@
 
 ### Overall Project
 * Dissertation
-* [Project Evaluation](./evaluation/readme.md)
+* [Project Evaluation](./data/readme.md)
 * [Timelog](./timelog.md)
-* Meetings
+* [Meetings](./meetings/meeting-minutes.pdf)
 * [December Status Report](./status_reports/December_Status_Report.pdf)
 * [January Status Report](./status_reports/January_Status_Report.pdf)
 * [February Status Report](./status_reports/February_Status_Report.pdf)

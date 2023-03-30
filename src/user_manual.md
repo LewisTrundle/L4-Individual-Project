@@ -5,7 +5,7 @@ Provided below are instructions on how to use the robot controller.
 ## Controller
 The home-page of the controller has 4 buttons as seen in the image below.
 
-<img src="../dissertation/images/pages/index.png" alt= "Home Page" width="75%" height="auto">
+<img src="../dissertation/images/index.png" alt= "Home Page" width="75%" height="auto">
 
 <br>
 <br>
@@ -17,7 +17,7 @@ The home-page of the controller has 4 buttons as seen in the image below.
 ## Joystick
 The joystick page of the controller allows the user to manually control the robot using the provided in-built joystick.
 
-<img src="../dissertation/images/pages/joystick.png" alt= "Joystick Page" width="75%" height="auto">
+<img src="../dissertation/images/joystick.png" alt= "Joystick Page" width="75%" height="auto">
 
 Before the joystick can be used, the user must first connect to the robot. To do this, please see [_Connecting to the Robot_](#connecting-to-the-robot).
 
@@ -35,7 +35,7 @@ To change the code speed, please see [_Adjusting the Code Speed_](#adjusting-the
 ## Self-Driving
 The self-driving page of the controller allows the robot to drive autonomously using vision methods.
 
-<img src="../dissertation/images/pages/self-driving.png" alt= "Joystick Page" width="75%" height="auto">
+<img src="../dissertation/images/self-driving.png" alt= "Joystick Page" width="75%" height="auto">
 
 Before these features can be used, please first enable camera permissions on your web browser [Enabling Camera Permissions](#enabling-camera-permissions).
 
