@@ -343,7 +343,7 @@
 * *3.5 hours* Redrafted requirements of the website and also wrote about the simplified version of the competition.
 
 
-## Week 23 [20/03/23]
+## Week 23 [20/03/23] - 36 hours total
 ### 20 March 2023
 * *3 hours* Moved to implementation section of website - wrote about chosen technologies.
 * *1 hours* Supervisor meeting.
@@ -356,3 +356,27 @@
 
 ### 23 March 2023
 * *3.5 hours* Finished smartphone background and wrote about placement of smartphones in analysis.
+
+### 24 March 2023
+* *5 hours* Continued redrafting analysis section in diss.
+
+### 25 March 2023
+* *7.5 hours* Finished redrafting analysis section of diss.
+
+### 26 March 2023
+* *8 hours* Started redrafting design section of the controller.
+
+
+## Week 24 [27/03/23] - 28.5 hours total
+### 27 March 2023
+* *8.5 hours* Continued redrafting design of controller and redrafted implementation of controller as well.
+
+### 29 March 2023
+* *4 hours* Made most of the presentation.
+
+### 30 March 2023
+* *3 hours* Filmed demos for presentation and filmed presentation.
+* *7 hours* Redrafted the evaluation section of the diss.
+
+### 31 March 2023
+* *6 hours* Made final changes to the dissertation and fixed Github before submission.
