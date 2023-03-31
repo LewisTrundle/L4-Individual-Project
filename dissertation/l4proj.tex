@@ -48,7 +48,7 @@
 %==============================================================================
 %% ABSTRACT
 \begin{abstract}
-    Self-driving robot competitions are a way for enthusiasts and individuals interested in the field of robotics to explore, learn, and develop various solutions that allow a robot to autonomously drive. However, often submissions into these competitions are limited by prohibitive costs and restrictions on self-driving approaches. Furthermore, these competitions have become saturated with repetitive solutions, which fail to explore the possibilities that are encompassed by the term \textit{"self-driving"}. This project develops a self-driving robot competition that is accessible for anyone to enter, promotes collaboration, and allows a range of various approaches to self-driving. To understand whether the competition is feasible for entry, we develop a submission into this competition in the form of a robot controller. We develop this controller to run on a web browser and to allow a robot to be manually controlled via a joystick. Furthermore, we present \textit{Virtual Lead}, a new novel approach to autonomous driving, utilising marker detection and integrating modern smartphone technology. Finally, we conduct a user study, to determine the effectiveness of this controller in navigating competition-style environments.
+    Self-driving robot competitions are a way for enthusiasts and individuals interested in the field of robotics to explore, learn, and develop various solutions that allow a robot to autonomously drive. However, often submissions into these competitions are limited by prohibitive costs and restrictions on self-driving approaches. Furthermore, these competitions have become saturated with repetitive solutions, which fail to explore the possibilities that are encompassed by the term \textit{"self-driving"}. This project develops a self-driving robot competition that is accessible for anyone to enter, promotes collaboration, and allows a range of various approaches to self-driving. To understand whether the competition is feasible for entry, we develop a submission into this competition in the form of a robot controller. We develop this controller to run on a web browser and to allow a robot to be manually controlled via a joystick. Furthermore, we present \textit{Virtual Lead}, a new novel approach to autonomous driving, utilising marker detection and modern smartphone cameras. Finally, we conduct a user study, to determine the effectiveness of this controller in navigating competition-style environments.
 \end{abstract}
 
 %==============================================================================
@@ -151,10 +151,10 @@ A key component of the DeepRacer project, is the autonomous 1/18th scale race ca
 
 In addition to the car, DeepRacers' Simulator console can be used to create, train, and evaluate an RL model. The free AWS tier gives users enough time to train and evaluate their first model. However, for their model to hold up to competition standard, developers would need to pay for additional training and evaluation time - costing \$3.50 (£2.80) per hour\footnote{DeepRacer Simulator Pricing - \url{https://aws.amazon.com/deepracer/pricing}}.
 
-From this, we see that the DeepRacer project lacks many affordable options. The cost of the car and the cost needed to fully train a model can lead to those from poorer economic backgrounds being able to compete. DeepRacer does support a separate league for students\footnote{DeepRacer Student League - \url{https://aws.amazon.com/deepracer/student/}}, which provides a more affordable option. However, this still is only available to students.
+From this, we see that the DeepRacer project lacks many affordable options. The cost of the car and the cost needed to fully train a model can lead to those from poorer economic backgrounds being unable to compete. DeepRacer does support a separate league for students\footnote{DeepRacer Student League - \url{https://aws.amazon.com/deepracer/student/}}, which provides a more affordable option. However, this still, is only available to students.
 
 \subsubsection{Accessibility} \hfill \\
-These models can eventually be put to the test in the DeepRacer League - a competition boasting multiple rounds, each having different rules and challenges. With the competition hosting a mixture of rounds both physically and virtually - the virtual rounds encourages developers from all around the world to enter, making it accessible to those in other countries. While the physical rounds encourages these developers to meet in-person and collaborate on new ideas relating to the competition. Additionally, AWS even allows communities to host their own local leagues.
+These models can eventually be put to the test in the DeepRacer League - a competition boasting multiple rounds, each having different rules and challenges. With the competition hosting a mixture of rounds both physically and virtually - the virtual rounds encourage developers from all around the world to enter, making it accessible to those in other countries. While the physical rounds encourage these developers to meet in-person and collaborate on new ideas relating to the competition. Additionally, AWS even allows communities to host their own local leagues.
 
 \subsubsection{Collaborativity and Versatility} \hfill \\
 Examples of community ideas can be seen via DeepRacers community projects. This highlights projects made by members of the community, such as the \textit{'Follow the Leader'} project, which allows the DeepRacer car to identify and follow an object \citep{DeepracerFollowTheLeader}, and the \textit{'Off Road'} project which allows the car to follow a waypoint marked by a series of QR codes \citep{DeepracerOffRoad}.
@@ -162,13 +162,13 @@ Examples of community ideas can be seen via DeepRacers community projects. This 
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.44\textwidth}
-        \includegraphics[width=\textwidth]{images/DeepRacer.png}
+        \includegraphics[width=\textwidth]{images/DeepRacer.pdf}
         \caption{AWS DeepRacer Car. Available for \$399 (£325).}
         \label{fig:deepcar}
     \end{subfigure}
     \quad
     \begin{subfigure}[b]{0.44\textwidth}
-        \includegraphics[width=\textwidth]{images/piborg.jpg}
+        \includegraphics[width=\textwidth]{images/piborg.pdf}
         \caption{PiBorg MonsterBorg Robot. Available for £210.}
         \label{fig:piborg-car}
     \end{subfigure}   
@@ -196,9 +196,9 @@ In terms of versatility, Formula Pi supports a wide range of self-driving techni
 \subsection{Web Bluetooth}\label{sec:bluetooth-background}
 Introduced in 2015 as a proposed standard for web browsers, the Web Bluetooth API\footnote{Web Bluetooth API - \url{https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API}} establishes a wireless connection between a web application and a Bluetooth enabled device. This connection allows Bluetooth devices (such as a robot) to be controlled using JavaScript running from a web browser (such as on a mobile device). This provides a simplified approach, where communication can occur seamlessly, removing the need for installation of native applications to enable Bluetooth communication.
 
-A key benefit of Web Bluetooth is its multi-browser compatibility, with popular web-browsers such as Google Chrome and Microsoft Edge, both supporting the full functionality of Web Bluetooth. It also provides additional benefits such as low energy consumption compared to Wi-Fi and support for both Bluetooth Low Energy (BLE) and Bluetooth Classic protocols.
+A key benefit of Web Bluetooth is its multi-browser compatibility, with popular web browsers such as Google Chrome and Microsoft Edge, both supporting the full functionality of Web Bluetooth. It also provides additional benefits such as low energy consumption compared to Wi-Fi and support for both Bluetooth Low Energy (BLE) and Bluetooth Classic protocols.
 
-Unfortunately, a fundamental drawback is that Web Bluetooth is not yet supported on iOS devices \citep{webbluetooth}. Workarounds to this do exist however, for example, WebBLE\footnote{WebBLE - \url{https://webble.com/}}, a third-party app which acts as a Bluetooth client, can allow an iOS device to connect to Bluetooth Low Energy devices, from a web-page. However, this can be considered not an effective solution, due to the \$1.99 (£1.60) pricing of the app and its incompatibility with macOS.
+Unfortunately, a fundamental drawback is that Web Bluetooth is not yet supported on iOS devices. Workarounds to this do exist however, for example, WebBLE\footnote{WebBLE - \url{https://webble.com/}}, a third-party app which acts as a Bluetooth client, can allow an iOS device to connect to Bluetooth Low Energy devices from a web-page. However, this can be considered not an effective solution, due to the \$1.99 (£1.60) pricing of the app and its incompatibility with macOS.
 
 \subsection{UART}\label{sec:uart-background}
 Facilitated by Web Bluetooth, the UART (Universal Asynchronous Receiver/Transmitter) protocol is used for serial transmission of data \citep{pena2020uart}. Utilised by Espruino devices and commonly integrated in microcontrollers, UART provides a way of asynchronously communicating between devices. This means there is no clock signal which synchronises data transmission. Instead, start and stop bits mark the beginning and end of data packets being transferred.
@@ -234,17 +234,17 @@ AA Batteries (x4) & $\sim$3 & $\sim$2.40 \\ \hline
 \subsection{Espruino Pixl.js}\label{sec:pixl-background}
 The Espruino Pixl.js\footnote{Espruino Pixl.js - \url{http://www.espruino.com/Pixl.js}} (seen in Figure \ref{fig:pixljs}) is a small programmable Bluetooth device, which comes with Espruino pre-installed - an open-source JavaScript interpreter for microcontrollers. Available for £36, this device comes equipped with an LCD display and a vast variety of sensors for developers to use to their liking. 
 
-JavaScript code can be uploaded to the Pixl.js to control its input and output pins (shown in Figure \ref{fig:pixljs-pinout}). These pins and JavaScript interpreter allow the Pixl.js to integrate with a vast array of Arduino Shields - making it capable of acting as a microcontroller for Zumo robots. With its Bluetooth capabilities, the Pixl.js can receive instructions from the web, via Web Bluetooth, and activate the relevant functionality on the robot - making it ideal to use for a web-based robot controller.
+JavaScript code can be uploaded to the Pixl.js to control its input and output pins (shown in Figure \ref{fig:pixljs-pinout}). These pins and JavaScript interpreter allow the Pixl.js to integrate with a vast array of Zumo robots. With its Bluetooth capabilities, the Pixl.js can receive instructions from the web, via Web Bluetooth, and activate the relevant functionality on the robot - making it ideal to use for a web-based robot controller.
 
 \begin{figure}[h!]
     \centering
     \begin{minipage}[b]{0.43\textwidth}
-        \includegraphics[width=\textwidth]{images/pixljs.jpeg}
+        \includegraphics[width=\textwidth]{images/pixljs.pdf}
         \caption{The Espruino Pixl.js device.}
         \label{fig:pixljs}
     \end{minipage}
     \begin{minipage}[b]{0.50\textwidth}
-        \includegraphics[width=\textwidth]{images/pixljs-pinout.png}
+        \includegraphics[width=\textwidth]{images/pixljs-pinout.pdf}
         \caption{Pin layout for the Pixl.js.}
         \label{fig:pixljs-pinout}
     \end{minipage}
@@ -256,7 +256,7 @@ In recent years, modern smartphones have become increasingly powerful, coming eq
 These features can be dependent on the chosen operating system. The two most prevalent modern smartphone operating systems are Google’s Android and Apple’s iOS - both dominate the market, controlling a 72.3\% and 27.1\% worldwide market share respectively \citep{osmarketshare}. However as outlined in the following sections, certain functionality is only available on certain devices and browsers, specific to an operating system. Explored below are factors which should be considered when integrating a smartphone device into a robot, and their limitations given a specific OS, device, or browser.
 
 \subsection{Computational Power}
-One of the first examples showcasing the possibilities of a smartphone controlled robot, was by \citet{oros2013smartphone}, who detailed the development of The Android Car - a low-cost robot powered by an Android phone. Described as a \textit{“do-it-yourself (DIY) smartphone based robotic platform”}, the robot was built using common components and open-source libraries, available to simple hobbyists and enthusiasts, and costing only \$350 (£285) (not including the phone). The final product was able to perform colour-tracking and object-avoidance, allowing it to showcase a degree of autonomous driving - showing how expensive, state-of-the-art technology is not essential in being able to create an effective self-driving robot.
+One of the first examples showcasing the possibilities of a smartphone controlled robot, was by \citet{oros2013smartphone}, who detailed the development of \textit{"The Android Car"} - a low-cost robot powered by an Android phone. Described as a \textit{“do-it-yourself (DIY) smartphone based robotic platform”}, the robot was built using common components and open-source libraries, available to simple hobbyists and enthusiasts, and costing only \$350 (£285) (not including the phone). The final product was able to perform colour-tracking and object-avoidance, allowing it to showcase a degree of autonomous driving - showing how expensive, state-of-the-art technology is not essential in being able to create an effective self-driving robot.
 
 Additionally, this paper highlighted the computational power and versatility of the Android smartphone, by showing how it can act as an onboard computer, controlling the behaviour of the robot via a neural network running on the phone. This is an aspect which is continued in later studies, such as one by \citet{7754547}, which used an Android phone to control a Raspberry Pi powered robot. However, this robot differs from The Android Car, in the fact that the smartphone is not attached to the robot. With the Android Car, the phone was attached to the robot, allowing it to take advantage of the available sensors on the phone, such as the camera, and GPS. In this study however, the smartphone is used similar to a physical controller - controlling the robot from nearby.
 
@@ -272,11 +272,11 @@ OpenBot utilises a variety of self-driving methods in order to perform complex t
 
 Where this robot excels over the Android Car is its pricing - costing less than \$50 (£41) for all components of the robot (compared to Android Car’s \$350). This highlights how the field of robotics can be accessible for those from a poor economic-background, by utilising low-cost components and smartphones - something which is ubiquitous in the modern world.
 
-To use OpenBot, an individual is required to install its specific application to their phone, meaning their phone must have the necessary requirements. This is in conflict with our project aim, which requires the controller have no prior requirements.
+To use OpenBot, an individual is required to install its specific application to their phone, meaning their phone must have the necessary requirements. This is in conflict with our project aim, which necessitate the controller have no prior requirements.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.50\textwidth]{images/openbot.jpg}
+    \includegraphics[width=0.60\textwidth]{images/openbot.pdf}
     \caption{This figure shows OpenBot - an open-source robotic platform which integrates smartphone technology to develop affordable robotics.}
     \label{fig:openbot}
 \end{figure}
@@ -301,7 +301,7 @@ Aligning with the competition aim of being accessible, the competition should ta
 \subsection{Robot and Controller Specification}\label{sec:robot-specification}
 To ensure fairness and consistency among participants, it is crucial to specify what robot will be used for the competition, as this will restrict the development of the controller. The robot which will be used for this project is a Zumo Robot for Arduino with an attached Pixl.js - more details are given in Section \ref{sec:working-with-robot}.
 
-Additionally, aligning with the aim of creating a controller which is accessible to use, controllers entered into the competition are restricted to solely running from a web browser. This is discussed in greater detail in section <SECTION>.
+Additionally, it was later identified in Section \ref{sec:web-browser-based}, that controllers entered into the competition are restricted to solely running from a web browser.
 
 \subsection{Stages}
 To ensure that participants of all levels of expertise could participate, the competition should be split into multiple stages, with each stage getting incrementally harder and testing a different aspect of a self-driving robot - as seen in Appendix Table \ref{tab:stages}.
@@ -343,7 +343,7 @@ Requirements for the website were split into functional and non-functional, and 
 It should be noted in the following that there is only one level of user considered for the competition. There is no difference in functionality for new/previous participants or for admins of the website.
 
 \subsection{Requirements}
-Requirements are marked with (\textbf{F}) to indicate a functional requirement, and (\textbf{NF}) to indicate a non-functional requirement.
+Requirements are marked with (\textbf{F}) to indicate a functional requirement, and (\textbf{NF}) to indicate a non-functional requirement. Note that requirements for the website are labelled with the letter (A). This is to distinguish them from requirements for the controller, which are labelled (B), as seen in Section \ref{sec:controller-req}.
 \subsubsection{\textit{Must Have}:}
 \begin{enumerate}[label=A.\arabic*]
     \item Competition description (\textbf{F}): users must be able to clearly view details describing what the competition is. \label{req:comp-description}
@@ -367,7 +367,7 @@ Requirements are marked with (\textbf{F}) to indicate a functional requirement, 
     \item Contact (\textbf{F}): users could be able to find contact information for further competition details. \label{req:comp-contact}
     \item Past competition (\textbf{F}): users could be able to see the previous competitions that have taken place. This would initially be a placeholder page. \label{req:comp-past-comps}
     \item Related projects (\textbf{F}): users could be able to view and submit their own projects relating to autonomous driving.
-    \item Customisable (\textbf{NF}): the website could provide options for customising different options, such as font-size and colour, to help accessibility.
+    \item Customisable (\textbf{NF}): the website could provide options for customising different options, such as font-size and colour, to aid accessibility.
 \end{enumerate}
 
 \subsubsection{\textit{Won't Have this Time}:}
@@ -387,7 +387,7 @@ This website is publicly available via this link \href{https://robot-competition
 \section{Chosen Technologies}
 Following from the requirements elicitation and time limitation of the project, the website was scoped to be implemented statically, using only frontend technologies. Initially, the website was intended to be co-developed with another developer working on the project, and React.js\footnote{ReactJS - \url{https://react.dev/}} was proposed to implement the website. As a front-end JavaScript library, React.js provides a component-based architecture that allows developers to create reusable UI components - making the management of web-applications easy. This idea however, was rejected by the other developer, due to a lack of expertise with React.js and inability to learn within the provided time-frame of the project. This learning curve was seen as too steep, and so instead prompted the use of only HTML, CSS, and JavaScript as the core technologies. 
 
-Bootstrap\footnote{Bootstrap - \url{https://getbootstrap.com/}} was utilised to expedite the development process. Bootstrap provides a set of pre-designed templates for HTML, CSS, and JavaScript, which were utilised to help create a responsive and visually appealing layout, which could work on a variety of devices.
+Bootstrap\footnote{Bootstrap - \url{https://getbootstrap.com/}} was utilised to expedite the development process. Bootstrap provides a set of pre-designed templates for HTML, CSS, and JavaScript, which were used to help create a responsive and visually appealing layout, which could work on a variety of devices.
 
 
 \section{Hosting}\label{sec:competition-hosting}
@@ -400,7 +400,7 @@ We remark that we have implemented all of the must have functional requirements 
 \subsection{Limitations and Changes to Scope}
 As previously stated, originally the website was intended to be co-developed by two developers. However, during development, changes were made to the project structure, meaning the final website was implemented individually by a single developer. This unfortunately worsened the already strict time restrictions and made redundant the previous decision of not using React.js - leading to some requirements not being realised.
 
-It is important to note that this website used the name \textit{'UofG Cup'} as a promotional name for the competition. However, this is simply a placeholder and could be changed later for whatever the final name of the competition may be. 
+It is important to note that this website uses the name \textit{'UofG Cup'} to refer to the competition. However, this is simply a placeholder and could be changed later for whatever the final name of the competition may be. 
 
 Additionally, the website was implemented before the decision was made to reduce the scope of the competition. Therefore the website does not contain information about the simplified competition, as mentioned in Section \ref{sec:simplified-comp}, but instead, contains outdated information.
 
@@ -431,7 +431,7 @@ The individual may not have the resources available for complex and time intensi
 
 To do this, we aim to develop a controller which is eligible for submission into the competition defined in previous chapters. It must be able to adequately provide accurate manual control over the robot, and introduce a new, unique idea to self-driving. Additionally, it must align with our aims of promoting an affordable solution and being accessible to use without restriction. Furthermore, we must detail the specifications of the robot used for development of this controller, as this will inform the restrictions on what robots are allowed in the competition.
 
-\section{Web Browser Based}
+\section{Web Browser Based}\label{sec:web-browser-based}
 A key aim of our controller is to make it accessible for anyone to use, without any prior requirements. With this in mind, we determine that the controller should be web browser based. This means, that anyone can access the controller - removing the need for installation of any software. In addition, we aim to make it cross-compatible, so that it may work on a range of different devices and web browsers.
 
 Submissions for the robot controller should demonstrate the ability to be run solely on a web-page without any prior downloads or setup and minimal requirements. It should exhibit cross-platform compatibility and cross-browser compatibility, being able to work on a range of devices and browsers.
@@ -478,7 +478,7 @@ With this functionality, we must consider three important questions when develop
 \end{enumerate}
 
 \subsection{Processing Power}\label{sec:robot-processing-power}
-The Pixl.js uses a Nordic Semiconductor nRF52832n system-on-chip (S0C) as its main processor\footnote{Nordic Semiconductor nRF52832n - \url{https://www.mouser.co.uk/new/nordic-semiconductor/nrf52-series-soc/}} - containing a 32-bit ARM Cortex-M4F processor\footnote{ARM Cortex-M4f processor - \url{https://developer.arm.com/Processors/Cortex-M4}}, with a maximum clock speed of 64 MHz. This processor is capable of executing one instruction per clock cycle, which means that it can theoretically execute up to 64 million instructions per second. This however is impacted by several other factors such as the architecture of the Pixl.js, meaning in reality this number is much lower. Additionally, the device has a relatively large storage size compared to other standard electronics boards - having 512kB of Flash storage.
+The Pixl.js uses a Nordic Semiconductor nRF52832n\footnote{Nordic Semiconductor nRF52832n - \url{https://www.mouser.co.uk/new/nordic-semiconductor/nrf52-series-soc/}} system-on-chip (SoC) as its main processor - containing a 32-bit ARM Cortex-M4F processor\footnote{ARM Cortex-M4f processor - \url{https://developer.arm.com/Processors/Cortex-M4}}, with a maximum clock speed of 64 MHz. This processor is capable of executing one instruction per clock cycle, which means that it can theoretically execute up to 64 million instructions per second. This however is impacted by several other factors such as the architecture of the Pixl.js, meaning in reality this number is much lower. Additionally, the device has a relatively large storage size compared to other standard electronics boards - having 512kB of Flash storage.
 
 Despite the impressive performance and storage size of the Pixl.js, the amount of processing done on the device should be kept to a minimum. Instead, computationally expensive processes should be done on the device hosting the controller, as this would have an even better quality processor, able to handle the load.
 
@@ -519,14 +519,14 @@ In the previous section, we restricted ourselves to not use any of the available
 The smartphone being used during development of this project is a Samsung Galaxy A50, which uses the Android operating system \citep{phonespec}. Additionally, the Chrome web-browser will be used as the main web-browser for development. Therefore, the controller developed for this project must be at-least compatible with the Android OS, and Chrome web-browser.
 
 \subsection{Smartphone Position}
-For manual control of the robot, we aim to use the controller on a handheld smartphone, to simulate the feeling of a traditional gaming controller (this is described more in Section \ref{sec:joystick-design}). This allows for easy portability of the controller. However, for the autonomous control, we must consider different placements positions of the phone, with respect to the robots position.
+For manual control of the robot, we aim to use the controller on a handheld smartphone, to simulate the feeling of a traditional gaming controller (this is described more in Section \ref{sec:joystick-design}). This allows for easy portability of the controller. However, for the autonomous control, we must consider different placement positions of the phone, with respect to the robot's position.
 
 \subsubsection{Physically Attached to the Robot} \hfill \\
 As previously discussed with examples such as OpenBot in Section \ref{sec:openbot}, physically attaching the phone to the robot allows the phone to use it's sensors, to provide sensory information to the controller. Using this method, the phone could use its in-built gyroscope to detect the orientation of the robot, and it's camera to provide computer vision for techniques such as line-tracking and object-detection. 
 
-Figure \ref{fig:phone-attach} shows how the phone could be attached to the robot using a rubber band. Due to the structure of the robot, this setup only allows for limited vision from the phone camera as its only available position is looking downwards behind the robot. However, due to the robots ability to change its motors direction, the back of the robot can be considered as the front, as long as we remember to switch the direction of the motors before moving.
+Figure \ref{fig:phone-attach} shows how the phone could be attached to the robot using a rubber band. Due to the structure of the robot, this setup only allows for limited vision from the phone camera as its only available position is looking downwards behind the robot. However, due to the robots ability to change the direction of its motors, the back of the robot can be considered as the front, as long as we remember to switch their direction before moving.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \begin{subfigure}{0.40\textwidth}
         \includegraphics[width=\textwidth]{images/phone-attachment-2.jpeg}
@@ -552,13 +552,13 @@ Although not part of this project, if this work were to be continued using the r
 There are multiple possible communication methods available to connect to the Pixl.js in order to communicate with the robot. However, Bluetooth was identified as the ideal method of communication.
 
 \subsubsection{Web Bluetooth from a Device} \hfill \\
-As previously identified in Section \ref{sec:pixl-background}, it is possible to connect to an Espruino device using Web Bluetooth. This makes it simple to connect to the Pixl.js from a web browser. Espruino provides comprehensive guides on how connect to an Espruino devices using Web Bluetooth \citep{webbluetoothespruino}, as well as requirements and solutions for devices which don't support Web Bluetooth \citep{bluetoothquickstartespruino}. This method of communication is supported on Android devices using Google Chrome as a web-browser, meaning it can be used for development of this project. Figure \ref{fig:connection-general} shows how the controller used on a smartphone can connect to the Pixl.js using Web Bluetooth, which in turns uses serial communication with the Zumo Shield to activate different functions of the robot.
+As previously identified in Section \ref{sec:pixl-background}, it is possible to connect to an Espruino device using Web Bluetooth. This makes it simple to connect to the Pixl.js from a web browser. Espruino provides comprehensive guides on how connect to an Espruino devices using Web Bluetooth \citep{webbluetoothespruino}, as well as requirements and solutions for devices which don't support it \citep{bluetoothquickstartespruino}. This method of communication is supported on Android devices using Google Chrome as a web browser, meaning it can be used for development of this project. Figure \ref{fig:connection-general} shows how the controller used on a smartphone can connect to the Pixl.js using Web Bluetooth, which in turns uses serial communication with the Zumo Shield to activate different functions of the robot.
 
 Additionally, the Espruino Web IDE\footnote{Espruino Web IDE - \url{https://www.espruino.com/ide/}} allows for an easy connection to an Espruino Pixl.js device by using Web Bluetooth. This makes it simple and easy to connect to the robot and modify and upload new code to it.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.80\linewidth]{images/connection-general.png}
+    \includegraphics[width=0.80\linewidth]{images/connection-general.pdf}
     \caption{Diagram showing how the controller connects via Bluetooth to the Pixl.js, which in turns connects to the Zumo Robot via a serial connection. The UART protocol is used during this communication.}
     \label{fig:connection-general}
 \end{figure}
@@ -593,7 +593,7 @@ This project could utilise MediaPipe\footnote{MediaPipe - \url{https://mediapipe
 \subsection{Marker Detection}\label{sec:marker-detection-analysis}
 Marker detection is a unique self-driving approach, where computer vision can be used to detect markers within the camera view, to instruct the robot where to move. This is shown in the aforementioned (Section \ref{sec:deepracer}) \textit{'Off Road'} AWS DeepRacer project, where the robot follows a series of markers to reach a destination point.
 
-We define marker in this instance to mean any form of machine-readable optical label - that is, an item which can be scanned by a machine to extract the information contained inside it. The two forms of markers considered for this project are QR codes, and ArUco markers - a synthetic marker used for camera pose estimation. Their difference lies within the information that they encode. QR codes can store a relatively large amount of information with a variety of data types, whereas ArUco markers typically only encode a unique identifier. Another key difference is that QR codes are designed to be easily readable by most modern smartphone cameras, even when partially obscured or damaged, making them robust. ArUco markers on the other hand, are much more sensitive to changes in visibility, such as lighting or viewing angle. Additionally, ArUco markers are not designed for use with typical modern devices, instead, often requiring specialised software to read them. Despite the clear advantages of using QR codes, ArUco markers have the benefit of containing information about the camera pose, such as translation and rotation matrices.
+We define marker in this instance to mean any form of machine-readable optical label - that is, an item which can be scanned by a machine to extract the information contained inside it. The two forms of markers considered for this project are QR codes, and ArUco markers - a synthetic marker used for camera pose estimation \citep{aruco}, seen in Figure \ref{fig:markers}. Their difference lies within the information that they encode. QR codes can store a relatively large amount of information with a variety of data types, whereas ArUco markers typically only encode a unique identifier. Another key difference is that QR codes are designed to be easily readable by most modern smartphone cameras, even when partially obscured or damaged, making them robust. ArUco markers on the other hand, are much more sensitive to changes in visibility, such as lighting or viewing angle. Additionally, ArUco markers are not designed for use with typical modern devices, instead, often requiring specialised software to read them. Despite the clear advantages of using QR codes, ArUco markers have the benefit of containing information about the camera pose, such as translation and rotation matrices.
 
 These can be used in a variety of ways in the project. For example, they could be attached to the robot and used to detect its position and orientation. Additionally, they could contain instructions for the robot which are only sent when scanned.
 
@@ -611,7 +611,7 @@ These can be used in a variety of ways in the project. For example, they could b
         \caption{ArUco Marker - ID 107.}
         \label{fig:aruco-marker}  
     \end{subfigure}
-    \caption{Figure showing different markers used for Virtual Lead. \subref{fig:qr-code} shows a QR-code. \subref{fig:aruco-marker} shows an ArUco marker.}
+    \caption{Figure showing different markers used for marker detection. \subref{fig:qr-code} shows a QR-code. \subref{fig:aruco-marker} shows an ArUco marker.}
     \label{fig:markers}
 \end{figure}
 
@@ -723,7 +723,7 @@ Figure \ref{fig:loose-mapping} shows the alternative \textit{“loose angle-moto
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.75\textwidth}
-        \includegraphics[width=\textwidth]{images/Tight Angle-Motor Mapping.png}
+        \includegraphics[width=\textwidth]{images/Tight Angle-Motor Mapping.pdf}
         \caption{The piecewise linear function for a tight angle-motor mapping.}
         \label{fig:tight-mapping-graph}
     \end{subfigure}
@@ -752,7 +752,7 @@ Figure \ref{fig:loose-mapping} shows the alternative \textit{“loose angle-moto
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.75\textwidth}
-        \includegraphics[width=\textwidth]{images/Loose Angle-Motor Mapping.png}
+        \includegraphics[width=\textwidth]{images/Loose Angle-Motor Mapping.pdf}
         \caption{The piecewise linear function for a loose angle-motor mapping.}
         \label{fig:loose-mapping-graph}
     \end{subfigure}
@@ -800,13 +800,13 @@ Therefore, an alternative mechanism was devised - a self-proclaimed \textit{"uni
 \section{Autonomous Control: Virtual Lead}\label{sec:virtual-lead-design}
 Following from the analysis conducted for self-driving methods in Section \ref{sec:marker-detection-analysis}, we design a novel self-driving approach known as Virtual Lead. Inspired by the \textit{'Off Road'} AWS DeepRacer project, Virtual Lead uses marker detection as a way of guiding the robot to a destination.
 
-In this approach, a marker is attached to the top of the robot to indicate the robots position. A smartphone camera is then used to detect this marker, and guide the robot to another position. There were many different options considered for how to indicate the position for the robot to move to. For example, one idea considered was to use another marker to mark where the robot should stop. However, this raised the dilemma of how can the robot move towards the marker whilst remaining within the boundaries of a track which contains twists and turns? Therefore, it was decided that the midpoint of the camera would be used as the destination of the robot - inspiring the name 'Virtual Lead', as a 'lead' is imagined to be attached between the camera and the robot, hence guiding it.
+In this approach, a marker is attached to the top of the robot to indicate the robots position. A smartphone camera is then used to detect this marker, and guide the robot to another position. There were many different options considered for how to indicate the position for the robot to move to. For example, one idea considered, was to use another marker to mark where the robot should stop. However, this raised the dilemma of how can the robot move towards the marker whilst remaining within the boundaries of a track which contains twists and turns? Therefore, it was decided that the midpoint of the camera would be used as the destination of the robot - inspiring the name 'Virtual Lead', as a 'lead' is imagined to be attached between the camera and the robot - guiding it.
 
 Figure \ref{fig:virtual-lead-design} shows the orientation and position vectors of the robot at various positions on a camera screen. These vectors can be used to calculate the angle to turn to the midpoint.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.50\textwidth]{images/virtual-lead-design.png}
+    \includegraphics[width=0.50\textwidth]{images/virtual-lead-design.pdf}
     \caption{Figure showing the design for the Virtual Lead feature. This allows a user to guide the robot to the midpoint of the camera screen by using a marker to detect the robot's position and orientation.}
     \label{fig:virtual-lead-design}
 \end{figure}
@@ -825,7 +825,7 @@ Wireframe designs for each of these pages can be seen in Appendix Section \ref{s
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.45\linewidth]{images/page-structure.png}
+    \includegraphics[width=0.45\linewidth]{images/page-structure.pdf}
     \caption{A diagram showing the hierarchical page structure of the controller. A user may navigate to and from the home page to the joystick and self-driving page. However, the peer page is only accessible via the self-driving page and cannot return to previous pages (since it should be opened on another device).}
     \label{fig:page-structure}
 \end{figure}
@@ -833,6 +833,7 @@ Wireframe designs for each of these pages can be seen in Appendix Section \ref{s
 
 %==================================================================================================================================
 \chapter{Controller: Implementation}
+The live version of the controller can be accessed via this link: \href{https://lewistrundle.github.io/L4-Individual-Project/index.html}{Robot Controller}.
 
 \section{Technologies Used}
 \subsection{GitHub Pages}
@@ -845,7 +846,7 @@ TypeScript\footnote{TypeScript - \url{https://www.typescriptlang.org/}} was chos
 Throughout development of the project, a multitude of npm\footnote{npm - \url{https://www.npmjs.com/}} (Node Package Manager) packages were used to help implement core functionality of the controller. npm packages significantly improve the development process, as they allow developers to leverage the use of code written by others - minimising repeated efforts. This greatly simplifies the complexity of the codebase, as massive pieces of functionality can be reduced to a simple call of the package, allowing for seamless integration of complex features. Additionally, these packages are often frequently updated, maintained, and well-tested, simplifying dependency management as developers don’t need to maintain these features themselves.
 
 \subsection{Webpack}
-Webpack\footnote{Webpack - \url{https://webpack.js.org/}} is a popular module bundler, used to bundle all the complexity of various modules and dependencies of a JavaScript application, into a single JavaScript file - servable to a client. It utilises the concept of chunks, which allows small parts of the application to be separately processed - improving the load time. It also provides various loaders, which allows files to be preprocessed before being bundled. This allows for non-JavaScript files, such as TypeScript and SCSS to be transpiled. Additionally, Webpack comes with a built-in development server, allowing for the controller to be easily tested before deployment.
+Webpack\footnote{Webpack - \url{https://webpack.js.org/}} is a popular module bundler, and was used to bundle all the complexity of various modules and dependencies of a JavaScript application, into a single JavaScript file - servable to a client. It utilises the concept of chunks, which allows small parts of the application to be separately processed - improving the load time. It also provides various loaders, which allows files to be preprocessed before being bundled. This allows for non-JavaScript files, such as TypeScript and SCSS to be transpiled. Additionally, Webpack comes with a built-in development server, allowing for the controller to be easily tested before deployment.
 
 
 \section{Robot Core Functionality}
@@ -920,15 +921,15 @@ The \lstinline{nipplejs}\footnote{nipplejs - \url{https://www.npmjs.com/package/
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.35\linewidth]{images/joystick-force.png}
-    \caption{Diagram showing how the force of the joystick is calculated.}
+    \includegraphics[width=0.35\linewidth]{images/joystick-force.pdf}
+    \caption{Diagram showing how the force of the joystick is calculated. The joystick is pulled with a force of 0.9 units out of a defined maximum of 1.5 units.}
     \label{fig:joystick-force}
 \end{figure}
 
-Its key advantage however, is the various data provided with each event, such as the current angle of the joystick and the force of the joystick pull - which can be calculated by the  distance of the joystick from its centre resting position. Using these attributes allows the desired motor speeds of the robot to be calculated - enabling the robot to move in the direction indicated by the joystick. For example, consider the joystick in Figure \ref{fig:joystick-force}. The maximum defined force is 1.5 units, and the joystick has a force of 0.9 units.
+Its key advantage however, is the various data provided with each event, such as the current angle of the joystick and the force of the joystick pull - which can be calculated by the  distance of the joystick from its centre resting position. Using these attributes allows the desired motor speeds of the robot to be calculated - enabling the robot to move in the direction indicated by the joystick. For example, consider the joystick in Figure \ref{fig:joystick-force}. The maximum defined force is 1.5 units, and the joystick is moved with a force of 0.9 units.
 
 \begin{equation}
-   forceRatio = 0.9/1.5 = 0.6 
+   forceRatio = \frac{0.9}{1.5} \times 100 = 60 
 \end{equation}
 
 Therefore, the speeds for the left and right motor should move at 60\% of their speed as defined by their angle-motor mapping.
@@ -942,7 +943,7 @@ The final implementation allows a user to decide which device they would like to
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.4\textwidth]{images/camera-selection.jpeg}
-    \caption{Screenshot showing the available cameras for selection.}
+    \caption{Screenshot taken on a smartphone, showing the cameras detected using the MediaDevices API. These cameras can then be selected to transfer a video stream from.}
     \label{fig:camera-selection}
 \end{figure}
 
@@ -952,7 +953,7 @@ To establish a connection between the device hosting the controller and the devi
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/peer-connection.png}
+    \includegraphics[width=0.4\textwidth]{images/peer-connection.pdf}
     \caption{Diagram demonstrating a peer connection to a host. The peer device connects to the host via a Wi-Fi connection and transfers video to the host. The host then receives this video. The host can also be connected via Bluetooth to the robot.}
     \label{fig:peer-connection}
 \end{figure}
@@ -969,8 +970,8 @@ By identifying the centre point of the camera's field of view, the midpoint of t
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{images/virtual-lead-design.png}
-    \caption{Figure shows the rendered canvas marking the midpoint of the camera screen. The robot has a QR code attached, which can be detected by the camera and used to guide the robot to the marked midpoint.}
+    \includegraphics[width=1\textwidth]{images/virtual-lead-screenshot.pdf}
+    \caption{Screenshot of Virtual Lead being used. The screenshot shows the rendered canvas marking the midpoint of the camera screen. The robot has a QR code attached, which can be detected by the camera and used to guide the robot to the marked midpoint.}
     \label{fig:virtual-lead-camera}
 \end{figure}
 
@@ -982,10 +983,9 @@ The angle to turn is then given by the angle between the direction vector and or
 
 
 \section{Colour-Tracking}
-Unfortunately, due to time restrictions on the project, line-following and object-detection were not implemented. However, a basic form of colour-tracking was developed, by utilising the \lstinline{jstracking}\footnote{jstracking - \url{https://www.npmjs.com/package/jstracking}} npm package. This package provides access to a JavaScript library, holding a variety of computer vision algorithms to use. Four colours were registered to be detected: red, green, blue, and black. However, it was found that the tracker struggled to detect these colours - as shown in Appendix Figure <FIGURE>. In order to help aid colour-detection, an image processing technique was developed which altered the colour-space of the video.
+Unfortunately, due to time restrictions on the project, line-following and object-detection were not implemented. However, a basic form of colour-tracking was developed, by utilising the \lstinline{jstracking}\footnote{jstracking - \url{https://www.npmjs.com/package/jstracking}} npm package. This package provides access to a JavaScript library, holding a variety of computer vision algorithms to use. Four colours were registered to be detected: red, green, blue, and black. However, it was found that the tracker struggled to detect these colours - as shown in Appendix Figure \ref{fig:colour-tracking}. In order to help aid colour-detection, an image processing technique was developed which altered the colour-space of the video.
 
-The aim of this was to highlight specific colours in the video stream, so that they may be easily detected by the colour-tracker. This was done by extracting the colour data from each frame of the video, by taking the pixel data array of each binary image. As seen in Figure \ref{fig:image-processing}, this array gives us the RGBA value of each pixel in the frame. We used this data to detect pixels of a specific colour, and then altered its RBGA values, so that only the specific colour is highlighted. For example, a red pixel may be detected by looking for pixels in the data array that have 
-a red value of more than 200. This value is then highlighted by setting the blue and green values to 0, and turning its red value to 255 (\lstinline{[255, 0, 0, 0]}). Testing done for this technique can be seen in Appendix Figure <FIGURE>. However once again, due to time restrictions, there was not enough time to fully develop and utilise this approach. Therefore, colour-tracking was not utilised in the final implementation.
+The aim of this was to highlight specific colours in the video stream, so that they may be easily detected by the colour-tracker. This was done by extracting the colour data from each frame of the video, by taking the pixel data array of each binary image. As seen in Figure \ref{fig:image-processing}, this array gives us the RGBA value of each pixel in the frame. We used this data to detect pixels of a specific colour, and then altered its RBGA values, so that only the specific colour is highlighted. For example, a red pixel may be detected by looking for pixels in the data array that have a red value of more than 200. This value is then highlighted by setting the blue and green values to 0, and turning its red value to 255 (\lstinline{[255, 0, 0, 255]}). Testing done for this technique can be seen in Appendix Figure \ref{fig:colour-conversion}. However once again, due to time restrictions, there was not enough time to fully develop and utilise this approach. Therefore, colour-tracking was not utilised in the final implementation.
 
 \begin{figure}
     \centering
@@ -996,7 +996,7 @@ a red value of more than 200. This value is then highlighted by setting the blue
 
 
 \section{Adjustable Settings}
-The development of the project required a lot of testing of various components of the robot, such as the buffer speed, angle-motor mappings, and the code on the robot. Manually making changes to the code to vary these values could be tedious and time-intensive. Therefore, to save time in development, many of these settings were made interactive, so that they may be dynamically changed during use of the controller by the user. Outlined below are the additional features added to the control as part of the \textit{‘settings’} modal.
+The development of the project required a lot of testing of various components of the robot, such as the buffer speed, angle-motor mappings, and the code on the robot. Manually making changes to the code to vary these values could be tedious and time-intensive. Therefore, to save time in development, many of these settings were made interactive, so that they may be dynamically changed during use of the controller by the user. Outlined below are the additional features added to the controller as part of the \textit{‘settings’} modal.
 
 \subsection{Buffer Speed}
 As previously described in Section \ref{sec:buffer-design}, the data transmission speed is determined by the buffer speed, $x$, which is carefully picked to allow the Pixl.js enough time to process instructions, while still simulating a responsive controller. To test different buffer speeds without having to restart the development server or redeploy the application, a slider was introduced to dynamically change $x$ - anywhere from 0ms to 600ms. This allowed for the perfect value of $x$ to be found. This setting should not need to be changed by the user; however, it has been left for future developers to fine-tune to their liking.
@@ -1011,9 +1011,9 @@ This feature allows a user to see the uploaded code on a connected robot, as wel
 
 
 \section{Constraints and Limitations}
-As previously described in Section \ref{sec:bluetooth-background}, Web Bluetooth is not available on iOS, without the installation of a 3rd party application. Therefore, our implementation is unable to connect to the robot from an iOS device. However, this does not prevent an iOS device from being used as a peer, to provide a video stream for use in the Virtual Lead feature.
+As previously described in Section \ref{sec:bluetooth-background}, Web Bluetooth is not available on iOS, without the installation of a third party application. Therefore, our implementation is unable to connect to the robot from an iOS device. However, this does not prevent an iOS device from being used as a peer, to provide a video stream for use in the Virtual Lead feature.
 
-Originally a separate npm package (\lstinline{@espruino-tools/core}\footnote{@espruino-tools/core - \url{https://www.npmjs.com/package/@espruino-tools/core}}) was used to facilitate the UART connection. However, it was not discovered until a few months into development that this package was introducing a delay in sending the instructions. This unfortunately caused a large portion of time to be misplaced, attempting to find the cause of the delay in this codebase. Once it was eventually discovered the delay originated from here, a different npm package was switched to (\lstinline{@espruino-tools/uart}\footnote{@espruino-tools/uart - url{https://www.npmjs.com/package/@espruino-tools/uart}}), where there was no issue.
+Originally a separate npm package (\lstinline{@espruino-tools/core}\footnote{@espruino-tools/core - \url{https://www.npmjs.com/package/@espruino-tools/core}}) was used to facilitate the UART connection. However, it was not discovered until a few months into development that this package was introducing a delay in sending the instructions. This unfortunately caused a large portion of time to be misplaced, attempting to find the cause of the delay in this codebase. Once it was eventually discovered the delay originated from there, a different npm package was switched to (\lstinline{@espruino-tools/uart}\footnote{@espruino-tools/uart - \url{https://www.npmjs.com/package/@espruino-tools/uart}}), where there was no issue.
 
 During development it was discovered that the smartphone being used to test the controller provided a poor quality video stream. Although it was able to use the joystick without any issues, it struggled to be used as a peer device in the Virtual Lead feature, providing very poor marker detection. Ironically, an iOS IPhone device was instead utilised during development of this feature. Additionally, we remark that our implementation is unable to show the video stream on the peer device, which makes using the smartphone camera difficult to use.
 
@@ -1064,9 +1064,9 @@ Throughout the entire study, participants were continually prompted to consult t
 \section{Competition Feedback}
 During the questionnaire, participants were asked three simple questions about the competition, to evaluate the effectiveness of the website at conveying what the competition was, and making people want to join. These questions were:
 \begin{itemize}
-    \item What is your understanding of what the competition is?
-    \item Were the rules easy to find and clear to read?
-    \item Would you be interested in entering such a competition?
+    \item \textit{What is your understanding of what the competition is?}
+    \item \textit{Were the rules easy to find and clear to read?}
+    \item \textit{Would you be interested in entering such a competition?}
 \end{itemize}
 
 Every participant was able to some degree correctly state that the competition is for self-driving robots. Additionally, every participant stated that the rules were easy to find; however, some expressed that the wall of text could be quite daunting. Finally, participants stated that they would indeed be interested in entering a competition such as this one (feedback can be seen in Appendix Figure \ref{fig:feedback-1} and \ref{fig:feedback-2}).
@@ -1086,10 +1086,10 @@ During the study, participants were asked to navigate the robot around an object
 The purpose of this was to gain insight into the successfulness of the joystick implementation, by gathering metrics related to the aforementioned qualities for success. That is: accuracy, precision, responsiveness, and robustness.
 
 \subsection{Accuracy and Precision}
-The accuracy and precision are both qualities which affect the quality of the intended functionality of the joystick, as it needs to be precise and accurate to be able to navigate through the obstacles. Therefore, to evaluate these, we used a combination of observations and response data from the participants, to give both an objective view from the observer, and a more subjective view from the participant using the joystick.
+The accuracy and precision are both qualities which affect the quality of the intended functionality of the joystick, as it needs to be precise and accurate to be able to navigate through the obstacles. Therefore, to evaluate these, we gathered objective data, by observing participants complete the tasks, in order to give an objective measure of these qualities.
 
 \subsubsection{Objective Measure: Collisions with Obstacles} \hfill \\
-These qualities were measured by observing how many obstacles the robot collided with during the tasks described above. The observed results can be seen in Appendix Table \ref{tab:joystick-collisions}. During the simple navigation around an object, only 2 participants collided with the obstacle using the tight-mapping, and none collided with the obstacle using the loose-mapping. If we take the best trial of each participant (the trial where they collided with the least amount of obstacles). We find that all participants managed to navigate the robot around the obstacle at least once without colliding with it.
+One such objective measure, was the number of obstacles the participant collided with using the robot, during the tasks described above. The observed results can be seen in Appendix Table \ref{tab:joystick-collisions}. During the simple navigation around an object, only 2 participants collided with the obstacle using the tight-mapping, and none collided with the obstacle using the loose-mapping. If we take the best trial of each participant (the trial where they collided with the least amount of obstacles). We find that all participants managed to navigate the robot around the obstacle at least once without colliding with it.
 
 With the slalom tasks, 3 participants were observed to collide with an obstacle using the tight-mapping (with a total of 4 collisions), and 4 were observed with the loose-mapping (with a total of 6 collisions). Again, taking the best trial for each participant, 9 out of 10 participants managed to navigate through the slalom without colliding with any objects.
 
@@ -1099,7 +1099,7 @@ The time taken to complete each task was also recorded for each participant. Thi
 For navigating through the slalom, the tight mapping performed slightly better, giving times 4 seconds faster on average. This could be because the tight mapping allows for faster turning, which is essential in navigating the slalom with speed. However, it is a small difference, so could likely not be significant.
 
 \subsection{Responsiveness and Robustness}
-From the questionnaire, it was clear that users found the joystick responsive. On average, it was rated a 9.5 out of 10 for responsiveness (where 10 correlates to very responsive). This is shown in Appendix Figure \ref{fig:joystick-responsive-results}. Additionally, the joystick was deemed to be robust. No participants reported any issues or bugs with the joystick, and none were observed during the study.
+From the questionnaire, it was clear that users found the joystick responsive. On average, it was rated a 9.5 out of 10 for responsiveness (where 10 correlates to very responsive). This is shown in Appendix Figure \ref{fig:joystick-responsive-results}. Additionally, the joystick was deemed to be robust, as no participants reported any issues or bugs with the joystick, and none were observed during the study.
 
 
 \subsection{Additional Notes}
@@ -1116,7 +1116,7 @@ Similar to the joystick, the number of collisions and total time to complete, we
 
 Not a single participant was able to navigate through the slalom without colliding with at least one obstacle - leading to an average number of obstacles hit being 1.5, which is half of the total number (seen in Table \ref{tab:virtual-lead-times}). Furthermore, only 5 of the participants were able to finish the task at all, and only 1, was able to do it in under 3 minutes.
 
-Interestingly, these results differed, depending on the smartphone operating system used to provide the video stream. Only 1 out of 5 participants using an Android OS, finished the task. Opposed to 4 out of 5 iOS users who finished the task. The reason for this could be due to any number of reasons, such as those described in Section \ref{sec:smartphone-background}.  However, despite the differences in operating systems, both still performed marker detection poorly, causing a lack of precision and accuracy in the detection of the robots position and orientation.
+Interestingly, these results differed, depending on the smartphone operating system used to provide the video stream. Only 1 out of 5 participants using an Android OS, finished the task. Opposed to 4 out of 5 iOS users who finished the task. The reason for this could be due to any number of reasons, such as those described in Section \ref{sec:smartphone-background}.  However, despite the differences in operating systems, both still performed marker detection poorly, causing a lack of precision and accuracy in the detection of the robot's position and orientation.
 
 \begin{table}[]
 \centering
@@ -1141,10 +1141,10 @@ Participant & Phone OS & Obstacles Hit & \multicolumn{1}{c}{Time} \\
 \subsection{Responsiveness, Robustness, and Intuitiveness}
 As shown by Appendix Figure \ref{fig:virtual-lead-responsive}, participants did not find Virtual Lead responsive, with an average rating of 3.1 out of 10 (where 10 correlates to being "very responsive"). This caused much user frustration, which is shown in the feedback provided at the end of the questionnaire, where participants stated how difficult and frustrating Virtual Lead was to use.
 
-Participants also did not find Virtual Lead intuitive to setup, as seen in Appendix Figure \ref{fig:virtual-lead-intuition}. Many users had to often consult the user documentation in order to figure out what to do. This also highlights Virtual Leads lack of robustness, as issues would occur with users who did not correctly set it up, leading to even more user frustration.
+Participants also did not find Virtual Lead intuitive to setup, as seen in Appendix Figure \ref{fig:virtual-lead-intuition}, with every participant stating that they had to consult the user manual at least a couple of times to know what to do (seen in  Appendix Figure \ref{fig:user-manual-result}). This also highlights Virtual Leads lack of robustness, as issues would occur with users who did not correctly set it up, leading to even more user frustration.
 
 \section{Summary}
-The joystick was successful, and was able to be used by participants to provide precise and responsive manual control over the robot. Additionally, the website was able to successfully convey the necessary information about the competition to users in the short time they were on it. Unfortunately, Virtual Lead was unsuccessful in providing an effective self-driving approach. Poor marker detection caused a lack of precision and accuracy with the robots movements, causing it to collide with the obstacles in the task. A lack of responsiveness caused user frustration when trying to control the robots movements, and this was only worsened by an intuitive setup which had the potential to cause further errors if done incorrectly.
+To summarise, the joystick was successful, and was able to be used by participants to provide precise and responsive manual control over the robot. Additionally, the website was able to successfully convey the necessary information about the competition to users in the short time they were on it. Unfortunately, Virtual Lead was unsuccessful in providing an effective self-driving approach. Poor marker detection caused a lack of precision and accuracy with the robots movements, causing it to collide with the obstacles in the task. A lack of responsiveness caused user frustration when trying to control the robots movements, and this was only worsened by an intuitive setup which had the potential to cause further errors if done incorrectly.
 
 
 
@@ -1154,28 +1154,37 @@ This project explored the creation of a new self-driving robot competition, whic
 
 By defining the competition structure and rules, we were able to develop a website, which would detail the competition and allow a user to enter. This website proved capable of describing what the competition is, and appealed to users, as proved by the feedback gathered from the user study. Unfortunately, due to time restrictions on the project, we were unable to finish every desired feature of the website, and it remains to investigate whether submission and competing in the full competition is feasible.
 
-Our developed robot controller is able to be used successfully from a web-browser by utilising technologies such as Web Bluetooth to connect to the robot. However, we remark that this is not available on all web-browsers and operating systems, such as iOS. Although workarounds do exist, these are yet to be implemented and tested.
+Our developed robot controller is able to be used successfully from a web-browser by utilising technologies such as Web Bluetooth to connect to the robot. However, we remark that this is not available on all web browsers and operating systems, such as iOS. Although workarounds do exist, these are yet to be implemented and tested.
 
 The controller was able to successfully provide accurate, precise and responsive manual control over the provided robot, by utilising a joystick. This is evidenced by the high success rate of participants navigating through the slalom in the user study.
 
 We were able to successfully integrate a smartphone device with the robot provided for this project to introduce a novel self-driving approach, self-proclaimed as \textit{Virtual Lead}. This feature utilises marker detection to guide the robot to the centre point of a connected camera. Unfortunately, from our evaluation, we remark that this feature is not capable of providing accurate or reliable control - often causing the robot to move in a direction against the user's wishes.
 
-We note that there are multiple reasons attributing to Virtual Leads lack of usability. Environmental conditions such as the lighting and surrounding colour of the floor can result in poor detection of the marker. Additionally, factors such as the smartphone providing the video stream, greatly affects the marker detection due to difference in quality and resolution of the camera.
+We note that there are multiple reasons attributing to Virtual Lead's lack of usability. Environmental conditions such as the lighting can result in poor detection of the marker. Additionally, factors such as the smartphone providing the video stream, greatly affects the marker detection due to differences in quality and resolution of the camera.
 
 \section{Future Work}
-Given additional work on this project, we would suggest a number of ways in which this project can be improved, as detailed below.
+Given additional work on this project, we would suggest a number of ways in which it could be improved, as detailed below.
 
 \subsection{The Website}
-The website could benefit from many changes to its appearance and contents. These changes are outlined in Appendix Figure <FIGURE>. However, we would recommend its main improvement be developing a backend, which can store information about the competition, and is also capable of dynamically loading content relating to the competition stages, leaderboards, and competitors.
+The website could benefit from many changes to its appearance and contents. However, we would recommend its main improvement be developing a backend, which can store information about the competition, and is also capable of dynamically loading content relating to the competition stages, leaderboards, and competitors. Additionally, the website should be adapted to be more usable on mobile, so that it can be viewed on a wider range of devices.
 
 \subsection{The Joystick}
-We identify two main ways in which the joystick controller could be improved. The first is to further improve the customisability of the controller, by allowing a user to change additional settings relating to the joystick and movement of the robot. Specifically, some users were surprised at the speed of the robot, despite only applying little force. Therefore, there should be an option to vary the maximum speed of the robot, as well as the maximum force which can be applied by the user.
+We identify two main ways in which the joystick controller could be improved. The first is to further improve the customisability of the controller, by allowing a user to change additional settings relating to the joystick and movement of the robot. Specifically, some users were surprised at the speed of the robot, despite only applying little force. Therefore, there should be an option to vary the maximum speed, as well as the maximum force which can be applied by the user.
 
 The second way is by utilising the sensors available on the robot. The robot used for this project had an in-built gyroscope, meaning it is capable of detecting its orientation and how much it has turned. By accessing the gyroscope data, we can further improve the accuracy of the robot's turns, by knowing when the robot has turned by some angle.
 
 \subsection{Virtual Lead}
+To improve Virtual Lead, the quality of the marker detection could be enhanced, by using image processing techniques and machine learning, to improve detection of markers. Image processing could also help to prevent environmental factors from affecting the quality of detection, such as the brightness levels. This could be incorporated as part of a larger vision pipeline.
 
-SLAM
+The way Virtual lead works could also be improved. Instead of constantly trying to move towards the midpoint of the camera, perhaps a better approach would be to first move towards the center vertical line of the camera. From this position, the robot when then only need to move forwards, and could stop when it reached the center horizontal line.
+
+The ease-of-use of Virtual Lead could also be improved, such as by allowing the video stream from the smartphone to be displayed on the smartphone device - something which we were unable to implement. This would allow the user to see more clearly how they are navigating the robot. Additionally, other technology and sensors could be integrated with this feature, to improve the navigational ability of the robot.
+
+\subsection{Overall}
+We would also suggest improving the overall robustness and intuitiveness of the system. Currently, users of the controller find it difficult to setup without help from the user manual. Improving the user interface design to make it more intuitive could help mitigate this.
+
+The joystick currently only works on Android devices as it was not within the scope of this project to test the controller on an iOS device. The use of Web Bluetooth is the cause of this incompatibility with iOS. Therefore, future work should be conducted into finding workarounds for this. For example, an alternative method of communication could be to use Wi-Fi.
+
 
 
 %==================================================================================================================================
@@ -1187,25 +1196,40 @@ SLAM
 \begin{appendices}
 
 \chapter{Important Links}
+\section{Final Products}
 \subsubsection{Competition Website} \hfill \\
 \url{https://robot-competition.github.io/robot-competition/}
 \\
 \subsubsection{Controller} \hfill \\
 \url{https://lewistrundle.github.io/L4-Individual-Project}
+
+\section{User Study}
+\subsubsection{Ethics Checklist} \hfill \\
+\url{https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/data/ethics/ethics-checklist.pdf}
+\\
+\subsubsection{Questionnaire} \hfill \\
+\url{https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/data/questionnaire/questionnaire.pdf}
 \\
 \subsubsection{User Manual} \hfill \\
 \url{https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/src/user\_manual.md}
 \\
+\subsubsection{Participant Brief} \hfill \\
+\url{https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/data/participant-brief.md}
+\\
+\subsubsection{Participant Debrief} \hfill \\
+\url{https://github.com/LewisTrundle/L4-Individual-Project/blob/develop/data/participant-debrief.md}
+
+\section{Project Demos}
 \subsubsection{Project Demos} \hfill \\
 \url{https://github.com/LewisTrundle/L4-Individual-Project/tree/develop/demos}
 
 
 
 \chapter{Competition Design}\label{app:comp-design}
-\section{Stages}
+
 \begin{table}[!h]
     \centering
-    \caption{The 10 stages defined for the competition. Each stages has a number, method of control (manual or autonomous), what challenge it will address, and how much of the overall track it will use.}
+    \caption{The 10 stages defined for the competition. Each stage has a number, method of control (manual or autonomous), what challenge it will address, and how much of the overall track it will use.}
     \label{tab:stages}
     \begin{tabular}{@{}|c|c|c|c|c|@{}}
         \toprule
@@ -1225,7 +1249,6 @@ SLAM
 \end{table}
 
 
-\section{Track Design}
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.5\linewidth]{images/final_track_design.png}
@@ -1234,7 +1257,6 @@ SLAM
 \end{figure}
 
 
-\section{Website Wireframes}
 \begin{figure}
     \begin{subfigure}{0.49\textwidth}
         \centering
@@ -1340,7 +1362,7 @@ SLAM
 \end{figure}
 
 
-\chapter{Controller Code}
+\chapter{Controller Implementation}
 \begin{figure}[!h]
     \centering
     \begin{subfigure}{0.49\textwidth}
@@ -1449,6 +1471,93 @@ SLAM
 \label{lst:direction-code}
 \end{figure}
 
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-tracking-black.pdf}
+        \caption{Screenshot taken of the video feed, showing the colour-tracking feature for black.}
+        \label{fig:colour-tracking-black} 
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-tracking-red.pdf}
+        \caption{Screenshot taken of the video feed, showing the colour-tracking feature for red.}
+        \label{fig:colour-tracking-red} 
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-tracking-green.pdf}
+        \caption{Screenshot taken of the video feed, showing the colour-tracking feature for green.}
+        \label{fig:colour-tracking-green} 
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-tracking-blue.pdf}
+        \caption{Screenshot taken of the video feed, showing the colour-tracking feature for blue.}
+        \label{fig:colour-tracking-blue} 
+    \end{subfigure}
+    \caption{Screenshots taken of the video feed, showing the colour-tracking feature for different coloured objects. The screenshots show a moderate brightness level which was best for colour-tracking to work. \subref{fig:colour-tracking-black} shows the colour-tracker, tracking the colour black. However, due to a high level of tolerance, it cannot only identify the singular black object held in the scene, but it also identifies other colours close to black, leading to poor accuracy. Colour tracking for red \subref{fig:colour-tracking-red}, green \subref{fig:colour-tracking-green}, and blue \subref{fig:colour-tracking-blue} work somewhat well. However, this is largely dependent on the brightness levels of the scene, and any slight deviation from the colours shown here can cause inaccuracy in detection.}
+    \label{fig:colour-tracking}
+\end{figure}
+
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-black-before.pdf}
+        \caption{Normal black object.}
+        \label{fig:colour-conversion-black-before} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-black-after.pdf}
+        \caption{Black object with applied greyscale.}
+        \label{fig:colour-conversion-black-after} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-red-before.pdf}
+        \caption{Normal red object.}
+        \label{fig:colour-conversion-red-before} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-red-after.pdf}
+        \caption{Red object with applied red highlighting.}
+        \label{fig:colour-conversion-red-after} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-green-before.pdf}
+        \caption{Normal green object.}
+        \label{fig:colour-conversion-green-before} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-green-after.pdf}
+        \caption{Green object with applied green highlighting.}
+        \label{colour-conversion-green-after} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-blue-before.pdf}
+        \caption{Normal blue object.}
+        \label{fig:colour-conversion-blue-before} 
+    \end{subfigure}
+    \begin{subfigure}{0.42\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/colour-conversion-blue-after.pdf}
+        \caption{Blue object with applied blue highlighting.}
+        \label{fig:colour-conversion-blue-after} 
+    \end{subfigure}
+    \caption{Screenshots taken of the video feed, showing the colour-conversion feature for different coloured objects. \subref{fig:colour-conversion-black-after} shows greyscale conversion, to highlight black objects. \subref{fig:colour-conversion-red-after} highlights the red object but also has a low tolerance so highlights other colours as well. \subref{colour-conversion-green-after} highlights green and performs the best. \subref{fig:colour-conversion-blue-after} highlights blue, but has a low accuracy, causing little blue to be highlighted.}
+    \label{fig:colour-conversion}
+\end{figure}
+
+
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{images/code-editor-nocode.png}
@@ -1457,8 +1566,7 @@ SLAM
 \end{figure}
 
 
-
-\chapter{Evaluation: Questionnaire Results}
+\chapter{Evaluation: Results}
 
 \begin{table}[!ht]
 \centering
@@ -1510,7 +1618,6 @@ User 10 & 10.57 & 12.21 & 10.57 & 38.98 & 47.12 & 38.98 \\
     \label{fig:joystick-responsive-results}
 \end{figure}
 
-\\\\
 
 \begin{figure}[!ht]
     \centering
@@ -1552,6 +1659,13 @@ User 10 & 10.57 & 12.21 & 10.57 & 38.98 & 47.12 & 38.98 \\
 
 \begin{figure}
     \centering
+    \includegraphics[width=1\textwidth]{images/user-manual-result.pdf}
+    \caption{This pie chart shows the responses of participants when asked "How often did you have to consult the user manual". These results show that every participant at to consult the user manual at least a couple of time.}
+    \label{fig:user-manual-result}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=1\textwidth]{images/website-questions.pdf}
     \caption{This figure shows feedback from the questionnaire, regarding people's understanding of what the competition is, based off what they read from the website.}
     \label{fig:feedback-1}
@@ -1563,21 +1677,6 @@ User 10 & 10.57 & 12.21 & 10.57 & 38.98 & 47.12 & 38.98 \\
     \caption{This figure shows feedback from the questionnaire, regarding if the competition rules were easy to find on the website, and if people would be interested in entering the competition.}
     \label{fig:feedback-2}
 \end{figure}
-
-
-\chapter{Guidance}
-Typical inclusions in the appendices are:
-\begin{itemize}
-\item
-  Copies of ethics approvals (required if obtained)
-\item
-  Copies of questionnaires etc. used to gather data from subjects.
-\item
-  Extensive tables or figures that are too bulky to fit in the main body of
-  the report, particularly ones that are repetitive and summarised in the body.
-\item Outline of the source code (e.g. directory structure), or other architecture documentation like class diagrams.
-\item User manuals, and any guides to starting/running the software.
-\end{itemize}
 
 \end{appendices}
 
