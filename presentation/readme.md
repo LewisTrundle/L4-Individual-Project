@@ -1,4 +1,4 @@
-# Presentation
+# _Presentation_
 
-Include your presentation slides here. You should include the slides in the original format you authored them in (e.g. PowerPoint, Keynote), *and*
-a `pdf` version of the slides. Any necessary videos, audio, images, figures, etc. should be present.
+The full video for the demonstration can be found on [Youtube](https://www.youtube.com/watch?v=1eNZ0FXAguU).
+
