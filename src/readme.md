@@ -1,6 +1,9 @@
 # _Robot Controller_
 
 ## File Structure
+### _competition-website_
+This folder contains all files relevant to the website for the competition.
+
 ### _public_
 This folder contains the html code and other elements use to display the controller.
 * _images/_ - Contains the images used on the controller.
@@ -72,7 +75,7 @@ This configures the bundling process to package the project into a web-app.
 ## Build Instructions
 To use the controller it can be simply accessed from this url: https://lewistrundle.github.io/L4-Individual-Project/index.html.
 
-However, if you wish to build and host the controller locally, then please follow the steps below.
+However, if you wish to host the controller locally, then please follow the steps below.
 
 <br>
 
@@ -88,47 +91,28 @@ Your controller should now be live and ready to use!
 <br>
 
 ### Requirements
+Note: to install npm, run "npm install". However, if you use the approach described above, you do not need to install npm or any npm packages - simply use the live server.
 
-List the all of the pre-requisites software required to set up your project (e.g. compilers, packages, libraries, OS, hardware)
+The controller makes use of the following npm package:
+* @espruino-tools/core
+* @espruino-tools/device-controller
+* @espruino-tools/peer
+* js-aruco
+* jsqr
+* jstracking
+* nipplejs
+* piecewise-function
+* tracking.js
+* uart
 
-For example:
+The controller has only been tested on:
+* Android OS
+* Windows 10
 
-* Python 3.7
-* Packages: listed in `requirements.txt` 
-* Tested on Windows 10
-
-or another example:
-
-* Requires Raspberry Pi 3 
-* a Linux host machine with the `arm-none-eabi` toolchain (at least version `x.xx`) installed
-* a working LuaJIT installation > 2.1.0
-
-
-### Test steps
-
-List steps needed to show your software works. This might be running a test suite, or just starting the program; but something that could be used to verify your code is working correctly.
-
-Examples:
-
-* Run automated tests by running `pytest`
-* Start the software by running `bin/editor.exe` and opening the file `examples/example_01.bin`
-
+It will not work on an iOS device.
 
 <br>
-<br>
 
----
-<br>
-<br>
-
-## Limitations of Use
-
-<br>
-<br>
-
----
-<br>
-<br>
 
 ## How To Use Instructions
 For instructions on how to use the controller, please refer to the user manual [User Manual](user_manual.md)

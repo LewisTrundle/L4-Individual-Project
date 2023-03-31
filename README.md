@@ -18,7 +18,8 @@
 * [User manual](./src/user_manual.md)
 
 ### Overall Project
-* Dissertation
+* [Dissertation](./dissertation)
+* [Presentation](./presentation)
 * [Project Evaluation](./data/readme.md)
 * [Timelog](./timelog.md)
 * [Meetings](./meetings/meeting-minutes.pdf)
