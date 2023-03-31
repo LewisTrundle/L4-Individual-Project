@@ -21,7 +21,7 @@
 * [Dissertation](./dissertation)
 * [Presentation](./presentation)
 * [Project Evaluation](./data/readme.md)
-* [Timelog](./timelog.md)
+* [Timelog](./timelog.rmd)
 * [Meetings](./meetings/meeting-minutes.pdf)
 * [December Status Report](./status_reports/December_Status_Report.pdf)
 * [January Status Report](./status_reports/January_Status_Report.pdf)
